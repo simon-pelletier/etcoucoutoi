@@ -11,7 +11,7 @@ const Navbar = (props) => {
   return (
     <nav className="nav-wrapper">
       <div className="container">
-        <Link to='/' className="brand-logo left"><img className="logo" alt="logo" src="https://firebasestorage.googleapis.com/v0/b/simoncv-5e45f.appspot.com/o/images%2Flayout%2Flogo.png?alt=media&token=f7f34321-ad3f-41d8-8257-462a321ebc9a" /></Link>
+        <Link to='/' className="brand-logo left"><img className="logo" alt="logo" src="https://firebasestorage.googleapis.com/v0/b/etcoucoutoi.appspot.com/o/assets%2Fetcoucoutoi_logo.png?alt=media&token=698782b3-cdd3-4c7d-9ced-a49d2f0a3c03" /></Link>
         {links}
       </div>
     </nav>

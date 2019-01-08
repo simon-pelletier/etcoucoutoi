@@ -6,8 +6,12 @@ import { Redirect } from 'react-router-dom'
 class SignIn extends Component {
   state = {
     email: '',
-    password: ''
+    password: '',
+    gpassword: ''
   }
+
+  //process.env.REACT_APP_GENERAL_PASS
+
 
   handleChange = (e) => {
     this.setState({
@@ -39,7 +43,15 @@ class SignIn extends Component {
                         <div className="input-field col s6 offset-s3">
                         <i className="material-icons prefix">account_circle</i>
                         <input type="password" id='password' className="inputContact" onChange={this.handleChange} />
-                        <label htmlFor="password" className='helperContact'>Votre email</label>
+                        <label htmlFor="password" className='helperContact'>Votre mot de passe</label>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="input-field col s6 offset-s3">
+                        <i className="material-icons prefix">account_circle</i>
+                        <input type="gpassword" id='gpassword' className="inputContact" onChange={this.handleChange} />
+                        <label htmlFor="gpassword" className='helperContact'>Le mot de passe 'EtCoucouToi!'</label>
                         </div>
                     </div>
 

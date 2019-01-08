@@ -12,6 +12,9 @@ class Dashboard extends Component {
         return(
             <div className="home">
                 Ici la DASHBOARD
+                <div className="center red-text">
+                    { authError ? <p>{authError}</p> : null }
+                </div>
             </div>
             
         );

@@ -6,8 +6,8 @@ class Footer extends Component {
     render(){
         return(
             <div className="footer">
-                ©2018 Et coucou toi ! - All rights reserved<br/>
-                <Link className="linkFooter" to={'/mentionsLegales'} >Mentions Légales</Link>
+                ©2018 Et coucou toi ! - All rights reserved -
+                <Link className="linkFooter" to={'/mentionsLegales'} > Mentions Légales</Link>
             </div>
             
         );
