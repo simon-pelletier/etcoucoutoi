@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
 //import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { signIn } from '../../store/actions/authActions'
+import { Redirect } from 'react-router-dom'
 
-class Footer extends Component {
+class Dashboard extends Component {
     
     render(){
+        const { authError, auth } = this.props;
+        if (!auth.uid) return <Redirect to='/signin' /> 
         return(
             <div className="home">
                 Ici la DASHBOARD
@@ -13,4 +18,18 @@ class Footer extends Component {
     }
 }
 
-export default Footer;
+const mapStateToProps = (state) => {
+    return{
+      authError: state.auth.authError,
+      auth: state.firebase.auth
+    }
+  }
+  
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      signIn: (creds) => dispatch(signIn(creds))
+    }
+  }
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
+  
