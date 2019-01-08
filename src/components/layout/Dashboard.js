@@ -1,16 +1,33 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { compose } from 'redux'
+import { firestoreConnect } from 'react-redux-firebase'
 import { signIn } from '../../store/actions/authActions'
 import { Redirect } from 'react-router-dom'
+import Chats from '../chats/Chats'
+import Galleries from '../galleries/Galleries'
+import Groups from '../groups/Groups'
 
 class Dashboard extends Component {
     
+    /*getUser = () => {
+        console.log(this.props)
+        return(
+            <div>USER</div>
+        )
+    }*/
+    
+
     render(){
-        const { authError, auth } = this.props;
+        console.log(this.props)
+        const { authError, auth, profile } = this.props;
         if (!auth.uid) return <Redirect to='/signin' /> 
         return(
             <div className="home page container">
-                Ici la DASHBOARD
+                Hello {profile.pseudo}
+                <Chats/>
+                <Galleries/>
+                <Groups/>
                 <div className="center red-text">
                     { authError ? <p>{authError}</p> : null }
                 </div>
@@ -23,7 +40,8 @@ class Dashboard extends Component {
 const mapStateToProps = (state) => {
     return{
       authError: state.auth.authError,
-      auth: state.firebase.auth
+      auth: state.firebase.auth,
+      profile: state.firebase.profile
     }
   }
   
@@ -33,5 +51,11 @@ const mapStateToProps = (state) => {
     }
   }
   
-  export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
-  
+  //export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
+
+  export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    firestoreConnect([
+      { collection: 'users', orderBy: ['pseudo', 'desc']}
+    ])
+  )(Dashboard)

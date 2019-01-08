@@ -2,7 +2,10 @@ $mainColor: #59b355;
 $dark: #141414;
 $light: #cacaca;
 
+@import url('https://fonts.googleapis.com/css?family=Cantarell:400,700');
+
 body {
+  font-family: 'Cantarell', sans-serif;
   background-color: $light;
   color: $dark;
   width: 100%;

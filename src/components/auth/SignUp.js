@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom'
 
 class SignUp extends Component {
   state = {
+    pseudo: '',
     email: '',
     password: '',
     gpassword: '',
@@ -35,6 +36,14 @@ class SignUp extends Component {
       <div className="container signin">
         <form className="" onSubmit={this.handleSubmit}>
 
+        <div className="row">
+                        <div className="input-field col s6 offset-s3">
+                        <i className="material-icons prefix">account_circle</i>
+                        <input type="text" id='pseudo' className="inputContact" onChange={this.handleChange} />
+                        <label htmlFor="pseudo" className='helperContact'>Votre pseudo</label>
+                        </div>
+          </div>
+          
           <div className="row">
                         <div className="input-field col s6 offset-s3">
                         <i className="material-icons prefix">account_circle</i>
