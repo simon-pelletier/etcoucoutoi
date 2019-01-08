@@ -39,7 +39,7 @@ class SignIn extends Component {
                         <div className="input-field col s6 offset-s3">
                         <i className="material-icons prefix">account_circle</i>
                         <input type="password" id='password' className="inputContact" onChange={this.handleChange} />
-                        <label htmlFor="password" className='helperContact'>Votre email</label>
+                        <label htmlFor="password" className='helperContact'>Votre mot de passe</label>
                         </div>
                     </div>
 

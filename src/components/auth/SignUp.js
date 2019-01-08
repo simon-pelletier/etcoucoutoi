@@ -1,17 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { signIn } from '../../store/actions/authActions'
+import { signUp } from '../../store/actions/authActions'
 import { Redirect } from 'react-router-dom'
 
-class SignIn extends Component {
+class SignUp extends Component {
   state = {
     email: '',
     password: '',
-    gpassword: ''
+    gpassword: '',
+    gPassError: ''
   }
-
-  //process.env.REACT_APP_GENERAL_PASS
-
 
   handleChange = (e) => {
     this.setState({
@@ -21,7 +19,13 @@ class SignIn extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.signIn(this.state)
+    if (this.state.gpassword === process.env.REACT_APP_GENERAL_PASS){
+      this.props.signUp(this.state)
+    } else {
+      this.setState({
+        gPassError: 'Le mot de passe "Et Coucou Toi !" n\'est pas correct !'
+      })
+    }
   }
   
   render() {
@@ -50,7 +54,7 @@ class SignIn extends Component {
                     <div className="row">
                         <div className="input-field col s6 offset-s3">
                         <i className="material-icons prefix">account_circle</i>
-                        <input type="gpassword" id='gpassword' className="inputContact" onChange={this.handleChange} />
+                        <input type="password" id='gpassword' className="inputContact" onChange={this.handleChange} />
                         <label htmlFor="gpassword" className='helperContact'>Le mot de passe 'EtCoucouToi!'</label>
                         </div>
                     </div>
@@ -61,6 +65,7 @@ class SignIn extends Component {
             <button className="btn domiB z-depth-0 center col s12">Login</button>
             <div className="center red-text">
               { authError ? <p>{authError}</p> : null }
+              { this.state.gPassError ? <p>{this.state.gPassError}</p> : null }
             </div>
           </div>
         </form>
@@ -78,8 +83,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    signIn: (creds) => dispatch(signIn(creds))
+    signUp: (creds) => dispatch(signUp(creds))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn)
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
