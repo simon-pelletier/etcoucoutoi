@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-//import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { signIn } from '../../store/actions/authActions'
 import { Redirect } from 'react-router-dom'
@@ -10,7 +9,7 @@ class Dashboard extends Component {
         const { authError, auth } = this.props;
         if (!auth.uid) return <Redirect to='/signin' /> 
         return(
-            <div className="home">
+            <div className="home page container">
                 Ici la DASHBOARD
                 <div className="center red-text">
                     { authError ? <p>{authError}</p> : null }
