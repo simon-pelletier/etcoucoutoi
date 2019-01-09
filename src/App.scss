@@ -13,6 +13,12 @@ body {
   overflow-x: hidden;
   padding: 0px;
   margin: 0px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a{
+  color: $mainColor;
 }
 
 .App{
@@ -38,6 +44,7 @@ body {
 .logo{
   max-width: 60px;
 }
+
 .nav-wrapper{
   overflow: hidden;
   color: $light;
@@ -45,7 +52,7 @@ body {
 }
 
 .page{
-  padding-top: 50px;
+  padding-top: 20px;
   padding-bottom: 50px;
 }
 
@@ -67,4 +74,18 @@ body {
 .welcomeMsgInfo{
   font-size: 1em;
   font-weight: 500;
+}
+
+.conversation{
+  height: 50vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.mlText{
+  text-align: justify;
+}
+.textTitle{
+  font-weight: 600;
+  font-size: 1.5em;
 }
