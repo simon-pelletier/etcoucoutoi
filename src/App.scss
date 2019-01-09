@@ -2,6 +2,43 @@ $mainColor: #59b355;
 $dark: #141414;
 $light: #cacaca;
 
+::-webkit-scrollbar-button {
+  display: none;
+  height: 13px;
+  border-radius: 0px;
+  background-color: $light;
+}
+
+::-webkit-scrollbar-button:hover {
+  background-color: $light;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $mainColor;
+}
+
+::-webkit-scrollbar-track {
+  background-color: $light;
+}
+
+::-webkit-scrollbar-track:hover {
+  background-color: $light;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+::selection {
+  background: $light;
+  /* WebKit/Blink Browsers */
+}
+
+::-moz-selection {
+  background: $light;
+  /* Gecko Browsers */
+}
+
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
 body {

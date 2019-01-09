@@ -15,15 +15,17 @@ class Chats extends Component {
 
     handleChange = (e) => {
         this.setState({
-          [e.target.id]: e.target.value
+          [e.target.id]: e.target.value,
+          author: this.props.author.authId
         })
     }
 
     handleSubmit = (e) => {
         e.preventDefault()
-        this.setState({
+        //console.log(this.props.author.authId)
+        /*this.setState({
             author: this.props.author.authId
-        })
+        })*/
         this.props.sendMessage(this.state);
         this.setState({
             message: ''
