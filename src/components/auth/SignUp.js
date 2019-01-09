@@ -33,7 +33,7 @@ class SignUp extends Component {
     const { authError, auth } = this.props;
     if (auth.uid) return <Redirect to='/' /> 
     return (
-      <div className="container signin">
+      <div className="container logPage">
         <form className="" onSubmit={this.handleSubmit}>
 
         <div className="row">
@@ -46,7 +46,7 @@ class SignUp extends Component {
           
           <div className="row">
                         <div className="input-field col s6 offset-s3">
-                        <i className="material-icons prefix">account_circle</i>
+                        <i className="material-icons prefix">email</i>
                         <input type="text" id='email' className="inputContact" onChange={this.handleChange} />
                         <label htmlFor="email" className='helperContact'>Votre email</label>
                         </div>
@@ -54,7 +54,7 @@ class SignUp extends Component {
 
                     <div className="row">
                         <div className="input-field col s6 offset-s3">
-                        <i className="material-icons prefix">account_circle</i>
+                        <i className="material-icons prefix">vpn_key</i>
                         <input type="password" id='password' className="inputContact" onChange={this.handleChange} />
                         <label htmlFor="password" className='helperContact'>Votre mot de passe</label>
                         </div>
@@ -62,7 +62,7 @@ class SignUp extends Component {
 
                     <div className="row">
                         <div className="input-field col s6 offset-s3">
-                        <i className="material-icons prefix">account_circle</i>
+                        <i className="material-icons prefix">vpn_key</i>
                         <input type="password" id='gpassword' className="inputContact" onChange={this.handleChange} />
                         <label htmlFor="gpassword" className='helperContact'>Le mot de passe 'EtCoucouToi!'</label>
                         </div>

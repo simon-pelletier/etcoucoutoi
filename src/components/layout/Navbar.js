@@ -12,6 +12,8 @@ const Navbar = (props) => {
     <nav className="nav-wrapper">
       <div className="container">
         <Link to='/' className="left"><img className="logo" alt="logo" src="https://firebasestorage.googleapis.com/v0/b/etcoucoutoi.appspot.com/o/assets%2Flogo.png?alt=media&token=6057aa34-63e6-4b33-8b4d-1604c2d145a0" /></Link>
+        {auth.uid ? <span className="left welcomeMsg">Et coucou {profile.pseudo} !</span> : null}
+
         {links}
       </div>
     </nav>

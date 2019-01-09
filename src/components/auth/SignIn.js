@@ -24,7 +24,7 @@ class SignIn extends Component {
     const { authError, auth } = this.props;
     if (auth.uid) return <Redirect to='/' /> 
     return (
-      <div className="container signin">
+      <div className="container logPage">
         <form className="" onSubmit={this.handleSubmit}>
 
           <div className="row">
@@ -37,7 +37,7 @@ class SignIn extends Component {
 
                     <div className="row">
                         <div className="input-field col s6 offset-s3">
-                        <i className="material-icons prefix">account_circle</i>
+                        <i className="material-icons prefix">vpn_key</i>
                         <input type="password" id='password' className="inputContact" onChange={this.handleChange} />
                         <label htmlFor="password" className='helperContact'>Votre mot de passe</label>
                         </div>

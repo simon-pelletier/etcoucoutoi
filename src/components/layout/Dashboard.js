@@ -14,7 +14,6 @@ class Dashboard extends Component {
         if (!auth.uid) return <Redirect to='/signin' /> 
         return(
             <div className="home page container">
-                <div className="row welcomeMsg">Et Coucou {profile.pseudo} !</div>
                 {/*<div className="row welcomeMsgInfo">T'as loupé -- messages et -- photos !
                 </div>*/}
                

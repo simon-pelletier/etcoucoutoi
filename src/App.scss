@@ -55,6 +55,10 @@ a{
   padding-top: 20px;
   padding-bottom: 50px;
 }
+.logPage{
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
 
 /*
 .card{
@@ -68,9 +72,17 @@ a{
  overflow-y: scroll;
 }
 .welcomeMsg{
-  font-size: 2em;
-  font-weight: 800;
+  font-size: 1.3em;
+  font-weight: 500;
+  padding-left: 15px;
 }
+
+@media (max-width: 600px) {
+  .welcomeMsg{
+    display: none;
+  }
+}
+
 .welcomeMsgInfo{
   font-size: 1em;
   font-weight: 500;
@@ -88,4 +100,10 @@ a{
 .textTitle{
   font-weight: 600;
   font-size: 1.5em;
+}
+
+.logOutBtn{
+  cursor: pointer;
+  padding-top: 3px;
+  padding-left: 15px;
 }

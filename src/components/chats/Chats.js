@@ -10,7 +10,6 @@ class Chats extends Component {
 
     state={
         message: '',
-        //date: '',
         author: ''
     }
 
@@ -22,14 +21,10 @@ class Chats extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        //console.log(this.props)
         this.setState({
-            //date: moment().format(),
             author: this.props.author.authId
         })
-        //console.log(this.state)
         this.props.sendMessage(this.state);
-
         this.setState({
             message: ''
         })
@@ -76,23 +71,21 @@ class Chats extends Component {
     }
 }
 
-//export default Chats;
-
 const mapStateToProps = (state) => {
     return{
       mainChat: state.firestore.ordered.mainChat
     }
-  }
+}
   
-  const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         sendMessage: (creds) => dispatch(sendMessage(creds))
     }
-  }
+}
 
-  export default compose(
+export default compose(
     connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect([
       { collection: 'mainChat', orderBy: ['createdAt', 'asc']}
     ])
-  )(Chats)
+)(Chats)
