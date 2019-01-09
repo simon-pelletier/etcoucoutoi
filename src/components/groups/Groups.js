@@ -26,16 +26,21 @@ class Groups extends Component {
     //console.log(users);
     return (
       
-      <div className="user-list container">
-        <input type="text" id='title' onChange={this.handleChange} />
-        <label htmlFor="title">Et coucou qui ?</label>
-  
+      <div className="user-list">
+
         <div className="row">
-          <div className="col s12">
+          <div className="col s4 offset-s4">
+            <input type="text" id='title' onChange={this.handleChange} />
+            <label htmlFor="title">Et coucou qui ?</label>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col s8 offset-s2">
             <UserList users={users} entry={this.state.entry} />
           </div>
-          
         </div>
+
       </div>
     )
   }

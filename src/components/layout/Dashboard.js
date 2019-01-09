@@ -5,8 +5,8 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { signIn } from '../../store/actions/authActions'
 import { Redirect } from 'react-router-dom'
 import Chats from '../chats/Chats'
-import Galleries from '../galleries/Galleries'
-import Groups from '../groups/Groups'
+//import Galleries from '../galleries/Galleries'
+//import Groups from '../groups/Groups'
 
 class Dashboard extends Component {
     
@@ -24,10 +24,21 @@ class Dashboard extends Component {
         if (!auth.uid) return <Redirect to='/signin' /> 
         return(
             <div className="home page container">
-                Hello {profile.pseudo}
-                <Chats/>
-                <Galleries/>
-                <Groups/>
+                <div className="row welcomeMsg">Et Coucou {profile.pseudo} !</div>
+                <div className="row welcomeMsgInfo">T'as loupé -- messages et -- photos !
+                </div>
+               
+                <div className="row">
+                    <div className="col s12">
+                        <Chats />
+                    </div>
+
+                </div>
+
+                <div className="row">
+                    
+                    
+                </div>
                 <div className="center red-text">
                     { authError ? <p>{authError}</p> : null }
                 </div>

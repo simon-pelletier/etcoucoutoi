@@ -2,10 +2,10 @@ $mainColor: #59b355;
 $dark: #141414;
 $light: #cacaca;
 
-@import url('https://fonts.googleapis.com/css?family=Cantarell:400,700');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
 body {
-  font-family: 'Cantarell', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   background-color: $light;
   color: $dark;
   width: 100%;
@@ -54,3 +54,17 @@ body {
   background-color: transparent;
 }
 */
+
+.groups-dashboard{
+ max-height: 70vh;
+ overflow-x: hidden;
+ overflow-y: scroll;
+}
+.welcomeMsg{
+  font-size: 2em;
+  font-weight: 800;
+}
+.welcomeMsgInfo{
+  font-size: 1em;
+  font-weight: 500;
+}

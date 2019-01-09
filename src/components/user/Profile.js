@@ -53,12 +53,16 @@ class Profile extends Component {
       }*/
 
     render () {
-        const { auth, profile } = this.props;
+        const { auth } = this.props;
         if (!auth.uid) return <Redirect to='/signin' /> 
         return (
             <div className="page container">
-
-                <div>{profile.authId}</div>
+            
+                <div className="row">
+                    <div className="col s6 offset-s3">
+                        <img src={this.state.avatar} className="avatarProfile" alt=""/>
+                    </div>
+                </div>
 
                 <div className="row">
                     <div className="input-field col s6 offset-s3">
@@ -68,11 +72,7 @@ class Profile extends Component {
                     </div>
                 </div>
 
-                <div className="row">
-                    <div className="col s6 offset-s3">
-                        <img src={this.state.avatar} className="avatarProfile" alt=""/>
-                    </div>
-                </div>
+                
 
                 <div className="row">
                     <div className="input-field col s6 offset-s3">

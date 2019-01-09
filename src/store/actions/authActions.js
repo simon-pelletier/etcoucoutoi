@@ -27,7 +27,7 @@ export const signUp = (newUser) => {
         authId: resp.user.uid,
         email: newUser.email,
         pseudo: newUser.pseudo,
-        avatar: 'https://firebasestorage.googleapis.com/v0/b/etcoucoutoi.appspot.com/o/assets%2Fetcoucoutoi_logo.png?alt=media&token=698782b3-cdd3-4c7d-9ced-a49d2f0a3c03',
+        avatar: 'https://firebasestorage.googleapis.com/v0/b/etcoucoutoi.appspot.com/o/assets%2Fprofil.jpg?alt=media&token=7b89255a-e7df-4964-b027-892bc2330224',
         dob: ''
       });
     }).then(() => {

@@ -12,3 +12,4 @@ class Chats extends Component {
 }
 
 export default Chats;
+
