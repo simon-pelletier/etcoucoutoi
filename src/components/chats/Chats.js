@@ -49,7 +49,7 @@ class Chats extends Component {
       
         return (
             <div className="page container">
-                <div className="row conversation" ref={(div) => {this.messageList = div;}}>
+                <div className="row conversation col s12" ref={(div) => {this.messageList = div;}}>
                     <Conversation chat={mainChat} />
                 </div>
 

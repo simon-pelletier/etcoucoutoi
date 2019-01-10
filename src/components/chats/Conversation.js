@@ -2,24 +2,33 @@ import React from 'react'
 import Message from './Message'
 
 const Conversation = ({chat}) => {
-  //console.log(chat)
+
+  let lastAuthor = ''
+  let wayClass = 'msgLeft'
+
   return (
     
-    <div className="skillBlock row">
+    <div className="row">
 
       { chat && chat
-      /*.filter(skill => {
-        if (cat === 'none'){
-          return skill.rate === "0" || skill.rate === 0
-        } else {
-          return skill.category === cat && skill.rate > 0
-        }
-      })
-      .sort(function(a, b){return 0.5 - Math.random()})*/
       .map(chat => {
+
+        const currentAuthor = chat.author
+
+        if (currentAuthor !== lastAuthor){
+          lastAuthor = currentAuthor
+          if (wayClass === 'msgLeft'){
+            wayClass = 'msgRight'
+          } else {
+            wayClass = 'msgLeft'
+          }
+        } else {
+          lastAuthor = currentAuthor
+        }
         return (
-            <Message conversation={chat} key={chat.id}/>
+          <Message conversation={chat} key={chat.id} way={wayClass}/>
         )
+
       })}
 
     </div>

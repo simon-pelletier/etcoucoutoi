@@ -25,27 +25,28 @@ class Message extends Component {
     }
 
     render(){
-    const conversation = this.props.conversation
-    const date = conversation.createdAt.seconds * 1000
-    const dateFormat = new Intl.DateTimeFormat('fr-FR', 
-        {
-            timezone: 'UTC',
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            hour: '2-digit', 
-            minute: '2-digit', 
-            second: '2-digit'
-        }
-    ).format(date)
+        const conversation = this.props.conversation
+        //const counter = this.props.counter
+        const date = conversation.createdAt.seconds * 1000
+        const dateFormat = new Intl.DateTimeFormat('fr-FR', 
+            {
+                timezone: 'UTC',
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit'
+            }
+        ).format(date)
 
-    return (
-        
-        <div>
-            <div className="msgMessage">{conversation.message}</div>
-            <span className="msgAuthor">{this.getUsername(conversation.author)}</span> - <span className="msgDate">{dateFormat}</span>
-            <hr/>
-        </div>
+        return (
+
+            <div className={this.props.way}>
+                <div className="msgMessage">{conversation.message}</div>
+                <span className="msgAuthor">{this.getUsername(conversation.author)}</span> - <span className="msgDate">{dateFormat}</span>
+                <hr/>
+            </div>
     
         )
     }
