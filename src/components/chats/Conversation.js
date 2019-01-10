@@ -30,10 +30,12 @@ class Conversation extends Component {
 
   render(){
 
-    let lastAuthor = ''
+    //let lastAuthor = ''
     let wayClass = 'msgLeft'
 
     const chat = this.props.chat
+
+    //console.log(this.props)
 
     return (
       
@@ -44,7 +46,7 @@ class Conversation extends Component {
 
           // Alternance Gauche et Droite par message selon l'auteur
           const currentAuthor = chat.author
-          if (currentAuthor !== lastAuthor){
+          /*if (currentAuthor !== lastAuthor){
             lastAuthor = currentAuthor
             if (wayClass === 'msgLeft'){
               wayClass = 'msgRight'
@@ -53,6 +55,14 @@ class Conversation extends Component {
             }
           } else {
             lastAuthor = currentAuthor
+          }*/
+
+          const auth = this.props.auth.uid
+
+          if (auth === currentAuthor){
+            wayClass = 'msgRight'
+          } else {
+            wayClass = 'msgLeft'
           }
 
           // Conversation rendu
@@ -73,6 +83,7 @@ class Conversation extends Component {
 
 const mapStateToProps = (state) => {
   return{
+      auth: state.firebase.auth,
       users: state.firestore.ordered.users
   }
 }
