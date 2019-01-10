@@ -26,7 +26,7 @@ class Message extends Component {
         //console.log(this.props)
 
         const date = conversation.createdAt.seconds * 1000
-        const dateFormat = new Intl.DateTimeFormat('fr-FR', 
+        /*const dateFormat = new Intl.DateTimeFormat('fr-FR', 
             {
                 timezone: 'UTC',
                 year: 'numeric',
@@ -36,20 +36,34 @@ class Message extends Component {
                 minute: '2-digit', 
                 second: '2-digit'
             }
-        ).format(date)
+        ).format(date)*/
+
+        const dateObj = new Date(date)
+        let hour = dateObj.getHours();
+        let minute = dateObj.getMinutes();
+
+        
+        if(hour < 10){
+            hour = '0' + hour
+        }
+        if(minute < 10){
+            minute = '0' + minute
+        }
+
 
         return (
-
-            <div className={this.props.way}>
-
-
-
-                <span className="msgMessage">{conversation.message}</span>
-
-                <span className="msgAuthor">{pseudo}</span> - <span className="msgDate">{dateFormat}</span>
-                <img className="msgAvatar" src={avatar} alt="avatar" />
-                <hr/>
+            <div className="col s12">
+            
+                <div className={this.props.way + " msgBlock left col s12 m8 l6"}>
+                    <i className="material-icons msgBulle">chat_bubble</i>
+                    <span className="msgMessage col s12">{conversation.message}</span>
+                    <span className="msgAuthor">{pseudo}</span>
+                    <span className="msgDate">{hour + ':' + minute}</span>
+                    <img className="msgAvatar" src={avatar} alt="avatar" />
+                 
+                </div>
             </div>
+           
     
         )
     }

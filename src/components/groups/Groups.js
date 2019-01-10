@@ -27,10 +27,10 @@ class Groups extends Component {
     //console.log(users);
     return (
       
-      <div className="user-list">
+      <div className="user-list page groupPage">
 
         <div className="row">
-          <div className="col s4 offset-s4">
+          <div className="col l4 offset-l4 s8 offset-s2">
             <input type="text" id='title' onChange={this.handleChange} />
             <label htmlFor="title">Et coucou qui ?</label>
           </div>

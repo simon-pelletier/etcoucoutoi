@@ -13,7 +13,7 @@ class Dashboard extends Component {
         const { auth, profile } = this.props;
         if (!auth.uid) return <Redirect to='/signin' /> 
         return(
-            <div className="home page container">
+            <div className="home page">
                 {/*<div className="row welcomeMsgInfo">T'as loupé -- messages et -- photos !
                 </div>*/}
                

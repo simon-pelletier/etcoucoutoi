@@ -7,7 +7,7 @@ class Galleries extends Component {
 
     render () {
         return (
-            <div className="page container">
+            <div className="page container galleriePage">
                 GALLERIES COMP
             </div>
         )

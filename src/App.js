@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Navbar from './components/layout/Navbar'
-import Footer from './components/layout/Footer'
+//import Footer from './components/layout/Footer'
 import MentionsLegales from './components/legal/Ml'
 import Dashboard from './components/layout/Dashboard'
 import './App.scss';
@@ -30,7 +30,7 @@ class App extends Component {
             <Route exact path='/signup'component={SignUp} />
             <Route path='/mentionsLegales' component={MentionsLegales} />
             </Switch>
-          <Footer />
+          {/*<Footer />*/}
         </div>
       </BrowserRouter>
     );

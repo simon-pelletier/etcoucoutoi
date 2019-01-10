@@ -65,7 +65,7 @@ class Profile extends Component {
         const { auth } = this.props;
         if (!auth.uid) return <Redirect to='/signin' /> 
         return (
-            <div className="page container">
+            <div className="page profilPage">
             
                 <div className="row">
                     <div className="col s6 offset-s3">

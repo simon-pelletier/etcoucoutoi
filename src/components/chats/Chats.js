@@ -12,27 +12,34 @@ class Chats extends Component {
         message: '',
         author: '',
         //pseudo: '',
-        link: null
+        link: null,
+
     }
 
     handleChange = (e) => {
-        this.setState({
-          [e.target.id]: e.target.value,
-          author: this.props.author.authId,
-          //pseudo: this.props.author.pseudo
-        })
+        if(e.target.value.length <= 150){
+            this.setState({
+                [e.target.id]: e.target.value,
+                author: this.props.author.authId
+                //pseudo: this.props.author.pseudo
+              })
+        }
+        
     }
 
     handleSubmit = (e) => {
         e.preventDefault()
+        if(this.state.message !== '' && this.state.message.length < 150){
+            this.props.sendMessage(this.state)
+            this.setState({
+                message: ''
+            })
+        }
         //console.log(this.props.author.authId)
         /*this.setState({
             author: this.props.author.authId
         })*/
-        this.props.sendMessage(this.state);
-        this.setState({
-            message: ''
-        })
+        
     }
 
     scrollToBottom() {
@@ -48,43 +55,28 @@ class Chats extends Component {
 
     render () {
 
-        const { mainChat } = this.props;
+        const { mainChat } = this.props
+        const maxMsgLength = 150
       
         return (
-            <div className="page container">
-                <div className="row conversation col s12" ref={(div) => {this.messageList = div;}}>
+
+            <div className="chatPage">
+
+                <div className=" conversation col s12" ref={(div) => {this.messageList = div;}}>
                     <Conversation chat={mainChat} />
                 </div>
 
-                <div className="row sender">
-                <form>
-                    <div className="input-field col s8 offset-s2">
-                        <i className="material-icons prefix">sms</i>
-                        <input type="text" id='message' className="materialize-textarea inputContact" value={this.state.message} onChange={this.handleChange} />
-                        
-                        
-                        {/*<div class="file-field input-field">
-                            <div className="btn">
-                                <span><i className="material-icons prefix">mms</i></span>
-                                <input type="file" multiple />
-                            </div>
-                            <div className="file-path-wrapper">
-                                <input className="file-path validate" type="text" placeholder="Upload one or more files" />
-                            </div>
-                        </div>*/}
-
-
-                    </div>
-                    
-                    <div className="input-field col s2 center">
-                        <button type="submit" className="btn domiB z-depth-0 center" onClick={this.handleSubmit}><i className="material-icons">send</i></button>
-                    </div>
-                </form>
-
+                <div className=" sender">
+                    <form>
+                        <div className="input-field col s12">
+                            <input type="text" id='message' className="inputContact" value={this.state.message} onChange={this.handleChange} />
+                            <span className="counterMsg" >{this.state.message.length + '/' + maxMsgLength} </span>
+                            <button type="submit" className="btn domiB z-depth-0 center" onClick={this.handleSubmit}><i className="material-icons">send</i></button>
+                        </div>
+                    </form>
                 </div>
 
             </div>
-
 
         )
     }
