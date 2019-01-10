@@ -10,13 +10,16 @@ class Chats extends Component {
 
     state={
         message: '',
-        author: ''
+        author: '',
+        //pseudo: '',
+        link: null
     }
 
     handleChange = (e) => {
         this.setState({
           [e.target.id]: e.target.value,
-          author: this.props.author.authId
+          author: this.props.author.authId,
+          //pseudo: this.props.author.pseudo
         })
     }
 
@@ -57,7 +60,20 @@ class Chats extends Component {
                 <form>
                     <div className="input-field col s8 offset-s2">
                         <i className="material-icons prefix">sms</i>
-                        <input type="text" id='message' className="inputContact" value={this.state.message} onChange={this.handleChange} />
+                        <input type="text" id='message' className="materialize-textarea inputContact" value={this.state.message} onChange={this.handleChange} />
+                        
+                        
+                        {/*<div class="file-field input-field">
+                            <div className="btn">
+                                <span><i className="material-icons prefix">mms</i></span>
+                                <input type="file" multiple />
+                            </div>
+                            <div className="file-path-wrapper">
+                                <input className="file-path validate" type="text" placeholder="Upload one or more files" />
+                            </div>
+                        </div>*/}
+
+
                     </div>
                     
                     <div className="input-field col s2 center">

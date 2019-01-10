@@ -48,12 +48,15 @@ export const signOut = () => {
   }
 }
 
-export const updateProfile = () => {
-  return (dispatch, getState, {getFirebase}) => {
-    //const firebase = getFirebase();
-
-    /*firebase.auth().signOut().then(() => {
-      dispatch({ type: 'SIGNOUT_SUCCESS' })
-    });*/
+export const updateProfile = (user) => {
+  return (dispatch, getState, {getFirestore}) => {
+    const firestore = getFirestore();
+    firestore.collection('users').doc(user.authId).update({
+      ...user
+    }).then(() => {
+      dispatch({ type: 'UPDATE_PROFIL_SUCCESS' });
+    }).catch(err => {
+      dispatch({ type: 'UPDATE_PROFIL_ERROR' }, err);
+    });
   }
 }

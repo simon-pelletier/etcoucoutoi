@@ -1,32 +1,29 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+/*import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
-import { compose } from 'redux'
+import { compose } from 'redux'*/
 import './chats.scss'
 
 class Message extends Component {
 
+    /*
     getUsername = () => {
-        //console.log(this.props)
-        const users = this.props.users
-        const author = this.props.conversation.author
 
         return(
-            users && users
-                .filter(user => {
-                    return user.authId === author
-                })
-                .map(user => {
-                    return (
-                        user.pseudo
-                    )
-                })
+
+                this.props.conversation.pseudo
         )
     }
+    */
 
     render(){
+        //console.log(this.props)
         const conversation = this.props.conversation
-        //const counter = this.props.counter
+        const pseudo = this.props.userInfos[0].pseudo
+        const avatar = this.props.userInfos[0].avatar
+
+        //console.log(this.props)
+
         const date = conversation.createdAt.seconds * 1000
         const dateFormat = new Intl.DateTimeFormat('fr-FR', 
             {
@@ -44,7 +41,8 @@ class Message extends Component {
 
             <div className={this.props.way}>
                 <div className="msgMessage">{conversation.message}</div>
-                <span className="msgAuthor">{this.getUsername(conversation.author)}</span> - <span className="msgDate">{dateFormat}</span>
+                <span className="msgAuthor">{pseudo}</span> - <span className="msgDate">{dateFormat}</span>
+                <img className="msgAvatar" src={avatar} alt="avatar" />
                 <hr/>
             </div>
     
@@ -52,6 +50,9 @@ class Message extends Component {
     }
 }
 
+export default Message
+
+/*
 const mapStateToProps = (state) => {
     return{
         users: state.firestore.ordered.users
@@ -64,3 +65,4 @@ export default compose(
       { collection: 'users', orderBy: ['pseudo'] }
     ])
 )(Message)
+*/

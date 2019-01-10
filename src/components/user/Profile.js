@@ -25,19 +25,28 @@ class Profile extends Component {
         }
        }
 
-    state = {
+    /*state = {
         pseudo: '',
         authId: '',
         avatar: '',
         dob: '',
         email: ''
-    }
+    }*/
 
     handleChange = (e) => {
         //console.log(this.state)
         this.setState({
           [e.target.id]: e.target.value
         })
+    }
+
+    updateChange = (e) => {
+        const profile = this.props.profile;
+        e.preventDefault()
+        this.setState({
+            authId: profile.authId
+        })
+        this.props.updateProfile(this.state);
     }
 
     /*componentWillReceiveProps(nextProps) {
@@ -87,6 +96,7 @@ class Profile extends Component {
                     </div>
                 </div>
 
+                <button className="btn domiB z-depth-0 center col s12" onClick={this.updateChange}>SAUVEGARDER</button>
                 
             </div>
         )
@@ -102,9 +112,9 @@ const mapStateToProps = (state) => {
     }
 }
   
-  const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
     return {
-      updateProfile: (creds) => dispatch(updateProfile(creds))
+      updateProfile: (user) => dispatch(updateProfile(user))
     }
 }
 

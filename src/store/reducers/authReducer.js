@@ -22,6 +22,14 @@ const authReducer = (state = initState, action) => {
       console.log('signout success');
       return state;
 
+    case 'UPDATE_PROFIL_SUCCESS':
+      console.log('update success');
+      return state;
+
+    case 'UPDATE_PROFIL_ERROR':
+      console.log('update error');
+      return state;
+
     case 'SIGNUP_SUCCESS':
       console.log('signup success')
       return {
