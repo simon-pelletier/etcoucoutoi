@@ -42,7 +42,7 @@ class Message extends Component {
 
             <div className={this.props.way}>
 
-                <div className="msgMessage">{conversation.message}</div>
+
 
                 <span className="msgMessage">{conversation.message}</span>
 
