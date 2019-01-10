@@ -40,7 +40,7 @@ class SignUp extends Component {
                         <div className="input-field col s6 offset-s3">
                         <i className="material-icons prefix">person</i>
                         <input type="text" id='pseudo' className="inputContact" onChange={this.handleChange} />
-                        <label htmlFor="pseudo" className='helperContact'>Ton pseudo ( celui qu'on connaît bien ! )</label>
+                        <label htmlFor="pseudo" className='helperContact'>Ton surnom ( celui qu'on connaît tous ! )</label>
                         </div>
           </div>
           

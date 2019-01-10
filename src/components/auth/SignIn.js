@@ -31,7 +31,7 @@ class SignIn extends Component {
                         <div className="input-field col s6 offset-s3">
                         <i className="material-icons prefix">person</i>
                         <input type="text" id='email' className="inputContact" onChange={this.handleChange} />
-                        <label htmlFor="email" className='helperContact'>Votre email</label>
+                        <label htmlFor="email" className='helperContact'>Ton e-mail</label>
                         </div>
           </div>
 
@@ -39,7 +39,7 @@ class SignIn extends Component {
                         <div className="input-field col s6 offset-s3">
                         <i className="material-icons prefix">vpn_key</i>
                         <input type="password" id='password' className="inputContact" onChange={this.handleChange} />
-                        <label htmlFor="password" className='helperContact'>Votre mot de passe</label>
+                        <label htmlFor="password" className='helperContact'>Ton mot de passe</label>
                         </div>
                     </div>
 
