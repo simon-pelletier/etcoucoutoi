@@ -56,11 +56,12 @@ class Chats extends Component {
                 <div className="row sender">
                 <form>
                     <div className="input-field col s8 offset-s2">
+                        <i className="material-icons prefix">sms</i>
                         <input type="text" id='message' className="inputContact" value={this.state.message} onChange={this.handleChange} />
                     </div>
                     
                     <div className="input-field col s2 center">
-                        <button type="submit" className="btn domiB z-depth-0 center col s12" onClick={this.handleSubmit}>SEND</button>
+                        <button type="submit" className="btn domiB z-depth-0 center" onClick={this.handleSubmit}><i className="material-icons">send</i></button>
                     </div>
                 </form>
 

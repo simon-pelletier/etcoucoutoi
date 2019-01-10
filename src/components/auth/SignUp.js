@@ -24,7 +24,7 @@ class SignUp extends Component {
       this.props.signUp(this.state)
     } else {
       this.setState({
-        gPassError: 'Le mot de passe "Et Coucou Toi !" n\'est pas correct !'
+        gPassError: 'Le mot de passe "Et Coucou Toi !" n\'est pas correct ! Tu peux contacter un administrateur.'
       })
     }
   }
@@ -38,9 +38,9 @@ class SignUp extends Component {
 
         <div className="row">
                         <div className="input-field col s6 offset-s3">
-                        <i className="material-icons prefix">account_circle</i>
+                        <i className="material-icons prefix">person</i>
                         <input type="text" id='pseudo' className="inputContact" onChange={this.handleChange} />
-                        <label htmlFor="pseudo" className='helperContact'>Votre pseudo</label>
+                        <label htmlFor="pseudo" className='helperContact'>Ton pseudo ( celui qu'on connaît bien ! )</label>
                         </div>
           </div>
           
@@ -48,7 +48,7 @@ class SignUp extends Component {
                         <div className="input-field col s6 offset-s3">
                         <i className="material-icons prefix">email</i>
                         <input type="text" id='email' className="inputContact" onChange={this.handleChange} />
-                        <label htmlFor="email" className='helperContact'>Votre email</label>
+                        <label htmlFor="email" className='helperContact'>Ton e-mail ( 0 pubs )</label>
                         </div>
           </div>
 
@@ -56,7 +56,7 @@ class SignUp extends Component {
                         <div className="input-field col s6 offset-s3">
                         <i className="material-icons prefix">vpn_key</i>
                         <input type="password" id='password' className="inputContact" onChange={this.handleChange} />
-                        <label htmlFor="password" className='helperContact'>Votre mot de passe</label>
+                        <label htmlFor="password" className='helperContact'>Ton mot de passe</label>
                         </div>
                     </div>
 
@@ -64,14 +64,14 @@ class SignUp extends Component {
                         <div className="input-field col s6 offset-s3">
                         <i className="material-icons prefix">vpn_key</i>
                         <input type="password" id='gpassword' className="inputContact" onChange={this.handleChange} />
-                        <label htmlFor="gpassword" className='helperContact'>Le mot de passe 'EtCoucouToi!'</label>
+                        <label htmlFor="gpassword" className='helperContact'>Le mot de passe 'Et Coucou Toi !'</label>
                         </div>
                     </div>
 
         
 
           <div className="input-field col s12 center">
-            <button className="btn domiB z-depth-0 center col s12">Login</button>
+            <button className="btn domiB z-depth-0 center col s12">S'inscrire</button>
             <div className="center red-text">
               { authError ? <p>{authError}</p> : null }
               { this.state.gPassError ? <p>{this.state.gPassError}</p> : null }

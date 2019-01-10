@@ -7,10 +7,10 @@ const SignedInLinks = (props) => {
   return (
     <div>
       <ul className="right">
-        <li><NavLink to='/galleries'>PHOTOS</NavLink></li>
-        <li><NavLink to='/groups'>LA TROUPE</NavLink></li>
-        <li><NavLink to='/profile'>MOI</NavLink></li>
-        <li><div href="" className="logOutBtn" onClick={props.signOut}><i className="material-icons">power_settings_new</i></div></li>
+        <li><NavLink to='/galleries'><i className="material-icons menuIcon">photo</i></NavLink></li>
+        <li><NavLink to='/groups'><i className="material-icons menuIcon">group</i></NavLink></li>
+        <li><NavLink to='/profile'><i className="material-icons menuIcon">settings</i></NavLink></li>
+        <li><div href="" onClick={props.signOut}><i className="material-icons menuIcon logOutBtn">cancel</i></div></li>
       </ul>
     </div>
   )

@@ -29,7 +29,7 @@ class SignIn extends Component {
 
           <div className="row">
                         <div className="input-field col s6 offset-s3">
-                        <i className="material-icons prefix">account_circle</i>
+                        <i className="material-icons prefix">person</i>
                         <input type="text" id='email' className="inputContact" onChange={this.handleChange} />
                         <label htmlFor="email" className='helperContact'>Votre email</label>
                         </div>
@@ -46,7 +46,7 @@ class SignIn extends Component {
         
 
           <div className="input-field col s12 center">
-            <button className="btn domiB z-depth-0 center col s12">Login</button>
+            <button className="btn domiB z-depth-0 center col s12">Se connecter</button>
             <div className="center red-text">
               { authError ? <p>{authError}</p> : null }
             </div>

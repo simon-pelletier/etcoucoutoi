@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
+import './chats.scss'
 
 class Message extends Component {
 
@@ -11,26 +12,19 @@ class Message extends Component {
         const author = this.props.conversation.author
 
         return(
-            <div>
-                { users && users
+            users && users
                 .filter(user => {
-                    if (user.authId === author){
-                        return user
-                    } else {
-                        return null
-                    }
+                    return user.authId === author
                 })
                 .map(user => {
                     return (
-                        <div key={this.props.conversation.id}>{user.pseudo}</div>
+                        user.pseudo
                     )
-                })}
-            </div>
+                })
         )
     }
 
     render(){
-    //console.log(this.props)  
     const conversation = this.props.conversation
     const date = conversation.createdAt.seconds * 1000
     const dateFormat = new Intl.DateTimeFormat('fr-FR', 
@@ -45,20 +39,11 @@ class Message extends Component {
         }
     ).format(date)
 
-    //WHERE
-    //this.props.users.authId
-    //CORRESPOND à 
-    //this.props.conversation.author
-    //FIND
-    //this.props.users.pseudo
-    //this.props.users.avatar
-
     return (
         
         <div>
             <div className="msgMessage">{conversation.message}</div>
-            <div className="msgAuthor">{this.getUsername(conversation.author)}</div>
-            <div className="msgDate">{dateFormat}</div>
+            <span className="msgAuthor">{this.getUsername(conversation.author)}</span> - <span className="msgDate">{dateFormat}</span>
             <hr/>
         </div>
     
