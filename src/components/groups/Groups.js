@@ -5,6 +5,7 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 //import SearchBar from './SearchBar'
+import './groups.scss'
 
 
 

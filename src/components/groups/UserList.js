@@ -6,12 +6,12 @@ const UserList = ({users, entry}) => {
 
   return (
 
-    <div className="users-list section">
+    <div className="users-list" id="grid">
       { users && users.filter(user => { 
         return user.pseudo.toLowerCase().includes(entry.toLowerCase()) || user.email.toLowerCase().includes(entry.toLowerCase()) })
         .map(user => {
         return(
-          <UserSummary user={user} key={user.id} />
+          <UserSummary user={user} key={user.id} className="gridItem"/>
         )
       })}
 
