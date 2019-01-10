@@ -66,9 +66,8 @@ class Profile extends Component {
 
                 <div className="row">
                     <div className="input-field col s6 offset-s3">
-                        <i className="material-icons prefix">account_circle</i>
-                        <input type="text" id='pseudo'  value={this.state.pseudo} className="inputContact" onChange={this.handleChange} />
-                        <label htmlFor="pseudo" className='helperContact'>Ton pseudo</label>
+                        <span className="helper-text left">Ton pseudo</span>
+                        <input type="text" id='pseudo'  value={this.state.pseudo} className="inputContact" onChange={this.handleChange} /> 
                     </div>
                 </div>
 
@@ -76,17 +75,15 @@ class Profile extends Component {
 
                 <div className="row">
                     <div className="input-field col s6 offset-s3">
-                        <i className="material-icons prefix">account_circle</i>
+                        <span className="helper-text left">Ta date de naissance</span>
                         <input type="text" id='dob'  value={this.state.dob} className="inputContact" onChange={this.handleChange} />
-                        <label htmlFor="dob" className='helperContact'>Ta date de naissance</label>
                     </div>
                 </div>
 
                 <div className="row">
                     <div className="input-field col s6 offset-s3">
-                        <i className="material-icons prefix">account_circle</i>
+                        <span className="helper-text left">Ton email</span>
                         <input type="text" id='email'  value={this.state.email} className="inputContact" onChange={this.handleChange} />
-                        <label htmlFor="email" className='helperContact'>Ton email</label>
                     </div>
                 </div>
 
