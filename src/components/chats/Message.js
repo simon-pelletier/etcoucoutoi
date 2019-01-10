@@ -4,6 +4,7 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'*/
 import './chats.scss'
 
+
 class Message extends Component {
 
     /*
@@ -40,7 +41,11 @@ class Message extends Component {
         return (
 
             <div className={this.props.way}>
+
                 <div className="msgMessage">{conversation.message}</div>
+
+                <span className="msgMessage">{conversation.message}</span>
+
                 <span className="msgAuthor">{pseudo}</span> - <span className="msgDate">{dateFormat}</span>
                 <img className="msgAvatar" src={avatar} alt="avatar" />
                 <hr/>
