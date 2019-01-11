@@ -7,23 +7,43 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { updateProfile } from '../../store/actions/authActions'
 import { Redirect } from 'react-router-dom'
 
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+
 
 class Profile extends Component {
 
     constructor(props) {
         super(props);
         const profile = props.profile;
+        //console.log(profile.dob)
+
+        const dateUserDob = new Date(profile.dob.seconds * 1000)
 
         if (profile){
           this.state = {
             pseudo: profile.pseudo,
             authId: profile.authId,
             avatar: profile.avatar,
-            dob: profile.dob,
+            dob: dateUserDob,
             email: profile.email
           }
         }
-       }
+
+        if (this.state.dob === ''){
+           //const startDate = new Date()
+           this.state = {
+            pseudo: profile.pseudo,
+            authId: profile.authId,
+            avatar: profile.avatar,
+            dob: new Date(),
+            email: profile.email
+          }
+        }
+
+    }
+
+       
 
     /*state = {
         pseudo: '',
@@ -35,9 +55,27 @@ class Profile extends Component {
 
     handleChange = (e) => {
         //console.log(this.state)
-        this.setState({
-          [e.target.id]: e.target.value
-        })
+        
+        //console.log(e)
+
+
+        /*if (e.target === 'dob'){
+            this.setState({
+                [e.target.id]: e.target.selected
+              })
+        } else {*/
+            this.setState({
+                [e.target.id]: e.target.value
+              })
+        //}
+    }
+
+    handleChangeDate = (e) => {
+
+            this.setState({
+                dob: e
+            })
+
     }
 
     updateChange = (e) => {
@@ -62,7 +100,9 @@ class Profile extends Component {
       }*/
 
     render () {
-        const { auth } = this.props;
+
+        const { auth } = this.props
+        //const startDate = new Date()
         if (!auth.uid) return <Redirect to='/signin' /> 
         return (
             <div className="page profilPage">
@@ -82,12 +122,20 @@ class Profile extends Component {
 
                 
 
-                <div className="row">
+                {/*<div className="row">
                     <div className="input-field col s6 offset-s3">
                         <span className="helper-text left">Ta date de naissance</span>
-                        <input type="text" id='dob'  value={this.state.dob} className="inputContact" onChange={this.handleChange} />
+                        <input type="text" id='dob' value={this.state.dob} className="inputContact" onChange={this.handleChange} />
                     </div>
-                </div>
+                </div>*/}
+
+                <DatePicker
+                    className="input-field col s6 offset-s3 center"
+                    id='dob'
+                    selected={this.state.dob}
+                    onChange={this.handleChangeDate}
+                />
+
 
                 <div className="row">
                     <div className="input-field col s6 offset-s3">

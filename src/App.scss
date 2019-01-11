@@ -61,6 +61,7 @@ a{
 .App{
   text-align: center;
   width: 100%;
+  
 }
 
 .App-link {
@@ -110,7 +111,7 @@ a{
 }
 
 .logPage{
-  padding-top: 50px;
+  padding-top: 80px;
   padding-bottom: 50px;
 }
 
@@ -150,9 +151,14 @@ a{
   //height: 100vh -120px;
   overflow-y: scroll;
   overflow-x: hidden;
-  //margin-top: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   //padding-top: 150px;
 }
+.home{
+  overflow-y: hidden!important;
+}
+
 .sender{
   height: 140px;
   position: fixed;
@@ -170,6 +176,8 @@ a{
   overflow-y: hidden;
 }
 
+
+
 .mlText{
   text-align: justify;
 }
@@ -184,6 +192,12 @@ a{
   color: $light;
   padding-top: 5px;
 }
+@media (max-width: 600px) {
+  .menuIcon{
+    padding-top: 0px;
+  }
+}
+
 
 .logOutBtn{
   cursor: pointer;

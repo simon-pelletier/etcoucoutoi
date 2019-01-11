@@ -27,21 +27,21 @@ class SignIn extends Component {
       <div className="container logPage">
         <form className="" onSubmit={this.handleSubmit}>
 
-          <div className="row">
-                        <div className="input-field col s6 offset-s3">
+   
+                        <div className="input-field col s12 m6 offset-m3">
                         <i className="material-icons prefix">person</i>
                         <input type="text" id='email' className="inputContact" onChange={this.handleChange} />
                         <label htmlFor="email" className='helperContact'>Ton e-mail</label>
                         </div>
-          </div>
+    
 
-                    <div className="row">
-                        <div className="input-field col s6 offset-s3">
+                 
+                        <div className="input-field col s12 m6 offset-m3">
                         <i className="material-icons prefix">vpn_key</i>
                         <input type="password" id='password' className="inputContact" onChange={this.handleChange} />
                         <label htmlFor="password" className='helperContact'>Ton mot de passe</label>
                         </div>
-                    </div>
+            
 
         
 

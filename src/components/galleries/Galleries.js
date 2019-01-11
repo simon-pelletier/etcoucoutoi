@@ -24,11 +24,17 @@ const mapStateToProps = (state) => {
       users: state.firestore.ordered.users
     }
   }
+
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      //updateProfile: (user) => dispatch(updateProfile(user))
+    }
+}
   
   export default compose(
-    connect(mapStateToProps),
+    connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect([
       { collection: 'mainChat', orderBy: ['createdAt', 'asc']},
-      { collection: 'users', orderBy: ['pseudo'] }
+      { collection: 'users', orderBy: ['pseudo', 'desc'] }
     ])
 )(Galleries)

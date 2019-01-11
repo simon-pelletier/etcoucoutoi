@@ -33,6 +33,8 @@ class Conversation extends Component {
     //let lastAuthor = ''
     let wayClass = 'msgLeft'
 
+    let lastDay = 0
+
     const chat = this.props.chat
 
     //console.log(this.props)
@@ -56,6 +58,30 @@ class Conversation extends Component {
           } else {
             lastAuthor = currentAuthor
           }*/
+          const date = chat.createdAt.seconds * 1000
+          const dateFormat = new Intl.DateTimeFormat('fr-FR', 
+              {
+                  timezone: 'UTC',
+                  year: 'numeric',
+                  month: '2-digit',
+                  day: '2-digit'
+              }
+          ).format(date)
+
+          let dateSplited = dateFormat.split('/')
+          let day = dateSplited[0]
+          //let month = dateSplited[1]
+          //let year = dateSplited[2]
+          //console.log(day + ' ' + month + ' ' + year)
+
+          let dateElt = ''
+
+          if(lastDay !== day){
+            dateElt = dateFormat
+          } else {
+            dateElt = null
+          }
+          lastDay = day
 
           const auth = this.props.auth.uid
 
@@ -67,7 +93,7 @@ class Conversation extends Component {
 
           // Conversation rendu
           return (
-            <Message conversation={chat} key={chat.id} way={wayClass} userInfos={this.getUserInfos(currentAuthor)} />
+            <Message conversation={chat} key={chat.id} way={wayClass} userInfos={this.getUserInfos(currentAuthor)} date={dateElt} />
           )
 
         })}

@@ -12,7 +12,7 @@ class Chats extends Component {
         message: '',
         author: '',
         //pseudo: '',
-        link: null,
+        link: null
 
     }
 

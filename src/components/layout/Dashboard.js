@@ -24,10 +24,7 @@ class Dashboard extends Component {
 
                 </div>
 
-                <div className="row">
-                    
-                    
-                </div>
+
 
             </div>
             

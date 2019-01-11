@@ -37,7 +37,7 @@ class SignUp extends Component {
         <form className="" onSubmit={this.handleSubmit}>
 
         <div className="row">
-                        <div className="input-field col s6 offset-s3">
+                        <div className="input-field col s12 m6 offset-m3">
                         <i className="material-icons prefix">person</i>
                         <input type="text" id='pseudo' className="inputContact" onChange={this.handleChange} />
                         <label htmlFor="pseudo" className='helperContact'>Ton surnom ( celui qu'on connaît tous ! )</label>
@@ -45,7 +45,7 @@ class SignUp extends Component {
           </div>
           
           <div className="row">
-                        <div className="input-field col s6 offset-s3">
+                        <div className="input-field col s12 m6 offset-m3">
                         <i className="material-icons prefix">email</i>
                         <input type="text" id='email' className="inputContact" onChange={this.handleChange} />
                         <label htmlFor="email" className='helperContact'>Ton e-mail ( 0 pubs )</label>
@@ -53,7 +53,7 @@ class SignUp extends Component {
           </div>
 
                     <div className="row">
-                        <div className="input-field col s6 offset-s3">
+                        <div className="input-field col s12 m6 offset-m3">
                         <i className="material-icons prefix">vpn_key</i>
                         <input type="password" id='password' className="inputContact" onChange={this.handleChange} />
                         <label htmlFor="password" className='helperContact'>Ton mot de passe</label>
@@ -61,7 +61,7 @@ class SignUp extends Component {
                     </div>
 
                     <div className="row">
-                        <div className="input-field col s6 offset-s3">
+                        <div className="input-field col s12 m6 offset-m3">
                         <i className="material-icons prefix">vpn_key</i>
                         <input type="password" id='gpassword' className="inputContact" onChange={this.handleChange} />
                         <label htmlFor="gpassword" className='helperContact'>Le mot de passe 'Et Coucou Toi !'</label>

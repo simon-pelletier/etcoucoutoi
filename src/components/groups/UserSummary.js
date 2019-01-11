@@ -1,6 +1,16 @@
 import React from 'react'
 
 const UserSummary = ({user}) => {
+  const date = user.dob.seconds * 1000
+  //console.log(user)
+        const dateFormat = new Intl.DateTimeFormat('fr-FR', 
+            {
+                timezone: 'UTC',
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+            }
+        ).format(date)
 
   return (
     <div className="userItem">
@@ -11,7 +21,7 @@ const UserSummary = ({user}) => {
 
         <div className="card-title">{user.pseudo}</div>
         <div className="card-action">{user.email}</div>
-        <div className="card-action">{user.dob}</div>
+        <div className="card-action">{dateFormat}</div>
     
     </div>
 
