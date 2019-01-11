@@ -28,7 +28,7 @@ export const signUp = (newUser) => {
         email: newUser.email,
         pseudo: newUser.pseudo,
         avatar: 'https://firebasestorage.googleapis.com/v0/b/etcoucoutoi.appspot.com/o/assets%2Fprofil.jpg?alt=media&token=7b89255a-e7df-4964-b027-892bc2330224',
-        dob: ''
+        dob: {seconds: 0}
       });
     }).then(() => {
       dispatch({ type: 'SIGNUP_SUCCESS' });

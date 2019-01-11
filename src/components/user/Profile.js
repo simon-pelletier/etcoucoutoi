@@ -11,6 +11,8 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
 
+
+
 class Profile extends Component {
 
     constructor(props) {
@@ -22,7 +24,7 @@ class Profile extends Component {
             pseudo: profile.pseudo,
             authId: profile.authId,
             avatar: profile.avatar,
-            dob: new Date(profile.dob.seconds * 1000),
+            dob: profile.dob,
             email: profile.email
           }
         }
@@ -30,11 +32,11 @@ class Profile extends Component {
     }
 
     state = {
-        pseudo: '',
-        authId: '',
-        avatar: '',
+        pseudo: 'loading...',
+        authId: 'loading...',
+        avatar: 'https://firebasestorage.googleapis.com/v0/b/etcoucoutoi.appspot.com/o/assets%2Fprofil.jpg?alt=media&token=7b89255a-e7df-4964-b027-892bc2330224',
         dob: new Date(),
-        email: ''
+        email: 'loading...'
     }
 
     handleChange = (e) => {
@@ -43,9 +45,18 @@ class Profile extends Component {
               })
     }
 
-    handleChangeDate = (e) => {
+    handleChangeDate = (date, e) => {
+        //console.log(this.state.dob)
+        let datum = Date.parse(date)
+        let dateTimseStamp = datum/1000
+        //console.log(dateTimseStamp)
+       /*e.preventDefault()*/
+       const dateFormat = {
+           seconds: dateTimseStamp
+       }
+       //console.log(dateFormat)
             this.setState({
-                dob: e
+                dob: dateFormat
             })
     }
 
@@ -70,9 +81,14 @@ class Profile extends Component {
         })
       }
 
+ 
+
     render () {
 
         const { auth } = this.props
+        //console.log(this.state.dob.seconds)
+        //console.log(this.state.dob)
+        const date = new Date(this.state.dob.seconds * 1000)
 
         if (!auth.uid) return <Redirect to='/signin' /> 
         return (
@@ -102,14 +118,16 @@ class Profile extends Component {
                 </div>
                 */}
 
-                {/*
+                
                 <DatePicker
+                    dateFormat="d/MM/yyyy"
                     className="input-field col s6 offset-s3 center"
                     id='dob'
-                    selected={this.state.dob}
+                    selected={date}
                     onChange={this.handleChangeDate}
                 />
-                */}
+                
+                
 
 
                 <div className="row">
