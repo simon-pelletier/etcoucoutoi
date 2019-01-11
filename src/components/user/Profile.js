@@ -157,10 +157,13 @@ class Profile extends Component {
 
     render () {
 
+        
         const { auth } = this.props
-        const date = new Date(this.state.dob.seconds * 1000)
 
         if (!auth.uid) return <Redirect to='/signin' /> 
+
+        const date = new Date(this.state.dob.seconds * 1000)
+
         return (
             <div className="page profilPage">
             
