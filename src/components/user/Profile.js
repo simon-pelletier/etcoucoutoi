@@ -12,6 +12,9 @@ import 'react-datepicker/dist/react-datepicker.css'
 
 import { storage } from '../../config/fbConfig'
 
+import classNames from 'classnames'
+import Dropzone from 'react-dropzone'
+
 
 
 
@@ -41,6 +44,36 @@ class Profile extends Component {
         dob: new Date(),
         email: 'loading...',
         image: null
+    }
+
+    onDrop = (acceptedFiles, rejectedFiles) => {
+        
+        //console.log('onDrop function')
+        console.log(acceptedFiles)
+        const image = acceptedFiles[0]
+        //console.log(this.state)
+        const randomName = this.guid();
+
+        //const uploadTask = storage.ref(`pictures/avatars/${image.name}`).put(image)
+        const uploadTask = storage.ref(`pictures/avatars/${randomName}`).put(image)
+
+        uploadTask.on('state_changed', 
+        (snapshot) => {
+          // progress
+        }, 
+        (error) => {
+          // error
+          console.log(error);
+        }, 
+        () => {
+          //complete
+          storage.ref('pictures/avatars').child(randomName).getDownloadURL().then(url => {
+            this.setState({
+              avatar: url
+            })
+          })
+          console.log(this.state)
+        });
     }
 
     guid() {
@@ -146,18 +179,38 @@ class Profile extends Component {
             
                 <div className="row">
                     <div className="col s6 offset-s3">
-                        <img src={this.state.avatar} className="avatarProfile" alt=""/>
+                        <img src={this.state.avatar} className="avatarProfile" alt="avatar manquant"/>
                     </div>
                 </div>
 
+                <Dropzone onDrop={this.onDrop}>
+                    {({getRootProps, getInputProps, isDragActive}) => {
+                    return (
+                        <div
+                        {...getRootProps()}
+                        className={classNames('dropzone', {'dropzone--isActive': isDragActive})}
+                        >
+                        <input {...getInputProps()} />
+                        {
+                            isDragActive ?
+                            <p>C'est bon tu peux lâcher !</p> :
+                            <p>Clic ou poses ta nouvelle image de profil ici !</p>
+                        }
+                        </div>
+                    )
+                    }}
+                </Dropzone>
+
+                {/*
+
                 <div className="row">
                     <div className="input-field center-align col s8 offset-s2">
-                    
-                    <input type="file" id="image" className="row btn waves-effect waves-light" accept="image/*" onChange={this.handleChange} /><br/>
-                    <button className="row btn waves-effect waves-light" onClick={this.handleUpload} ><i className="material-icons right">send</i>ENVOYER L'IMAGE</button>
+                        <input type="file" id="image" className="row btn waves-effect waves-light" accept="image/*" onChange={this.handleChange} /><br/>
+                        <button className="row btn waves-effect waves-light" onClick={this.handleUpload} ><i className="material-icons right">send</i>ENVOYER L'IMAGE</button>
+                    </div>
                 </div>
 
-          </div>
+                */}
 
                 <div className="row">
                     <div className="input-field col s6 offset-s3">

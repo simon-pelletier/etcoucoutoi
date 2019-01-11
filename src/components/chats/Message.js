@@ -70,7 +70,7 @@ class Message extends Component {
                     <span className="msgMessage col s12">{conversation.message}</span>
                     <span className="msgAuthor">{pseudo}</span>
                     <span className="msgDate">{hour + ':' + minute}</span>
-                    <img className="msgAvatar" src={avatar} alt="avatar" />
+                    <img className="msgAvatar" src={avatar} alt="" />
 
                 </div>
 
