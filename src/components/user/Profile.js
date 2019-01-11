@@ -178,7 +178,7 @@ class Profile extends Component {
                     return (
                         <div
                         {...getRootProps()}
-                        className={classNames('dropzone', {'dropzone--isActive': isDragActive})}
+                        className={classNames('dropzone dropzoneProfile', {'dropzone--isActive': isDragActive})}
                         >
                         <input {...getInputProps()} />
                         {

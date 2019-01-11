@@ -9,6 +9,7 @@
     margin-top: 25px;
     margin-bottom: 25px;
 }
+
 .msgAuthor{
     position: absolute;
     font-size: 0.9em;
@@ -18,6 +19,7 @@
     top: 5px;
     left: -10px;
 }
+
 .msgDate{
     position: absolute;
     font-size: 0.8em;
@@ -26,10 +28,7 @@
     bottom: 5px;
     right: -10px;
     color: $grey;
-    
 }
-
-
 
 .msgAvatar{
     width: 25px;
@@ -38,34 +37,32 @@
     top: -5px;
     border-radius: $mainBorder;
 }
+
 .msgBlock{
     position: relative;
-    //float: left;
     border-radius: $mainBorder;
     margin-top: 10px;
     margin-bottom: 5px;
     padding-top: 5px!important;
     padding-bottom: 5px!important;
     min-height: 50px!important;
-    //width: 100%;
     cursor: pointer;
 }
+
 .msgOthers{
-    //text-align: left;
-    //float: left;
     background-color: $lightPlus;
     .msgBulle{
         color: $lightPlus;
     }
 }
+
 .msgUser{
-    //text-align: right;
-    //float: right;
     background-color: $msgColor;
     .msgBulle{
         color: $msgColor;
     }
 }
+
 .msgBulle{
     position: absolute;
     left: -10px;
@@ -74,24 +71,13 @@
     transform: rotate(0.25turn);
     z-index: -1;
 }
-/*
-.sender{
-    position: relative;
-}*/
-.counterMsg{
-    position: absolute;
-    right: 15px;
-    top: 45px;
-    font-size: 0.8em;
-    
-}
+
+
 
 .msgDateInfo{
-
     display: block;
     background-color: $lightPlus;
     border-radius: $mainBorder;
-    //width: auto;
     padding-left: 10px;
     padding-right: 10px;
     margin-top: 20px;
@@ -104,7 +90,7 @@
       width: 100%;
       height: 100%;
       display: block;
-      z-index: 8;
+      z-index: 0;
       position: absolute;
   }
 
@@ -119,51 +105,123 @@
       padding-bottom: 10px;
       border-radius: $mainBorder;
   }
+
   .responseAuthor{
     padding-top: 5px;
     padding-bottom: 5px;
     text-align: left;
   }
+
   .responseMessage{
       padding-bottom: 5px;
       text-align: left;
       word-wrap: break-word;
-      
   }
 
   .witnessResponse{
+    position: absolute;
+    z-index: 25;
+    width: 93vw;
+    bottom: 70px;
     text-align: left;
     word-wrap: break-word;
-    background-color: $lightPlus;
-
-    
-
+    background-color: $selectionColor;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-
     border-radius: $mainBorder;
-
-    //padding: 10px;
-    
-    
   }
-
 
   .sender{
     //height: 140px;
     position: fixed;
-    bottom: -20px;
+    bottom: 0px;
     //width: 100%;
     left: 0px;
     //padding-left: 50px;
     //padding-right: 40px;
-    background-color: $mainColor;
+    //background-color: $mainColor;
+    //z-index: 25;
     //background-color: red;
-    
-  
   }
+
   .chatPage{
     overflow-y: hidden;
+    margin-bottom: 0px;
   }
+
+  .btnSender{
+      background-color: transparent!important;
+      color: $dark!important;
+      border: none;
+      //position: inherit;
+      //right: -120px;
+      //font-size: 25pt!important;
+  }
+
+  .senderIcon{
+      font-size: 25pt!important;
+      cursor: pointer;
+  }
+
+  .senderBlock{
+      
+    //display: inline-block!important;
+    width: 100vw;
+    background-color: $light!important;
+    z-index: 12!important;
+    bottom: 0px;
+    position: absolute;
+    display: block;
+    left: 0px;
+    height: 65px;
+    margin-left: 0px;
+
+    //border-top: 2px solid $mainColor;
+  }
+
+  .inputContactChat {
+      
+    border-bottom: 1px solid $dark !important;
+    //width: 250px!important;
+    //width: 100vw!important;
+    //position: relative;
+    position: fixed;
+    left:0px;
+    bottom: 10px;
+    //width: 200px;
+    //background-color: red!important;
+    
+    max-width: 60vw!important;
+    margin-left: 20px!important;
+    //padding-right: 100px!important;
+  }
+  .inputChat{
+    
+  }
+  
+  .inputContact:focus {
+    border-bottom: 1px solid $mainColor !important;
+  }
+
+.btnChatImg{
+    
+    position: fixed;
+    right: 60px;
+    margin-top: 2px;
+}
+.senderBlockButtons{
+    
+    display: inline-block;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+.counterMsg{
+    position: absolute;
+    left: 20px;
+    top: 46px;
+    font-size: 0.8em;
+}

@@ -5,6 +5,11 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { sendMessage } from '../../store/actions/chatsActions'
 import Conversation from './Conversation'
 
+//import { storage } from '../../config/fbConfig'
+
+import classNames from 'classnames'
+import Dropzone from 'react-dropzone'
+
 class Chats extends Component {
 
     state={
@@ -28,7 +33,7 @@ class Chats extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        if(this.state.message !== '' && this.state.message.length < 150){
+        if(this.state.message !== '' && this.state.message.length <= 150){
             this.props.sendMessage(this.state)
             this.setState({
                 message: '',
@@ -84,6 +89,32 @@ class Chats extends Component {
         this.scrollToBottom();
     }
 
+    onDrop = (acceptedFiles, rejectedFiles) => {
+ 
+        console.log(acceptedFiles)
+        /*const image = acceptedFiles[0]
+        const randomName = this.guid();
+        const uploadTask = storage.ref(`pictures/originals/${randomName}`).put(image)
+
+        uploadTask.on('state_changed', 
+        (snapshot) => {
+          // progress
+        }, 
+        (error) => {
+          // error
+          console.log(error);
+        }, 
+        () => {
+          //complete
+          storage.ref('pictures/originals').child(randomName).getDownloadURL().then(url => {
+            this.setState({
+              avatar: url
+            })
+          })
+        });*/
+
+    }
+
     render () {
 
         const { mainChat } = this.props
@@ -98,16 +129,48 @@ class Chats extends Component {
                 </div>
 
                 <div className="sender col s12">
-                    <div className="witnessResponse">{
-                        this.state.responseTo ? <span><i className="material-icons">reply</i> {this.getMessage(this.state.responseTo)}</span> : null
-                        }</div>
+                    <div className="witnessResponse">
+                        {
+                            this.state.responseTo ? <span><i className="material-icons">reply</i> {this.getMessage(this.state.responseTo)}</span> : null
+                        }
+                    </div>
+
                     <form>
-                        <div className="input-field">
-                            <input type="text" id='message' className="inputContact" value={this.state.message} onChange={this.handleChange} />
-                            <span className="counterMsg" >{this.state.message.length + '/' + maxMsgLength} </span>
-                            <button type="submit" className="btn domiB z-depth-0 center" onClick={this.handleSubmit}><i className="material-icons">send</i></button>
+                        <div className="senderBlock">
+
+                            <div className="inputChat">
+                                <input type="text" id='message' className="inputContactChat" value={this.state.message} onChange={this.handleChange} />
+                                <span className="counterMsg" >{this.state.message.length + '/' + maxMsgLength} </span>
+                            </div>
+
+                            <div className="senderBlockButtons">
+                                <Dropzone onDrop={this.onDrop}>
+                                    {({getRootProps, getInputProps, isDragActive}) => {
+                                    return (
+
+                                        <div
+                                        {...getRootProps()}
+                                        className={classNames('dropzone btnChatImg', {'dropzone--isActive': isDragActive})}
+                                        
+                                        >
+                                        <input {...getInputProps()} />
+                                        { //accept="image/*"
+                                            isDragActive ?
+                                            <i className="material-icons senderIcon">photo</i> :
+                                            <i className="material-icons senderIcon">photo</i>
+                                        }
+                                        </div>
+
+                                    )
+                                    }}
+                                </Dropzone>
+
+                                <button type="submit" className="btnSender" onClick={this.handleSubmit}><i className="material-icons senderIcon">send</i></button>
+                            </div>
+
                         </div>
                     </form>
+
                 </div>
 
             </div>
