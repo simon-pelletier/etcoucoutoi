@@ -153,7 +153,7 @@ class Profile extends Component {
                 <div className="row">
                     <div className="input-field center-align col s8 offset-s2">
                     
-                    <input type="file" id="image" className="row btn waves-effect waves-light" accept="image/png" onChange={this.handleChange} /><br/>
+                    <input type="file" id="image" className="row btn waves-effect waves-light" accept="image/*" onChange={this.handleChange} /><br/>
                     <button className="row btn waves-effect waves-light" onClick={this.handleUpload} ><i className="material-icons right">send</i>ENVOYER L'IMAGE</button>
                 </div>
 
