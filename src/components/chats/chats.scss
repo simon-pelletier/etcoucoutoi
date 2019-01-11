@@ -50,6 +50,7 @@ $lightPlus: #efefef;
     padding-bottom: 5px!important;
     min-height: 50px!important;
     //width: 100%;
+    cursor: pointer;
 }
 .msgLeft{
     //text-align: left;
@@ -98,4 +99,35 @@ $lightPlus: #efefef;
     margin-top: 20px;
     margin-left: 5px!important;
    
+  }
+
+  .msgOverlay{
+      background-color: transparent;
+      width: 100%;
+      height: 100%;
+      display: block;
+      z-index: 8;
+      position: absolute;
+  }
+
+  .msgSelected{
+    background-color: #74a9ee!important;
+  }
+
+  .msgResponse{
+      background-color: #74a9ee;
+      margin-top: 25px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      border-radius: 10px;
+  }
+  .responseAuthor{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: left;
+  }
+  .responseMessage{
+      padding-bottom: 5px;
+      text-align: left;
+
   }

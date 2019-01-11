@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import moment from 'moment'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { firestoreConnect } from 'react-redux-firebase'
@@ -12,8 +11,8 @@ class Chats extends Component {
         message: '',
         author: '',
         //pseudo: '',
-        link: null
-
+        link: null,
+        responseTo: null
     }
 
     handleChange = (e) => {
@@ -32,7 +31,8 @@ class Chats extends Component {
         if(this.state.message !== '' && this.state.message.length < 150){
             this.props.sendMessage(this.state)
             this.setState({
-                message: ''
+                message: '',
+                responseTo: null
             })
         }
         //console.log(this.props.author.authId)
@@ -47,6 +47,22 @@ class Chats extends Component {
         const height = this.messageList.clientHeight;
         const maxScrollTop = scrollHeight - height;
         this.messageList.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
+    }
+
+    onClick = (e) => {
+        e.preventDefault()
+        
+        if (this.state.responseTo === e.target.id){
+            this.setState({
+                responseTo: null
+            })
+        } else {
+            this.setState({
+                responseTo: e.target.id
+            })
+        }
+
+        
     }
       
     componentDidUpdate() {
@@ -63,7 +79,7 @@ class Chats extends Component {
             <div className="chatPage">
 
                 <div className=" conversation col s12" ref={(div) => {this.messageList = div;}}>
-                    <Conversation chat={mainChat} />
+                    <Conversation chat={mainChat} myClick={this.onClick} msgState={this.state.responseTo} />
                 </div>
 
                 <div className=" sender">

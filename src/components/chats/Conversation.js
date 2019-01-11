@@ -1,21 +1,20 @@
-//import React from 'react'
 import React, { Component } from 'react'
 import Message from './Message'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 
-//const Conversation = ({chat}) => {
 class Conversation extends Component {
 
   getUserInfos = (author) => {
     const users = this.props.users
+
+    
     
     return users
       .filter(user => {
         return user.authId === author
       }).map(user => {
-        //console.log(user.pseudo)
         return (
           {
             pseudo: user.pseudo,
@@ -26,18 +25,18 @@ class Conversation extends Component {
   
   }
 
-
-
   render(){
 
-    //let lastAuthor = ''
     let wayClass = 'msgLeft'
+
+    const msgStateId = this.props.msgState
+    let msgState = 'msg'
 
     let lastDay = 0
 
     const chat = this.props.chat
-
-    //console.log(this.props)
+    const myClick = this.props.myClick
+    //const msgState = this.props.msgState
 
     return (
       
@@ -46,18 +45,12 @@ class Conversation extends Component {
         { chat && chat
         .map(chat => {
 
-          // Alternance Gauche et Droite par message selon l'auteur
           const currentAuthor = chat.author
-          /*if (currentAuthor !== lastAuthor){
-            lastAuthor = currentAuthor
-            if (wayClass === 'msgLeft'){
-              wayClass = 'msgRight'
-            } else {
-              wayClass = 'msgLeft'
-            }
-          } else {
-            lastAuthor = currentAuthor
-          }*/
+
+          const responseToId = chat.responseTo
+          
+          let responseTo = null
+
           const date = chat.createdAt.seconds * 1000
           const dateFormat = new Intl.DateTimeFormat('fr-FR', 
               {
@@ -70,9 +63,6 @@ class Conversation extends Component {
 
           let dateSplited = dateFormat.split('/')
           let day = dateSplited[0]
-          //let month = dateSplited[1]
-          //let year = dateSplited[2]
-          //console.log(day + ' ' + month + ' ' + year)
 
           let dateElt = ''
 
@@ -91,9 +81,33 @@ class Conversation extends Component {
             wayClass = 'msgLeft'
           }
 
+          if (msgStateId === chat.id){
+            msgState = 'msgSelected'
+          } else {
+            msgState = 'msg'
+          }
+
+          if (responseToId !== null){
+            //console.log(this.props.chat)
+            const chatResponse = this.props.chat
+            responseTo = chatResponse && chatResponse
+            .filter(response => {
+              return responseToId === response.id
+            })
+            .map(response => {
+              //let responseTab = [response.id, response.message, this.getUserInfos(response.author)]
+              //console.log(response)
+              let responseWithUser = [ response, this.getUserInfos(response.author) ]
+              return responseWithUser
+            })
+          } else {
+            responseTo = null
+          }
+          //console.log(responseTo)
           // Conversation rendu
           return (
-            <Message conversation={chat} key={chat.id} way={wayClass} userInfos={this.getUserInfos(currentAuthor)} date={dateElt} />
+            
+            <Message conversation={chat} key={chat.id} way={wayClass} responseTo={responseTo} msgState={msgState} userInfos={this.getUserInfos(currentAuthor)} date={dateElt} myClick={myClick} />
           )
 
         })}
@@ -104,8 +118,6 @@ class Conversation extends Component {
   }
   
 }
-
-//export default Conversation
 
 const mapStateToProps = (state) => {
   return{
