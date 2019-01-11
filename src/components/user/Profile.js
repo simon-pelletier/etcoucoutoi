@@ -10,6 +10,8 @@ import { Redirect } from 'react-router-dom'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
+import { storage } from '../../config/fbConfig'
+
 
 
 
@@ -25,7 +27,8 @@ class Profile extends Component {
             authId: profile.authId,
             avatar: profile.avatar,
             dob: profile.dob,
-            email: profile.email
+            email: profile.email,
+            image: null
           }
         }
 
@@ -36,13 +39,60 @@ class Profile extends Component {
         authId: 'loading...',
         avatar: 'https://firebasestorage.googleapis.com/v0/b/etcoucoutoi.appspot.com/o/assets%2Fprofil.jpg?alt=media&token=7b89255a-e7df-4964-b027-892bc2330224',
         dob: new Date(),
-        email: 'loading...'
+        email: 'loading...',
+        image: null
     }
 
+    guid() {
+        function s4() {
+          return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+        }
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+      }
+
+    handleUpload = (e) => {
+        e.preventDefault()
+
+        const {image} = this.state
+        //console.log(this.state)
+        const randomName = this.guid();
+
+        //const uploadTask = storage.ref(`pictures/avatars/${image.name}`).put(image)
+        const uploadTask = storage.ref(`pictures/avatars/${randomName}`).put(image)
+
+        uploadTask.on('state_changed', 
+        (snapshot) => {
+          // progress
+        }, 
+        (error) => {
+          // error
+          console.log(error);
+        }, 
+        () => {
+          //complete
+          storage.ref('pictures/avatars').child(randomName).getDownloadURL().then(url => {
+            this.setState({
+              avatar: url
+            })
+          })
+          console.log(this.state)
+        });
+      }
+
     handleChange = (e) => {
+        if (e.target.files && e.target.id === 'image'){
+            this.setState({
+              image: e.target.files[0]
+            })
+
+        } else {
             this.setState({
                 [e.target.id]: e.target.value
-              })
+            })
+        }
+            
     }
 
     handleChangeDate = (date, e) => {
@@ -62,7 +112,7 @@ class Profile extends Component {
 
     updateChange = (e) => {
         const profile = this.props.profile;
-        
+        console.log(this.state)
         e.preventDefault()
         this.setState({
             authId: profile.authId
@@ -99,6 +149,15 @@ class Profile extends Component {
                         <img src={this.state.avatar} className="avatarProfile" alt=""/>
                     </div>
                 </div>
+
+                <div className="row">
+                    <div className="input-field center-align col s8 offset-s2">
+                    
+                    <input type="file" id="image" className="row btn waves-effect waves-light" accept="image/png" onChange={this.handleChange} /><br/>
+                    <button className="row btn waves-effect waves-light" onClick={this.handleUpload} ><i className="material-icons right">send</i>ENVOYER L'IMAGE</button>
+                </div>
+
+          </div>
 
                 <div className="row">
                     <div className="input-field col s6 offset-s3">

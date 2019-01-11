@@ -52,7 +52,10 @@ export const updateProfile = (user) => {
   return (dispatch, getState, {getFirestore}) => {
     const firestore = getFirestore();
     firestore.collection('users').doc(user.authId).update({
-      ...user
+        email: user.email,
+        pseudo: user.pseudo,
+        avatar: user.avatar,
+        dob: user.dob
     }).then(() => {
       dispatch({ type: 'UPDATE_PROFIL_SUCCESS' });
     }).catch(err => {
