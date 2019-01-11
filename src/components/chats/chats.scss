@@ -1,7 +1,4 @@
-$mainColor: #59b355;
-$dark: #141414;
-$light: #cacaca;
-$lightPlus: #efefef;
+@import "../../variables";
 
 .msgMessage{
     text-align: left;
@@ -28,7 +25,7 @@ $lightPlus: #efefef;
     padding-right: 20px;
     bottom: 5px;
     right: -10px;
-    color: #464646;
+    color: $grey;
     
 }
 
@@ -43,7 +40,7 @@ $lightPlus: #efefef;
 .msgBlock{
     position: relative;
     //float: left;
-    border-radius: 8px;
+    border-radius: $mainBorder;
     margin-top: 10px;
     margin-bottom: 5px;
     padding-top: 5px!important;
@@ -52,7 +49,7 @@ $lightPlus: #efefef;
     //width: 100%;
     cursor: pointer;
 }
-.msgLeft{
+.msgOthers{
     //text-align: left;
     //float: left;
     background-color: $lightPlus;
@@ -60,12 +57,12 @@ $lightPlus: #efefef;
         color: $lightPlus;
     }
 }
-.msgRight{
+.msgUser{
     //text-align: right;
     //float: right;
-    background-color: #addfb5;
+    background-color: $msgColor;
     .msgBulle{
-        color: #addfb5;
+        color: $msgColor;
     }
 }
 .msgBulle{
@@ -92,7 +89,7 @@ $lightPlus: #efefef;
 
     display: block;
     background-color: $lightPlus;
-    border-radius: 10px;
+    border-radius: $mainBorder;
     //width: auto;
     padding-left: 10px;
     padding-right: 10px;
@@ -111,15 +108,15 @@ $lightPlus: #efefef;
   }
 
   .msgSelected{
-    background-color: #74a9ee!important;
+    background-color: $selectionColor!important;
   }
 
   .msgResponse{
-      background-color: #74a9ee;
+      background-color: $msgResponse;
       margin-top: 25px;
       padding-top: 10px;
       padding-bottom: 10px;
-      border-radius: 10px;
+      border-radius: $mainBorder;
   }
   .responseAuthor{
     padding-top: 5px;

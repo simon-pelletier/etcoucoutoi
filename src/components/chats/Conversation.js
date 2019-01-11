@@ -27,7 +27,7 @@ class Conversation extends Component {
 
   render(){
 
-    let wayClass = 'msgLeft'
+    let wayClass = 'msgOthers'
 
     const msgStateId = this.props.msgState
     let msgState = 'msg'
@@ -76,9 +76,9 @@ class Conversation extends Component {
           const auth = this.props.auth.uid
 
           if (auth === currentAuthor){
-            wayClass = 'msgRight'
+            wayClass = 'msgUser'
           } else {
-            wayClass = 'msgLeft'
+            wayClass = 'msgOthers'
           }
 
           if (msgStateId === chat.id){

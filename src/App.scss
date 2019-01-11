@@ -1,6 +1,4 @@
-$mainColor: #59b355;
-$dark: #141414;
-$light: #cacaca;
+@import "variables";
 
 ::-webkit-scrollbar-button {
   display: none;
@@ -203,14 +201,14 @@ a{
   cursor: pointer;
   //padding-top: 3px;
   padding-left: 15px;
-  color: #d45d5d;
+  color: $bad;
 }
 
 .avatarUserList{
   max-width: 50px!important;
 }
 .avatarProfile{
-  border-radius: 10px;
+  border-radius: $mainBorder;
   width: 150px;
 }
 
