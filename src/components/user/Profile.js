@@ -47,14 +47,9 @@ class Profile extends Component {
     }
 
     onDrop = (acceptedFiles, rejectedFiles) => {
-        
-        //console.log('onDrop function')
-        console.log(acceptedFiles)
+ 
         const image = acceptedFiles[0]
-        //console.log(this.state)
         const randomName = this.guid();
-
-        //const uploadTask = storage.ref(`pictures/avatars/${image.name}`).put(image)
         const uploadTask = storage.ref(`pictures/avatars/${randomName}`).put(image)
 
         uploadTask.on('state_changed', 
@@ -72,8 +67,8 @@ class Profile extends Component {
               avatar: url
             })
           })
-          console.log(this.state)
         });
+
     }
 
     guid() {
@@ -89,10 +84,7 @@ class Profile extends Component {
         e.preventDefault()
 
         const {image} = this.state
-        //console.log(this.state)
         const randomName = this.guid();
-
-        //const uploadTask = storage.ref(`pictures/avatars/${image.name}`).put(image)
         const uploadTask = storage.ref(`pictures/avatars/${randomName}`).put(image)
 
         uploadTask.on('state_changed', 
@@ -129,15 +121,12 @@ class Profile extends Component {
     }
 
     handleChangeDate = (date, e) => {
-        //console.log(this.state.dob)
         let datum = Date.parse(date)
         let dateTimseStamp = datum/1000
-        //console.log(dateTimseStamp)
-       /*e.preventDefault()*/
+
        const dateFormat = {
            seconds: dateTimseStamp
        }
-       //console.log(dateFormat)
             this.setState({
                 dob: dateFormat
             })
@@ -169,8 +158,6 @@ class Profile extends Component {
     render () {
 
         const { auth } = this.props
-        //console.log(this.state.dob.seconds)
-        //console.log(this.state.dob)
         const date = new Date(this.state.dob.seconds * 1000)
 
         if (!auth.uid) return <Redirect to='/signin' /> 
@@ -218,19 +205,7 @@ class Profile extends Component {
                         <input type="text" id='pseudo'  value={this.state.pseudo} className="inputContact" onChange={this.handleChange} /> 
                     </div>
                 </div>
-
-                
-
-                {/*
-                <div className="row">
-                    <div className="input-field col s6 offset-s3">
-                        <span className="helper-text left">Ta date de naissance</span>
-                        <input type="text" id='dob' value={this.state.dob} className="inputContact" onChange={this.handleChange} />
-                    </div>
-                </div>
-                */}
-
-                
+ 
                 <DatePicker
                     dateFormat="d/MM/yyyy"
                     className="input-field col s6 offset-s3 center"
@@ -238,9 +213,6 @@ class Profile extends Component {
                     selected={date}
                     onChange={this.handleChangeDate}
                 />
-                
-                
-
 
                 <div className="row">
                     <div className="input-field col s6 offset-s3">
@@ -255,8 +227,6 @@ class Profile extends Component {
         )
     }
 }
-
-
 
 const mapStateToProps = (state) => {
     return{
