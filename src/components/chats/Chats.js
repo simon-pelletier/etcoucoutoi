@@ -64,6 +64,21 @@ class Chats extends Component {
 
         
     }
+
+    getMessage = (id) => {
+        const { mainChat } = this.props
+        //const message = 
+        
+        return mainChat
+          .filter(msg => {
+            return msg.id === id
+          }).map(msg => {
+            return (
+              msg.message
+            )
+          })
+      
+      }
       
     componentDidUpdate() {
         this.scrollToBottom();
@@ -76,15 +91,18 @@ class Chats extends Component {
       
         return (
 
-            <div className="chatPage">
+            <div className="chatPage row">
 
                 <div className=" conversation col s12" ref={(div) => {this.messageList = div;}}>
                     <Conversation chat={mainChat} myClick={this.onClick} msgState={this.state.responseTo} />
                 </div>
 
-                <div className=" sender">
+                <div className="sender col s12">
+                    <div className="witnessResponse">{
+                        this.state.responseTo ? <span><i className="material-icons">reply</i> {this.getMessage(this.state.responseTo)}</span> : null
+                        }</div>
                     <form>
-                        <div className="input-field col s12">
+                        <div className="input-field">
                             <input type="text" id='message' className="inputContact" value={this.state.message} onChange={this.handleChange} />
                             <span className="counterMsg" >{this.state.message.length + '/' + maxMsgLength} </span>
                             <button type="submit" className="btn domiB z-depth-0 center" onClick={this.handleSubmit}><i className="material-icons">send</i></button>

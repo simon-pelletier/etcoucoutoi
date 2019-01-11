@@ -128,4 +128,42 @@
       padding-bottom: 5px;
       text-align: left;
       word-wrap: break-word;
+      
+  }
+
+  .witnessResponse{
+    text-align: left;
+    word-wrap: break-word;
+    background-color: $lightPlus;
+
+    
+
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+
+    border-radius: $mainBorder;
+
+    //padding: 10px;
+    
+    
+  }
+
+
+  .sender{
+    //height: 140px;
+    position: fixed;
+    bottom: -20px;
+    //width: 100%;
+    left: 0px;
+    //padding-left: 50px;
+    //padding-right: 40px;
+    background-color: $mainColor;
+    //background-color: red;
+    
+  
+  }
+  .chatPage{
+    overflow-y: hidden;
   }

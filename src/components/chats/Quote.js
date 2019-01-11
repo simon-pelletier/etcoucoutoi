@@ -13,7 +13,7 @@ class Quote extends Component {
             <div className="col s12 msgResponse">
 
                 <div className="responseAuthor">
-                    {responseAuthor.pseudo}
+                    {responseAuthor.pseudo} a dit :
                 </div>
 
                 <div className="responseMessage">
