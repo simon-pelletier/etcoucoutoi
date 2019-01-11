@@ -200,28 +200,35 @@ class Profile extends Component {
                 */}
 
                 <div className="row">
-                    <div className="input-field col s6 offset-s3">
-                        <span className="helper-text left">Ton pseudo</span>
-                        <input type="text" id='pseudo'  value={this.state.pseudo} className="inputContact" onChange={this.handleChange} /> 
+                    <div className="input-field col s6 offset-s3 profilePseudoInput">
+                        
+                        <input type="text" id='pseudo'  value={this.state.pseudo} className="inputContact center" onChange={this.handleChange} /> 
+                        <span className="helper-text" data-error="wrong" data-success="right">Pseudo</span>
                     </div>
                 </div>
- 
-                <DatePicker
-                    dateFormat="d/MM/yyyy"
-                    className="input-field col s6 offset-s3 center"
-                    id='dob'
-                    selected={date}
-                    onChange={this.handleChangeDate}
-                />
 
+                <div className="input-field col s6 offset-s3 profileDatePicker">
+                    <DatePicker
+                        dateFormat="d/MM/yyyy"
+                        className="input-field col s6 offset-s3 center"
+                        id='dob'
+                        selected={date}
+                        onChange={this.handleChangeDate}
+                    />
+                    <span className="helper-text" data-error="wrong" data-success="right">Date de naissance</span>
+                </div>
+                
+
+                {/*
                 <div className="row">
                     <div className="input-field col s6 offset-s3">
                         <span className="helper-text left">Ton email</span>
                         <input type="text" id='email'  value={this.state.email} className="inputContact" onChange={this.handleChange} />
                     </div>
                 </div>
+                */}
 
-                <button className="btn domiB z-depth-0 center col s12" onClick={this.updateChange}>SAUVEGARDER</button>
+                <button className="profilBtn btn domiB z-depth-0 center col s12" onClick={this.updateChange}>SAUVEGARDER</button>
                 
             </div>
         )
