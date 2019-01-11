@@ -122,9 +122,9 @@ class Chats extends Component {
       
         return (
 
-            <div className="chatPage row">
+            <div className="chatPage row" >
 
-                <div className=" conversation col s12" ref={(div) => {this.messageList = div;}}>
+                <div className=" conversation col s12"  ref={(div) => {this.messageList = div;}} >
                     <Conversation chat={mainChat} myClick={this.onClick} msgState={this.state.responseTo} />
                 </div>
 

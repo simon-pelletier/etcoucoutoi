@@ -30,6 +30,9 @@
     color: $grey;
 }
 
+
+  
+
 .msgAvatar{
     width: 25px;
     position: absolute;
@@ -147,8 +150,19 @@
   }
 
   .chatPage{
-    overflow-y: hidden;
-    margin-bottom: 0px;
+    overflow: hidden;
+    margin: 0px;
+  }
+
+  .conversation{
+    //height: 100vh;
+    height: auto;
+    //height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-top: 30px;
+    margin-bottom: 35px;
   }
 
   .btnSender{

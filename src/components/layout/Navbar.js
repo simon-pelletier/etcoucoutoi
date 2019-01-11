@@ -4,6 +4,8 @@ import SignedInLinks from './SignedInLinks'
 import SignedOutLinks from './SignedOutLinks'
 import { connect } from 'react-redux'
 
+import logo from '../../logo.png'
+
 const Navbar = (props) => {
   const { auth, profile } = props;
   const links = auth.uid ? <SignedInLinks profile={profile} /> : <SignedOutLinks />;
@@ -11,7 +13,7 @@ const Navbar = (props) => {
   return (
     <nav className="nav-wrapper">
       <div className="container">
-        <Link to='/' className="left"><img className="logo" alt="logo" src="https://firebasestorage.googleapis.com/v0/b/etcoucoutoi.appspot.com/o/assets%2Flogo.png?alt=media&token=6057aa34-63e6-4b33-8b4d-1604c2d145a0" /></Link>
+        <Link to='/' className="left"><img className="logo" alt="logo" src={logo} /></Link>
         {auth.uid ? <span className="left welcomeMsg">Et coucou {profile.pseudo} !</span> : null}
 
         {links}

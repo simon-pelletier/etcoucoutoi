@@ -134,7 +134,7 @@ class Profile extends Component {
 
     updateChange = (e) => {
         const profile = this.props.profile;
-        console.log(this.state)
+        //console.log(this.state)
         e.preventDefault()
         this.setState({
             authId: profile.authId
