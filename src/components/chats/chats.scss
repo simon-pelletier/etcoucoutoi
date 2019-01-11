@@ -36,6 +36,7 @@
     position: absolute;
     right: -5px;
     top: -5px;
+    border-radius: $mainBorder;
 }
 .msgBlock{
     position: relative;
@@ -126,5 +127,5 @@
   .responseMessage{
       padding-bottom: 5px;
       text-align: left;
-
+      word-wrap: break-word;
   }
