@@ -177,6 +177,7 @@ a{
 .btn{
   background-color: $dark;
   color: $light;
+  border-radius: $mainBorder;
 }
 
 .btn:hover{
@@ -198,6 +199,7 @@ a{
 
 .profilBtn{
   margin-top: 10px;
+  border-radius: $mainBorder;
 }
 
 .profileDatePicker{
