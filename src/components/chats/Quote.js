@@ -18,7 +18,10 @@ class Quote extends Component {
 
                 <div className="responseMessage">
                     {responseMsg.message}
-                    <div className="quoteImgContainer"><img src={responseMsg.link} className="quoteImg" alt=""/></div>
+                    {
+                        responseMsg.link !== null ? <div className="quoteImgContainer"><img src={responseMsg.link} className="quoteImg" alt=""/></div> : null
+                    }
+                    
                 </div>
 
             </div>

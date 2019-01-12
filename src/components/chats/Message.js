@@ -63,10 +63,13 @@ class Message extends Component {
                     }
 
                     <span className="msgMessage col s12">{conversation.message}</span>
-                    <img className="msgLink" src={conversation.link} alt="" />
+                    {
+                        conversation.link !== null ? <div className="msgLinkContainer" ><img className="msgLink" src={conversation.link} alt="" /></div> : null
+                    }
+                    
                     <span className="msgAuthor">{pseudo}</span>
                     <span className="msgDate">{hour + ':' + minute}</span>
-                    <img className="msgAvatar" src={avatar} alt="" />
+                    <div className="msgAvatarContainer" ><img className="msgAvatar" src={avatar} alt="" /></div>
 
                 </div>
 
