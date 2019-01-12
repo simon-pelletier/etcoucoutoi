@@ -29,7 +29,7 @@ class Chats extends Component {
     
 
     handleChange = (e) => {
-        if(e.target.value.length <= 150){
+        if(e.target.value.length <= 150 && e.target.id !== 'link'){
             this.setState({
                 [e.target.id]: e.target.value,
                 author: this.props.author.authId
@@ -43,9 +43,11 @@ class Chats extends Component {
             this.props.sendMessage(this.state)
             this.setState({
                 message: '',
-                responseTo: null
+                responseTo: null,
+                link: null
             })
         }
+        this.forceUpdateHandler()
     }
 
     scrollToBottom() {
@@ -90,7 +92,6 @@ class Chats extends Component {
     }
       
     componentDidUpdate() {
-        console.log('Component Did Update')
         this.scrollToBottom();
     }
 
