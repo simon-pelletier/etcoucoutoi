@@ -40,7 +40,7 @@ class Galleries extends Component {
         const { mainChat } = this.props
 
         return (
-            <div className="page container galleriePage">
+            <div className="container galleriePage">
 
                 <div className="gallerie-list" id="grid">
 

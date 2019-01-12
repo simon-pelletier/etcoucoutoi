@@ -24,10 +24,12 @@ class Chats extends Component {
         if(e.target.value.length <= 150){
             this.setState({
                 [e.target.id]: e.target.value,
-                author: this.props.author.authId
+                author: this.props.author.authId/*,
+                link: this.state.link*/
                 //pseudo: this.props.author.pseudo
               })
         }
+        //console.log(this.state)
         
     }
 
@@ -40,6 +42,7 @@ class Chats extends Component {
                 responseTo: null
             })
         }
+        
         //console.log(this.props.author.authId)
         /*this.setState({
             author: this.props.author.authId
