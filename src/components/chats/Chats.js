@@ -5,7 +5,7 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { sendMessage } from '../../store/actions/chatsActions'
 import Conversation from './Conversation'
 
-//import { storage } from '../../config/fbConfig'
+import { storage } from '../../config/fbConfig'
 
 import classNames from 'classnames'
 import Dropzone from 'react-dropzone'
@@ -89,10 +89,19 @@ class Chats extends Component {
         this.scrollToBottom();
     }
 
+    guid() {
+        function s4() {
+          return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+        }
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+      }
+
     onDrop = (acceptedFiles, rejectedFiles) => {
  
         console.log(acceptedFiles)
-        /*const image = acceptedFiles[0]
+        const image = acceptedFiles[0]
         const randomName = this.guid();
         const uploadTask = storage.ref(`pictures/originals/${randomName}`).put(image)
 
@@ -108,10 +117,10 @@ class Chats extends Component {
           //complete
           storage.ref('pictures/originals').child(randomName).getDownloadURL().then(url => {
             this.setState({
-              avatar: url
+              link: url
             })
           })
-        });*/
+        });
 
     }
 
