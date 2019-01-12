@@ -100,7 +100,7 @@ class Chats extends Component {
 
     onDrop = (acceptedFiles, rejectedFiles) => {
  
-        console.log(acceptedFiles)
+        //console.log(acceptedFiles)
         const image = acceptedFiles[0]
         const randomName = this.guid();
         const uploadTask = storage.ref(`pictures/originals/${randomName}`).put(image)

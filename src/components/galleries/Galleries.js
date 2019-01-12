@@ -8,6 +8,28 @@ import './galleries.scss'
 
 class Galleries extends Component {
 
+    getUserInfos = (author) => {
+        const users = this.props.users
+        //console.log(users)
+        
+        if (users){
+            return users
+          .filter(user => {
+            return user.authId === author
+          }).map(user => {
+            return (
+              {
+                pseudo: user.pseudo
+              }
+            )
+          })
+        }
+        
+        
+      
+      }
+
+
     render () {
         //const { auth/*, users*/ } = this.props
 
@@ -28,7 +50,7 @@ class Galleries extends Component {
                     })
                     .map(msg => {
                         return(
-                            <ImageSummary msg={msg} key={msg.id} className="gridItem"/>
+                            <ImageSummary msg={msg} key={msg.id} user={this.getUserInfos(msg.author)} className="gridItem"/>
                         )
                     })
                 
