@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
-//import SearchBar from './SearchBar'
 import './groups.scss'
 
 
@@ -15,7 +14,6 @@ class Groups extends Component {
   }
 
   handleChange = (e) => {
-    //console.log(e.target.value);
     this.setState({
       entry: e.target.value
     })
@@ -24,7 +22,7 @@ class Groups extends Component {
   render() {
     const { auth, users } = this.props;
     if (!auth.uid) return <Redirect to='/signin' /> 
-    //console.log(users);
+
     return (
       
       <div className="user-list page groupPage">
@@ -50,9 +48,7 @@ class Groups extends Component {
 
 
 const mapStateToProps = (state) => {
-  // console.log(state);
   return {
-    //projects: state.firestore.ordered.projects,
     auth: state.firebase.auth,
     users: state.firestore.ordered.users
   }
@@ -61,8 +57,6 @@ const mapStateToProps = (state) => {
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([
-    //{ collection: 'projects', orderBy: ['createdAt', 'desc']},
     { collection: 'users', orderBy: ['pseudo'] }
-    //{ collection: 'notifications', limit: 3, orderBy: ['time', 'desc']}
   ])
 )(Groups)

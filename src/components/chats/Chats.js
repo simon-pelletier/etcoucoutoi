@@ -15,22 +15,26 @@ class Chats extends Component {
     state={
         message: '',
         author: '',
-        //pseudo: '',
         link: null,
         responseTo: null
     }
+
+    componentDidMount() {
+        this.forceUpdateHandler()
+    }
+
+    forceUpdateHandler(){
+        this.forceUpdate();
+      };
+    
 
     handleChange = (e) => {
         if(e.target.value.length <= 150){
             this.setState({
                 [e.target.id]: e.target.value,
-                author: this.props.author.authId/*,
-                link: this.state.link*/
-                //pseudo: this.props.author.pseudo
+                author: this.props.author.authId
               })
         }
-        //console.log(this.state)
-        
     }
 
     handleSubmit = (e) => {
@@ -42,29 +46,13 @@ class Chats extends Component {
                 responseTo: null
             })
         }
-        
-        //console.log(this.props.author.authId)
-        /*this.setState({
-            author: this.props.author.authId
-        })*/
-        
     }
 
     scrollToBottom() {
-        console.log('SCROLL')
-        
         const scrollHeight = this.messageList.scrollHeight
         const height = this.messageList.clientHeight
         const maxScrollTop = scrollHeight - height
         this.messageList.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0
-
-        //this.messageList.scrollTop = height
-
-        //console.log(this.messageList)
-        //console.log(scrollHeight)
-        //console.log(height)
-        //console.log(maxScrollTop)
-        //console.log(this.messageList.scrollTop)
     }
 
     onClick = (e) => {
@@ -80,7 +68,6 @@ class Chats extends Component {
             })
         }
 
-        
     }
 
     cancelResponse = (e) => {
@@ -91,8 +78,7 @@ class Chats extends Component {
 
     getMessage = (id) => {
         const { mainChat } = this.props
-        //const message = 
-        
+
         return mainChat
           .filter(msg => {
             return msg.id === id
@@ -100,11 +86,11 @@ class Chats extends Component {
             return (
               msg.message
             )
-          })
-      
-      }
+        })
+    }
       
     componentDidUpdate() {
+        console.log('Component Did Update')
         this.scrollToBottom();
     }
 
@@ -115,11 +101,9 @@ class Chats extends Component {
             .substring(1);
         }
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-      }
+    }
 
     onDrop = (acceptedFiles, rejectedFiles) => {
- 
-        //console.log(acceptedFiles)
         const image = acceptedFiles[0]
         const randomName = this.guid();
         const uploadTask = storage.ref(`pictures/originals/${randomName}`).put(image)
@@ -140,11 +124,10 @@ class Chats extends Component {
             })
           })
         });
-
     }
 
     render () {
-
+        
         const { mainChat } = this.props
         const maxMsgLength = 150
       

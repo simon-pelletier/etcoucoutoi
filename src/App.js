@@ -4,7 +4,7 @@ import Navbar from './components/layout/Navbar'
 //import Footer from './components/layout/Footer'
 import MentionsLegales from './components/legal/Ml'
 import Dashboard from './components/layout/Dashboard'
-import './App.scss';
+
 
 import Groups from './components/groups/Groups'
 import Galleries from './components/galleries/Galleries'
@@ -13,6 +13,8 @@ import Profile from './components/user/Profile'
 
 import SignIn from './components/auth/SignIn'
 import SignUp from './components/auth/SignUp'
+
+import './App.scss';
 
 class App extends Component {
   render() {

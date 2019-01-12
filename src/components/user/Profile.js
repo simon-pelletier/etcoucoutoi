@@ -1,22 +1,14 @@
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { firestoreConnect } from 'react-redux-firebase'
-
 import { updateProfile } from '../../store/actions/authActions'
 import { Redirect } from 'react-router-dom'
-
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-
 import { storage } from '../../config/fbConfig'
-
 import classNames from 'classnames'
 import Dropzone from 'react-dropzone'
-
-
-
 
 class Profile extends Component {
 
@@ -134,7 +126,6 @@ class Profile extends Component {
 
     updateChange = (e) => {
         const profile = this.props.profile;
-        //console.log(this.state)
         e.preventDefault()
         this.setState({
             authId: profile.authId
@@ -157,7 +148,6 @@ class Profile extends Component {
 
     render () {
 
-        
         const { auth } = this.props
 
         if (!auth.uid) return <Redirect to='/signin' /> 
