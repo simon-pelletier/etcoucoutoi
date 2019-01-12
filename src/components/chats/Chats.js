@@ -24,7 +24,7 @@ class Chats extends Component {
     }
 
     forceUpdateHandler(){
-        this.forceUpdate();
+        this.forceUpdate()
       };
     
 
@@ -143,7 +143,7 @@ class Chats extends Component {
                 <div className="sender col s12" >
                     <div className="witnessResponse">
                         {
-                            this.state.responseTo ? <span><i className="material-icons">reply</i> {this.getMessage(this.state.responseTo)}<i className="material-icons cancelResponse" onClick={this.cancelResponse}>cancel</i> </span> : null
+                            this.state.responseTo ? <span><i className="material-icons replyIcon">reply</i> {this.getMessage(this.state.responseTo)}<i className="material-icons cancelResponse" onClick={this.cancelResponse}>cancel</i> </span> : null
                         }
                     </div>
 

@@ -108,9 +108,11 @@
     padding-top: 5px;
     padding-bottom: 5px;
     text-align: left;
+    font-style: italic;
   }
 
   .responseMessage{
+    font-style: italic;
       padding-bottom: 5px;
       text-align: left;
       word-wrap: break-word;
@@ -143,6 +145,10 @@ body{
     }*/
 }
 
+.replyIcon{
+    transform: rotate(0.50turn);
+    padding-bottom: 7px;
+}
 
 
   .chatPage{

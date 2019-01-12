@@ -13,7 +13,7 @@ class Quote extends Component {
             <div className="col s12 msgResponse">
 
                 <div className="responseAuthor">
-                    {responseAuthor.pseudo} a dit :
+                <i className="material-icons replyIcon">reply</i> {responseAuthor.pseudo}
                 </div>
 
                 <div className="responseMessage">
