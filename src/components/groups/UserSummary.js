@@ -16,7 +16,7 @@ const UserSummary = ({user}) => {
     <div className="userItem">
         <div className="card"></div>
         <div className="card-image">
-          <img className="avatarUserList" src={user.avatar} alt="avatar" />
+          <div className="avatarUserListContainer" ><img className="avatarUserList" src={user.avatar} alt="avatar" /></div>
         </div>
 
         <div className="card-title">{user.pseudo}</div>

@@ -21,6 +21,7 @@
   .titleImg{
     overflow: hidden;
     width: 100px;
+    height: 25px;
     //word-wrap: break-word!important;
 
     margin: 0 auto;
@@ -28,17 +29,11 @@
   .card{
     margin-bottom: 0px;
     margin-top: 0px;
+    border-radius: $mainBorder;
+    padding-top: 15px;
   }
 
-  .gallerieImg{
-    max-width: 100px;
-    //max-height: 100px;
-    //overflow: hidden;
-    margin: 0 auto;
-    //background-color: $lightPlus;
-    padding: 5px;
-    padding-bottom: 30px;
-  }
+  
   .gallerieImgContainer{
     overflow: hidden;
     width: 100px;
@@ -46,6 +41,25 @@
     margin: 0 auto;
     //border: 1px solid #000;
     z-index: 50;
+    border-radius: $mainBorder;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.30);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.30);
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.30);
+    margin-bottom: 5px;
+    //padding-top: 50px!important;
+
+    .gallerieImg{
+        
+      //max-width: 100px;
+      min-width: 200px;
+      //min-height: 150px;
+      //max-height: 100px;
+      //overflow: hidden;
+      margin: 0 auto;
+      //background-color: $lightPlus;
+      //padding: 5px;
+      //padding-bottom: 30px;
+    }
   }
 
     #grid {
