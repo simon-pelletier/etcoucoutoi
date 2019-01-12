@@ -18,6 +18,7 @@ class Quote extends Component {
 
                 <div className="responseMessage">
                     {responseMsg.message}
+                    <div className="quoteImgContainer"><img src={responseMsg.link} className="quoteImg" alt=""/></div>
                 </div>
 
             </div>

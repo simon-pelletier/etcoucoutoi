@@ -24,6 +24,7 @@ class Chats extends Component {
     }
 
     forceUpdateHandler(){
+        console.log('Update Forced !!!')
         this.forceUpdate()
       };
     
@@ -46,8 +47,9 @@ class Chats extends Component {
                 responseTo: null,
                 link: null
             })
+            this.forceUpdateHandler()
         }
-        this.forceUpdateHandler()
+        
     }
 
     scrollToBottom() {
