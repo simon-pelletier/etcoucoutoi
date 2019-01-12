@@ -33,11 +33,18 @@ const ImageSummary = ({msg, user}) => {
 
   return (
     <div className="imageItem">
-        <div className="card"></div>
-        <div className="card-image">
-          <img className="gallerieImg" src={msg.link} alt="img" />
-          <div className="card-action">{userPseudo} le {dateFormat}</div>
-        
+        <div className="card">
+          <div className="card-image imgBlock">
+            
+            <div className="gallerieImgContainer">
+              <img className="gallerieImg" src={msg.link} alt="img" />
+            </div>
+
+            <div className="titleImg">{msg.message}</div>
+            <div className="card-action">{userPseudo} le {dateFormat}</div>
+            
+          
+          </div>
         </div>
 
         {/*
