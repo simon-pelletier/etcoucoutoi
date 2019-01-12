@@ -16,6 +16,9 @@
 }
 
 .groupPage{
+  height: 100vh;
+  overflow-y: scroll!important;
+  
   #grid {
     display: grid;
     grid-template-columns: 1fr;

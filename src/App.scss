@@ -65,7 +65,7 @@ a{
   color: $mainColor;
 }
 
-.footer{
+/*.footer{
   position: fixed;
   z-index: 10;
   bottom: 0px;
@@ -74,7 +74,7 @@ a{
   background-color: $dark;
   padding-top: 5px;
   padding-bottom: 5px;
-}
+}*/
 
 .logo{
   max-width: 60px;
@@ -101,6 +101,8 @@ a{
 
 .profilPage{
   padding-top: 80px;
+  height: 100vh;
+  overflow-y: scroll!important;
 }
 
 .groupPage{

@@ -51,10 +51,21 @@ class Chats extends Component {
     }
 
     scrollToBottom() {
-        const scrollHeight = this.messageList.scrollHeight;
-        const height = this.messageList.clientHeight;
-        const maxScrollTop = scrollHeight - height;
-        this.messageList.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
+        console.log('SCROLL')
+        
+        const scrollHeight = this.messageList.scrollHeight
+        const height = this.messageList.clientHeight
+        const maxScrollTop = scrollHeight - height
+        this.messageList.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0
+
+        //this.messageList.scrollTop = height
+
+        console.log(this.messageList)
+
+        console.log(scrollHeight)
+        console.log(height)
+        console.log(maxScrollTop)
+        console.log(this.messageList.scrollTop)
     }
 
     onClick = (e) => {
@@ -136,11 +147,11 @@ class Chats extends Component {
 
             <div className="chatPage row" >
 
-                <div className=" conversation col s12"  ref={(div) => {this.messageList = div;}} >
+                <div className=" conversation col s12" ref={(div) => {this.messageList = div;}} >
                     <Conversation chat={mainChat} myClick={this.onClick} msgState={this.state.responseTo} />
                 </div>
 
-                <div className="sender col s12">
+                <div className="sender col s12" >
                     <div className="witnessResponse">
                         {
                             this.state.responseTo ? <span><i className="material-icons">reply</i> {this.getMessage(this.state.responseTo)}</span> : null
