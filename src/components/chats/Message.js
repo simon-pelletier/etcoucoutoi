@@ -5,11 +5,6 @@ import Quote from './Quote'
 
 class Message extends Component {
 
-    /*handleSelect = (e) => {
-        e.preventDefault()
-        console.log(this.props.conversation.id)
-    }*/
-
     render(){
 
         const conversation = this.props.conversation
@@ -18,7 +13,7 @@ class Message extends Component {
         if (responseMsgTest){
             responseMsg = responseMsgTest[0]
         }
-        //console.log(responseMsg)
+        
         const pseudo = this.props.userInfos[0].pseudo
         const avatar = this.props.userInfos[0].avatar
 
