@@ -60,12 +60,11 @@ class Chats extends Component {
 
         //this.messageList.scrollTop = height
 
-        console.log(this.messageList)
-
-        console.log(scrollHeight)
-        console.log(height)
-        console.log(maxScrollTop)
-        console.log(this.messageList.scrollTop)
+        //console.log(this.messageList)
+        //console.log(scrollHeight)
+        //console.log(height)
+        //console.log(maxScrollTop)
+        //console.log(this.messageList.scrollTop)
     }
 
     onClick = (e) => {
@@ -82,6 +81,12 @@ class Chats extends Component {
         }
 
         
+    }
+
+    cancelResponse = (e) => {
+        this.setState({
+            responseTo: null
+        })
     }
 
     getMessage = (id) => {
@@ -154,7 +159,7 @@ class Chats extends Component {
                 <div className="sender col s12" >
                     <div className="witnessResponse">
                         {
-                            this.state.responseTo ? <span><i className="material-icons">reply</i> {this.getMessage(this.state.responseTo)}</span> : null
+                            this.state.responseTo ? <span><i className="material-icons">reply</i> {this.getMessage(this.state.responseTo)}<i className="material-icons cancelResponse" onClick={this.cancelResponse}>cancel</i> </span> : null
                         }
                     </div>
 
