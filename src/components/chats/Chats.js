@@ -85,6 +85,7 @@ class Chats extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         if(this.state.message !== '' && this.state.message.length <= 150){
+            this.sendSound.volume = 0.3;
             this.sendSound.play()
             this.props.sendMessage(this.state)
             this.setState({
