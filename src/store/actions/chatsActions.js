@@ -2,7 +2,10 @@ export const sendMessage = (message) => {
     return (dispatch, getState, {getFirestore}) => {
       const firestore = getFirestore();
       firestore.collection('mainChat').add({
-        ...message,
+        message: message.message,
+        author: message.author,
+        link: message.link,
+        responseTo: message.responseTo,
         createdAt: new Date()
       }).then(() => {
         dispatch({ type: 'SEND_MESSAGE_SUCCESS' });
