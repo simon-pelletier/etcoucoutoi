@@ -40,7 +40,7 @@ class Chats extends Component {
         if(this.state.msgIsReady){
             return <button type="submit" className="btnSender" onClick={this.handleSubmit}><i className="material-icons senderIcon">send</i></button>
         } else {
-            return <div className="btnSender btnDisabled" ><i className="material-icons senderIcon">send</i></div>
+            return <button type="submit" className="btnSenderDisabled" onClick={this.handleSubmit} disabled><i className="material-icons senderIcon">send</i></button>
         }    
                                     
     }

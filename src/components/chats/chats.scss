@@ -218,8 +218,10 @@
                     color: $dark!important;
                     border: none;
                 }
-                .btnDisabled{
+                .btnSenderDisabled{
+                    background-color: transparent!important;
                     color: $grey!important;
+                    border: none;
                 }
                 .senderIcon{
                     font-size: 25pt!important;

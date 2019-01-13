@@ -23,7 +23,8 @@ class Profile extends Component {
             avatar: profile.avatar,
             dob: profile.dob,
             email: profile.email,
-            image: null
+            image: null,
+            profilIsReady: false
           }
         }
 
@@ -35,7 +36,8 @@ class Profile extends Component {
         avatar: 'https://firebasestorage.googleapis.com/v0/b/etcoucoutoi.appspot.com/o/assets%2Fprofil.jpg?alt=media&token=7b89255a-e7df-4964-b027-892bc2330224',
         dob: new Date(),
         email: 'loading...',
-        image: null
+        image: null,
+        profileIsReady: false
     }
 
     onDrop = (acceptedFiles, rejectedFiles) => {
@@ -98,6 +100,28 @@ class Profile extends Component {
         });
       }
 
+    validateProfil = () =>{
+        const profil = this.state
+        const profilBase = this.props.profile;
+        if(profil.pseudo !== profilBase.pseudo && profil.pseudo !== ''){
+            this.setState({
+                profileIsReady: true
+            })
+        } else {
+            this.setState({
+                profileIsReady: false
+            })
+        }
+    }
+
+    profileSender = () => {
+        if(this.state.profileIsReady){
+            return <button className="profilBtn btn domiB z-depth-0 center col s12" onClick={this.updateChange}>SAUVEGARDER</button>
+        } else {
+            return <button className="profilBtn btn domiB z-depth-0 center col s12" onClick={this.updateChange} disabled>SAUVEGARDER</button>
+        }
+    }
+
     handleChange = (e) => {
         if (e.target.files && e.target.id === 'image'){
             this.setState({
@@ -107,7 +131,7 @@ class Profile extends Component {
         } else {
             this.setState({
                 [e.target.id]: e.target.value
-            })
+            }, () => { this.validateProfil() })
         }
             
     }
@@ -220,8 +244,11 @@ class Profile extends Component {
                     </div>
                 </div>
                 */}
-
-                <button className="profilBtn btn domiB z-depth-0 center col s12" onClick={this.updateChange}>SAUVEGARDER</button>
+                
+                {
+                    this.profileSender()
+                }
+                
                 
             </div>
         )
