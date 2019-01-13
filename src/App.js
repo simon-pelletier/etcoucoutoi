@@ -4,7 +4,7 @@ import Navbar from './components/layout/Navbar'
 //import Footer from './components/layout/Footer'
 import MentionsLegales from './components/legal/Ml'
 import Dashboard from './components/layout/Dashboard'
-
+import 'react-image-lightbox/style.css'
 
 import Groups from './components/groups/Groups'
 import Galleries from './components/galleries/Galleries'

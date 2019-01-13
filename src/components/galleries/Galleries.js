@@ -31,6 +31,7 @@ class Galleries extends Component {
 
       }
 
+    
 
     render () {
 
@@ -50,7 +51,7 @@ class Galleries extends Component {
                     })
                     .map(msg => {
                         return(
-                            <ImageSummary msg={msg} key={msg.id} user={this.getUserInfos(msg.author)} className="gridItem"/>
+                            <ImageSummary msg={msg} key={msg.id} user={this.getUserInfos(msg.author)} className="gridItem" />
                         )
                     })
                 
