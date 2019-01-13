@@ -12,10 +12,13 @@ import Dropzone from 'react-dropzone'
 
 import loading from '../../assets/loading.gif'
 
+import notificationSound from '../../assets/notification.mp3'
+
 class Chats extends Component {
 
     constructor(props) {
         super(props)
+        this.audio = new Audio(notificationSound);
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -36,6 +39,7 @@ class Chats extends Component {
     forceUpdateHandler(){
         console.log('🔺 WARNING : Force Update 🔺')
         this.forceUpdate()
+        
     }
     
     messageSender = () => {
@@ -149,6 +153,7 @@ class Chats extends Component {
     componentDidUpdate() {
         console.log('➰ NOTE : Component Did Update ➰')
         this.scrollToBottom();
+        //this.audio.play()
     }
 
     guid() {
