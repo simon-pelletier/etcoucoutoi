@@ -42,14 +42,11 @@ class Chats extends Component {
         
         if(this.state.msgIsReady){
             return (
-
-                
                 <button type="submit" className="btnSender" onClick={this.handleSubmit}><i className="material-icons senderIcon">send</i></button>
-
             )
         } else {
             return (
-            <button type="submit" className="btnSenderDisabled" onClick={this.handleSubmit} disabled><i className="material-icons senderIcon">send</i></button>
+                <button type="submit" className="btnSenderDisabled" onClick={this.handleSubmit} disabled><i className="material-icons senderIcon">send</i></button>
             )
         }    
                                     
@@ -138,7 +135,15 @@ class Chats extends Component {
     }
 
     getLink = () => {
-        return <div className="chatLinkPreview"><img className="chatLinkPreviewImg" src={this.state.link} alt="NO LINK"/><i className="material-icons cancelLink" onClick={this.cancelLink}>cancel</i></div>
+        return (
+            <div className="chatLinkContainer">
+                <i className="material-icons cancelLink" onClick={this.cancelLink}>cancel</i>
+                <div className="chatLinkPreview">
+                    <img className="chatLinkPreviewImg" src={this.state.link} alt="NO LINK"/>
+                    
+                </div>
+            </div>
+        )
     }
       
     componentDidUpdate() {

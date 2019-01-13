@@ -172,7 +172,7 @@
         overflow-x: hidden;
         margin-top: 15px;
         //margin-bottom: 35px;
-        padding-bottom: 150px;
+        padding-bottom: 10px;
       }
       .sender{
         position: fixed;
@@ -188,30 +188,47 @@
             left: 0px;
             height: 65px;
             margin-left: 0px;
-            .chatLinkPreview{
+            .chatLinkContainer{
                 width: 100px;
-                //margin: 0 auto;
-                left: 12px;
-                
-                position: relative;
-                bottom: 135px;
-                
                 height: 100px;
-                overflow: hidden;
-                border-radius: $mainBorder;
-                -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-                -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-                box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+                position: absolute;
+                bottom: 110px;
+                left: 12px;
                 .cancelLink{
                     position: absolute;
                     z-index: 20;
-                    top: 0px;
-                    right: 0px;
+                    top: -10px;
+                    right: -10px;
+                    background-color: $light;
+                    padding: 2px;
+                    border-radius: 25px;
+                    cursor: pointer;
                 }
-                .chatLinkPreviewImg{
-                    min-width: 100px;
+                .chatLinkPreview{
+                    width: 100px;
+                    //margin: 0 auto;
+                    //left: 12px;
+                    
+                    //position: relative;
+                    //bottom: 135px;
+    
+                    background-color: $light;
+                    
+                    height: 100px;
+                    overflow: hidden;
+                    border-radius: $mainBorder;
+                    -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+                    -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+                    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+                    
+                    .chatLinkPreviewImg{
+                        min-width: 100px;
+                        max-width: 100px;
+                        padding: 5px;
+                    }
                 }
             }
+            
             
             .inputChat{
                 .counterMsg{
@@ -258,7 +275,7 @@
             position: absolute;
             z-index: 25;
             width: 93vw;
-            bottom: 70px;
+            bottom: 75px;
             text-align: left;
             word-wrap: break-word;
             background-color: $selectionColor;
