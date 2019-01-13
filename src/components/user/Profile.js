@@ -183,7 +183,13 @@ class Profile extends Component {
         this.setState({
             authId: profile.authId
         })
+        
         this.props.updateProfile(this.state);
+
+        this.setState({
+            profileIsReady: false
+        })
+
     }
 
     componentWillReceiveProps(nextProps) {
