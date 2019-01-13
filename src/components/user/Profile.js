@@ -9,7 +9,6 @@ import 'react-datepicker/dist/react-datepicker.css'
 import { storage } from '../../config/fbConfig'
 import classNames from 'classnames'
 import Dropzone from 'react-dropzone'
-
 import loading from '../../assets/loading.gif'
 
 class Profile extends Component {
@@ -29,7 +28,6 @@ class Profile extends Component {
             profilIsReady: false
           }
         }
-
     }
 
     state = {
@@ -43,12 +41,12 @@ class Profile extends Component {
     }
 
     onDrop = (acceptedFiles, rejectedFiles) => {
- 
         const image = acceptedFiles[0]
         const randomName = this.guid();
         const uploadTask = storage.ref(`pictures/avatars/${randomName}`).put(image)
 
-        console.log(image.size)
+        console.log('File size : ' + image.size)
+        console.log(image)
 
         this.setState({
             avatar: loading,
@@ -84,42 +82,10 @@ class Profile extends Component {
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
       }
 
-    /* = (e) => {
-        e.preventDefault()
-
-        this.setState({
-            profileIsReady: false
-        })
-        console.log('upload')
-        const {image} = this.state
-        const randomName = this.guid();
-        const uploadTask = storage.ref(`pictures/avatars/${randomName}`).put(image)
-
-        uploadTask.on('state_changed', 
-        (snapshot) => {
-          // progress
-        }, 
-        (error) => {
-          // error
-          console.log(error);
-        }, 
-        () => {
-          //complete
-          storage.ref('pictures/avatars').child(randomName).getDownloadURL().then(url => {
-            this.setState({
-              avatar: url,
-              profileIsReady: true
-            })
-          })
-          //console.log(this.state)
-        });
-      }*/
-
     validateProfil = () =>{
         const profil = this.state
         const profilBase = this.props.profile;
-        //console.log(profil.dob)
-        //console.log(profilBase.dob)
+
         if(
             ((profil.pseudo !== profilBase.pseudo && profil.pseudo !== '') 
             || 
@@ -143,11 +109,11 @@ class Profile extends Component {
         return <img src={this.state.avatar} className="avatarProfile" alt="avatar manquant"/>   
     }
 
-    profileSender = () => {
+    getSender = () => {
         if(this.state.profileIsReady){
-            return <button className="profilBtn btn domiB z-depth-0 center col s12" onClick={this.updateChange}>SAUVEGARDER</button>
+            return <button className="profilBtn btn domiB z-depth-0 center col s12" onClick={this.sendChange}>SAUVEGARDER</button>
         } else {
-            return <button className="profilBtn btn domiB z-depth-0 center col s12" onClick={this.updateChange} disabled>SAUVEGARDER</button>
+            return <button className="profilBtn btn domiB z-depth-0 center col s12" onClick={this.sendChange} disabled>SAUVEGARDER</button>
         }
     }
 
@@ -156,36 +122,31 @@ class Profile extends Component {
             this.setState({
               image: e.target.files[0]
             })
-
         } else {
             this.setState({
                 [e.target.id]: e.target.value
             }, () => { this.validateProfil() })
-        }
-            
+        }   
     }
 
     handleChangeDate = (date, e) => {
         let datum = Date.parse(date)
         let dateTimseStamp = datum/1000
-
-       const dateFormat = {
-           seconds: dateTimseStamp
-       }
-            this.setState({
-                dob: dateFormat
-            }, () => { this.validateProfil() })
+        const dateFormat = {
+            seconds: dateTimseStamp
+        }
+        this.setState({
+            dob: dateFormat
+        }, () => { this.validateProfil() })
     }
 
-    updateChange = (e) => {
+    sendChange = (e) => {
         const profile = this.props.profile;
         e.preventDefault()
         this.setState({
             authId: profile.authId
         })
-        
         this.props.updateProfile(this.state);
-
         this.setState({
             profileIsReady: false
         })
@@ -203,12 +164,9 @@ class Profile extends Component {
         })
       }
 
- 
-
     render () {
 
         const { auth } = this.props
-
         if (!auth.uid) return <Redirect to='/signin' /> 
 
         const date = new Date(this.state.dob.seconds * 1000)
@@ -242,17 +200,6 @@ class Profile extends Component {
                     }}
                 </Dropzone>
 
-                {/*
-
-                <div className="row">
-                    <div className="input-field center-align col s8 offset-s2">
-                        <input type="file" id="image" className="row btn waves-effect waves-light" accept="image/*" onChange={this.handleChange} /><br/>
-                        <button className="row btn waves-effect waves-light" onClick={this.} ><i className="material-icons right">send</i>ENVOYER L'IMAGE</button>
-                    </div>
-                </div>
-
-                */}
-
                 <div className="row">
                     <div className="input-field col s6 offset-s3 profilePseudoInput">
                         
@@ -271,21 +218,10 @@ class Profile extends Component {
                     />
                     <span className="helper-text" data-error="wrong" data-success="right">Date de naissance</span>
                 </div>
-                
 
-                {/*
-                <div className="row">
-                    <div className="input-field col s6 offset-s3">
-                        <span className="helper-text left">Ton email</span>
-                        <input type="text" id='email'  value={this.state.email} className="inputContact" onChange={this.handleChange} />
-                    </div>
-                </div>
-                */}
-                
                 {
-                    this.profileSender()
+                    this.getSender()
                 }
-                
                 
             </div>
         )
