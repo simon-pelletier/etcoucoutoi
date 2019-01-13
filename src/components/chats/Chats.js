@@ -12,29 +12,58 @@ import Dropzone from 'react-dropzone'
 
 class Chats extends Component {
 
+    constructor(props) {
+        super(props)
+        this.handleChange = this.handleChange.bind(this);
+    }
+
     state={
         message: '',
         author: '',
         link: null,
-        responseTo: null
+        responseTo: null,
+        msgIsReady: false
     }
+
+
 
     componentDidMount() {
         this.forceUpdateHandler()
     }
 
     forceUpdateHandler(){
-        console.log('Update Forced !!!')
+        console.log('🔺 WARNING : Force Update 🔺')
         this.forceUpdate()
-      };
+    }
     
+    messageSender = () => {
+        if(this.state.msgIsReady){
+            return <button type="submit" className="btnSender" onClick={this.handleSubmit}><i className="material-icons senderIcon">send</i></button>
+        } else {
+            return <div className="btnSender btnDisabled" ><i className="material-icons senderIcon">send</i></div>
+        }    
+                                    
+    }
+
+    validateMessage = () => {
+        if(this.state.message.length > 0){
+            this.setState({
+                msgIsReady: true
+            })
+        } else {
+            this.setState({
+                msgIsReady: false
+            })
+        }
+    }
+
 
     handleChange = (e) => {
         if(e.target.value.length <= 150 && e.target.id !== 'link'){
             this.setState({
                 [e.target.id]: e.target.value,
                 author: this.props.author.authId
-              })
+              }, () => { this.validateMessage() })
         }
     }
 
@@ -46,10 +75,9 @@ class Chats extends Component {
                 message: '',
                 responseTo: null,
                 link: null
-            })
+            }, () => { this.validateMessage() })
             this.forceUpdateHandler()
         }
-        
     }
 
     scrollToBottom() {
@@ -94,6 +122,7 @@ class Chats extends Component {
     }
       
     componentDidUpdate() {
+        console.log('➰ NOTE : Component Did Update ➰')
         this.scrollToBottom();
     }
 
@@ -179,7 +208,18 @@ class Chats extends Component {
                                     }}
                                 </Dropzone>
 
-                                <button type="submit" className="btnSender" onClick={this.handleSubmit}><i className="material-icons senderIcon">send</i></button>
+                                
+
+                                {
+                                    this.messageSender()
+                                }
+
+                                {/*
+                                    this.state.msgIsReady ?
+                                    <button type="submit" className="btnSender" onClick={this.handleSubmit}><i className="material-icons senderIcon">send</i></button> :
+                                    <div className="btnSender btnDisabled" ><i className="material-icons senderIcon">send</i></div>
+                                */}
+                                
                             </div>
 
                         </div>
