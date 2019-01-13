@@ -1,11 +1,29 @@
 import React, { Component } from 'react'
 import './chats.scss'
 import Quote from './Quote'
+import Lightbox from 'react-image-lightbox'
 
 
 class Message extends Component {
 
+    constructor(props) {
+        super(props);
+     
+        this.state = {
+          //photoIndex: 0,
+          isOpen: false,
+        };
+      }
+
+      imgZoom = (e) => {
+        e.preventDefault()
+        console.log(e)
+        this.setState({ isOpen: true })
+    
+      }
+
     render(){
+        const { /*photoIndex,*/ isOpen } = this.state
 
         const conversation = this.props.conversation
         const responseMsgTest = this.props.responseTo
@@ -46,7 +64,7 @@ class Message extends Component {
 
         return (
             <div className="col s12">
-
+                
                 { 
                     dateElt !== null ? 
                     <div className="row"><div className="msgDateInfo col s4 m3 l2 left">{day + ' ' + monthsTab[month - 1]}</div></div>
@@ -54,24 +72,43 @@ class Message extends Component {
                 }
 
                 <div className={this.props.way + ' ' + this.props.msgState + " msgBlock left col s12 m8 l6"} >
+                {
+                    conversation.link !== null ? <div className="msgLinkContainer" ><img className="msgLink" src={conversation.link} alt="" onClick={(e) => this.imgZoom(e)} /></div> : null
+                }
                     <div className="msgOverlay" id={conversation.id} onClick={this.props.myClick}></div>
                     <i className="material-icons msgBulle">chat_bubble</i>
-
                    
                     {
                         conversation.responseTo !== null ? <div className="">{<Quote msg={responseMsg}/>}</div> : null
                     }
 
                     <span className="msgMessage col s12">{conversation.message}</span>
-                    {
-                        conversation.link !== null ? <div className="msgLinkContainer" ><img className="msgLink" src={conversation.link} alt="" /></div> : null
-                    }
+                    
                     
                     <span className="msgAuthor">{pseudo}</span>
                     <span className="msgDate">{hour + ':' + minute}</span>
                     <div className="msgAvatarContainer" ><img className="msgAvatar" src={avatar} alt="" /></div>
 
                 </div>
+
+                {isOpen && (
+          <Lightbox
+            mainSrc={conversation.link}
+            //nextSrc={images[(photoIndex + 1) % images.length]}
+            //prevSrc={images[(photoIndex + images.length - 1) % images.length]}
+            onCloseRequest={() => this.setState({ isOpen: false })}
+            /*onMovePrevRequest={() =>
+              this.setState({
+                photoIndex: (photoIndex + images.length - 1) % images.length,
+              })
+            }*/
+            /*onMoveNextRequest={() =>
+              this.setState({
+                photoIndex: (photoIndex + 1) % images.length,
+              })
+            }*/
+          />
+        )}
 
             </div>
            

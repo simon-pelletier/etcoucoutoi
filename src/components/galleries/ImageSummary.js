@@ -15,7 +15,7 @@ class ImageSummary extends Component {
     };
   }
 
-  imgZoom = (e, img) => {
+  imgZoom = (e) => {
     e.preventDefault()
     //console.log(img)
     this.setState({ isOpen: true })
@@ -66,7 +66,7 @@ class ImageSummary extends Component {
           <div className="card-image imgBlock">
             
             <div className="gallerieImgContainer">
-              <img className="gallerieImg" src={msg.link} alt="img"  onClick={(e) => this.imgZoom(e, msg.link)}/>
+              <img className="gallerieImg" src={msg.link} alt="img" onClick={(e) => this.imgZoom(e)} />
             </div>
 
             <div className="titleImg">{msg.message}</div>
