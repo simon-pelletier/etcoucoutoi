@@ -4,7 +4,7 @@ import SignedInLinks from './SignedInLinks'
 import SignedOutLinks from './SignedOutLinks'
 import { connect } from 'react-redux'
 
-import logo from '../../logo.png'
+import logo from '../../assets/logo.png'
 
 const Navbar = (props) => {
   const { auth, profile } = props;

@@ -10,6 +10,8 @@ import { storage } from '../../config/fbConfig'
 import classNames from 'classnames'
 import Dropzone from 'react-dropzone'
 
+import loading from '../../assets/loading.gif'
+
 class Profile extends Component {
 
     constructor(props) {
@@ -46,6 +48,13 @@ class Profile extends Component {
         const randomName = this.guid();
         const uploadTask = storage.ref(`pictures/avatars/${randomName}`).put(image)
 
+        console.log(image.size)
+
+        this.setState({
+            avatar: loading,
+            profileIsReady: false
+        })
+
         uploadTask.on('state_changed', 
         (snapshot) => {
           // progress
@@ -58,7 +67,8 @@ class Profile extends Component {
           //complete
           storage.ref('pictures/avatars').child(randomName).getDownloadURL().then(url => {
             this.setState({
-              avatar: url
+              avatar: url,
+              profileIsReady: true
             })
           })
         });
@@ -74,9 +84,13 @@ class Profile extends Component {
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
       }
 
-    handleUpload = (e) => {
+    /* = (e) => {
         e.preventDefault()
 
+        this.setState({
+            profileIsReady: false
+        })
+        console.log('upload')
         const {image} = this.state
         const randomName = this.guid();
         const uploadTask = storage.ref(`pictures/avatars/${randomName}`).put(image)
@@ -93,17 +107,28 @@ class Profile extends Component {
           //complete
           storage.ref('pictures/avatars').child(randomName).getDownloadURL().then(url => {
             this.setState({
-              avatar: url
+              avatar: url,
+              profileIsReady: true
             })
           })
-          console.log(this.state)
+          //console.log(this.state)
         });
-      }
+      }*/
 
     validateProfil = () =>{
         const profil = this.state
         const profilBase = this.props.profile;
-        if(profil.pseudo !== profilBase.pseudo && profil.pseudo !== ''){
+        //console.log(profil.dob)
+        //console.log(profilBase.dob)
+        if(
+            ((profil.pseudo !== profilBase.pseudo && profil.pseudo !== '') 
+            || 
+            (profil.dob.seconds !== profilBase.dob.seconds && profil.dob.seconds !== '')
+            ||
+            (profil.avatar !== profilBase.avatar))
+            &&
+            (profil.avatar !== loading)
+            ){
             this.setState({
                 profileIsReady: true
             })
@@ -112,6 +137,10 @@ class Profile extends Component {
                 profileIsReady: false
             })
         }
+    }
+
+    getAvatar = () => {
+        return <img src={this.state.avatar} className="avatarProfile" alt="avatar manquant"/>   
     }
 
     profileSender = () => {
@@ -145,7 +174,7 @@ class Profile extends Component {
        }
             this.setState({
                 dob: dateFormat
-            })
+            }, () => { this.validateProfil() })
     }
 
     updateChange = (e) => {
@@ -183,7 +212,9 @@ class Profile extends Component {
             
                 <div className="row">
                     <div className="col s6 offset-s3">
-                        <img src={this.state.avatar} className="avatarProfile" alt="avatar manquant"/>
+                        { 
+                            this.getAvatar()
+                        }
                     </div>
                 </div>
 
@@ -210,7 +241,7 @@ class Profile extends Component {
                 <div className="row">
                     <div className="input-field center-align col s8 offset-s2">
                         <input type="file" id="image" className="row btn waves-effect waves-light" accept="image/*" onChange={this.handleChange} /><br/>
-                        <button className="row btn waves-effect waves-light" onClick={this.handleUpload} ><i className="material-icons right">send</i>ENVOYER L'IMAGE</button>
+                        <button className="row btn waves-effect waves-light" onClick={this.} ><i className="material-icons right">send</i>ENVOYER L'IMAGE</button>
                     </div>
                 </div>
 
