@@ -12,13 +12,17 @@ import Dropzone from 'react-dropzone'
 
 import loading from '../../assets/loading.gif'
 
+import sendSound from '../../assets/send.wav'
+//import deniedSound from '../../assets/denied.mp3'
 import notificationSound from '../../assets/notification.mp3'
 
 class Chats extends Component {
 
     constructor(props) {
         super(props)
-        this.audio = new Audio(notificationSound);
+        this.notificationSound = new Audio(notificationSound);
+        this.sendSound = new Audio(sendSound);
+        //this.deniedSound = new Audio(deniedSound);
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -81,6 +85,7 @@ class Chats extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         if(this.state.message !== '' && this.state.message.length <= 150){
+            this.sendSound.play()
             this.props.sendMessage(this.state)
             this.setState({
                 message: '',
@@ -88,6 +93,8 @@ class Chats extends Component {
                 link: null
             }, () => { this.validateMessage() })
             this.forceUpdateHandler()
+        } else {
+        
         }
     }
 
