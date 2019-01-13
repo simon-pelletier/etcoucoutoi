@@ -10,6 +10,8 @@ import { storage } from '../../config/fbConfig'
 import classNames from 'classnames'
 import Dropzone from 'react-dropzone'
 
+import loading from '../../assets/loading.gif'
+
 class Chats extends Component {
 
     constructor(props) {
@@ -37,16 +39,24 @@ class Chats extends Component {
     }
     
     messageSender = () => {
+        
         if(this.state.msgIsReady){
-            return <button type="submit" className="btnSender" onClick={this.handleSubmit}><i className="material-icons senderIcon">send</i></button>
+            return (
+
+                
+                <button type="submit" className="btnSender" onClick={this.handleSubmit}><i className="material-icons senderIcon">send</i></button>
+
+            )
         } else {
-            return <button type="submit" className="btnSenderDisabled" onClick={this.handleSubmit} disabled><i className="material-icons senderIcon">send</i></button>
+            return (
+            <button type="submit" className="btnSenderDisabled" onClick={this.handleSubmit} disabled><i className="material-icons senderIcon">send</i></button>
+            )
         }    
                                     
     }
 
     validateMessage = () => {
-        if(this.state.message.length > 0){
+        if(this.state.message.length > 0 && this.state.link !== loading){
             this.setState({
                 msgIsReady: true
             })
@@ -108,6 +118,12 @@ class Chats extends Component {
         })
     }
 
+    cancelLink = (e) => {
+        this.setState({
+            link: null
+        })
+    }
+
     getMessage = (id) => {
         const { mainChat } = this.props
 
@@ -119,6 +135,10 @@ class Chats extends Component {
               msg.message
             )
         })
+    }
+
+    getLink = () => {
+        return <div className="chatLinkPreview"><img className="chatLinkPreviewImg" src={this.state.link} alt="NO LINK"/><i className="material-icons cancelLink" onClick={this.cancelLink}>cancel</i></div>
     }
       
     componentDidUpdate() {
@@ -135,10 +155,17 @@ class Chats extends Component {
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
     }
 
+    
+
     onDrop = (acceptedFiles, rejectedFiles) => {
         const image = acceptedFiles[0]
         const randomName = this.guid();
         const uploadTask = storage.ref(`pictures/originals/${randomName}`).put(image)
+
+        this.setState({
+            link: loading//,
+            //msgIsReady: false
+        }, () => { this.validateMessage() })
 
         uploadTask.on('state_changed', 
         (snapshot) => {
@@ -152,8 +179,9 @@ class Chats extends Component {
           //complete
           storage.ref('pictures/originals').child(randomName).getDownloadURL().then(url => {
             this.setState({
-              link: url
-            })
+              link: url//,
+              //msgIsReady: true
+            }, () => { this.validateMessage() })
           })
         });
     }
@@ -180,6 +208,11 @@ class Chats extends Component {
 
                     <form>
                         <div className="senderBlock">
+                            {
+                                this.state.link !== null ?
+                                this.getLink() :
+                                null
+                            }
 
                             <div className="inputChat">
                                 <input type="text" id='message' className="inputContactChat" value={this.state.message} onChange={this.handleChange} />
