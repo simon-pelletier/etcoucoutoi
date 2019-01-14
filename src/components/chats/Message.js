@@ -17,7 +17,7 @@ class Message extends Component {
 
       imgZoom = (e) => {
         e.preventDefault()
-        console.log(e)
+        //console.log(e)
         this.setState({ isOpen: true })
     
       }
