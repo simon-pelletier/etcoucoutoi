@@ -182,7 +182,10 @@ class Profile extends Component {
                     </div>
                 </div>
 
-                <Dropzone onDrop={this.onDrop}>
+                <Dropzone 
+                    accept="image/jpeg, image/png"
+                    onDrop={this.onDrop}
+                    >
                     {({getRootProps, getInputProps, isDragActive}) => {
                     return (
                         <div
