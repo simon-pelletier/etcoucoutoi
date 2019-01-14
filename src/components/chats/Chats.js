@@ -16,15 +16,28 @@ import sendSound from '../../assets/send.wav'
 //import deniedSound from '../../assets/denied.mp3'
 import notificationSound from '../../assets/notification.mp3'
 
+import AvatarEditor from 'react-avatar-editor'
+
 class Chats extends Component {
 
     constructor(props) {
         super(props)
+        this.state={
+            message: '',
+            author: '',
+            link: null,
+            responseTo: null,
+            msgIsReady: false,
+            linkThumb: null,
+            linkPreview: null,
+            file: null
+        }
+        
         this.notificationSound = new Audio(notificationSound);
         this.sendSound = new Audio(sendSound);
-        //this.deniedSound = new Audio(deniedSound);
         this.handleChange = this.handleChange.bind(this);
         this.lastLogin = this.props.lastLogin
+
     }
 
     state={
@@ -32,13 +45,160 @@ class Chats extends Component {
         author: '',
         link: null,
         responseTo: null,
-        msgIsReady: false
+        msgIsReady: false,
+        linkThumb: null,
+        linkPreview: null,
+        file: null
+    }
+
+    setEditorRef = (editor) => this.editor = editor
+
+    handleSubmit = (e) => {
+        e.preventDefault()
+        if(this.state.linkPreview !== null && (this.state.message !== '' && this.state.message.length <= 150)){
+            this.saveLink()
+
+        } else {
+            if(this.state.message !== '' && this.state.message.length <= 150){
+                this.sendSound.volume = 0.3;
+                this.sendSound.play()
+                this.props.sendMessage(this.state)
+                this.setState({
+                    message: '',
+                    responseTo: null,
+                    link: null
+                }, () => { 
+                    this.validateMessage() 
+                    this.forceUpdateHandler()
+                })
+                
+            } 
+        }
+    }
+
+    saveLink = () => {
+        
+        if (this.editor) {
+
+            const canvasURL = this.editor.getImageScaledToCanvas().toDataURL();
+            let imageURL;
+              fetch(canvasURL)
+              .then(res => res.blob())
+              .then(blob => (this.setState({
+                linkPreview: imageURL
+                }, this.uploadLinkBlob(blob)))
+              )
+        }
+    }
+
+    uploadLink = (randomName) => {
+        const uploadTask = storage.ref(`pictures/originals/${randomName}`).put(this.state.file)
+
+        uploadTask.on('state_changed', 
+            (snapshot) => {
+              // progress
+            }, 
+            (error) => {
+              // error
+              console.log(error);
+            }, 
+            () => {
+              //complete
+              storage.ref('pictures/originals').child(randomName).getDownloadURL().then(url => {
+
+                this.setState({
+                    link: url
+                }, () => { this.submitAfterLinkIdLoaded()})
+                
+              })
+            });
+    }
+
+    submitAfterLinkIdLoaded = () => {
+        this.sendSound.volume = 0.3;
+        this.sendSound.play()
+        this.props.sendMessage(this.state)
+        this.setState({
+            message: '',
+            responseTo: null,
+            link: null,
+            linkThumb: null,
+            linkPreview: null,
+            file: null
+        }, () => { 
+            this.validateMessage() 
+            this.forceUpdateHandler()
+        })
+    }
+
+    uploadLinkBlob = (blob) => {
+
+        let blobFormat = blob.slice(0, blob.size, "image/jpeg")
+        const randomName = this.guid();
+
+
+        const uploadTaskPreview = storage.ref(`pictures/thumbs/${randomName}`).put(blobFormat)
+
+        uploadTaskPreview.on('state_changed', 
+            (snapshot) => {
+              // progress
+            }, 
+            (error) => {
+              // error
+              console.log(error);
+            }, 
+            () => {
+              //complete
+              storage.ref('pictures/thumbs').child(randomName).getDownloadURL().then(url => {
+                //console.log(url)
+                this.setState({
+                  linkThumb: url
+                  //msgIsReady: true
+                }, () => { this.uploadLink(randomName)})
+                
+              })
+            });
+    }
+
+    getLink(){
+        
+        if (this.state.linkPreview !== null){
+            return (
+                <div>
+                <i className="material-icons cancelLink" onClick={this.cancelLink}>cancel</i>
+                <div className="chatLinkContainer">
+                    
+                    <AvatarEditor
+                        ref={this.setEditorRef}
+                        image={this.state.linkPreview}
+                        width={150}
+                        height={150}
+                        border={0}
+                        scale={1.5}
+                    />
+ 
+                </div>
+                </div>
+            )
+
+        } else {
+            return null
+        }
     }
 
 
+    onDrop = (acceptedFiles, rejectedFiles) => {
+
+        const image = acceptedFiles[0]
+
+        this.setState({
+            linkPreview: image,
+            file: acceptedFiles[0]
+        })
+
+    }
 
     componentDidMount() {
-        //console.log(this.props.lastLogin)
         this.forceUpdateHandler()
     }
 
@@ -84,22 +244,7 @@ class Chats extends Component {
         }
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault()
-        if(this.state.message !== '' && this.state.message.length <= 150){
-            this.sendSound.volume = 0.3;
-            this.sendSound.play()
-            this.props.sendMessage(this.state)
-            this.setState({
-                message: '',
-                responseTo: null,
-                link: null
-            }, () => { this.validateMessage() })
-            this.forceUpdateHandler()
-        } else {
-        
-        }
-    }
+    
 
     scrollToBottom() {
         const scrollHeight = this.messageList.scrollHeight
@@ -131,7 +276,7 @@ class Chats extends Component {
 
     cancelLink = (e) => {
         this.setState({
-            link: null
+            linkPreview: null
         })
     }
 
@@ -148,17 +293,7 @@ class Chats extends Component {
         })
     }
 
-    getLink = () => {
-        return (
-            <div className="chatLinkContainer">
-                <i className="material-icons cancelLink" onClick={this.cancelLink}>cancel</i>
-                <div className="chatLinkPreview">
-                    <img className="chatLinkPreviewImg" src={this.state.link} alt="NO LINK"/>
-                    
-                </div>
-            </div>
-        )
-    }
+    
       
     componentDidUpdate() {
         console.log('➰ NOTE : Component Did Update ➰')
@@ -173,38 +308,6 @@ class Chats extends Component {
             .substring(1);
         }
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-    }
-
-
-    
-
-    onDrop = (acceptedFiles, rejectedFiles) => {
-        const image = acceptedFiles[0]
-        const randomName = this.guid();
-        const uploadTask = storage.ref(`pictures/originals/${randomName}`).put(image)
-
-        this.setState({
-            link: loading//,
-            //msgIsReady: false
-        }, () => { this.validateMessage() })
-
-        uploadTask.on('state_changed', 
-        (snapshot) => {
-          // progress
-        }, 
-        (error) => {
-          // error
-          console.log(error);
-        }, 
-        () => {
-          //complete
-          storage.ref('pictures/originals').child(randomName).getDownloadURL().then(url => {
-            this.setState({
-              link: url//,
-              //msgIsReady: true
-            }, () => { this.validateMessage() })
-          })
-        });
     }
 
     render () {
@@ -228,10 +331,9 @@ class Chats extends Component {
 
                     <form>
                         <div className="senderBlock">
+
                             {
-                                this.state.link !== null ?
-                                this.getLink() :
-                                null
+                                this.getLink()
                             }
 
                             <div className="inputChat">
@@ -243,6 +345,7 @@ class Chats extends Component {
                                 <Dropzone 
                                     accept="image/jpeg, image/png"
                                     onDrop={this.onDrop}
+                                    multiple={false}
                                 >
                                     {({getRootProps, getInputProps, isDragActive}) => {
                                     return (
@@ -264,17 +367,10 @@ class Chats extends Component {
                                     }}
                                 </Dropzone>
 
-                                
-
                                 {
                                     this.messageSender()
                                 }
 
-                                {/*
-                                    this.state.msgIsReady ?
-                                    <button type="submit" className="btnSender" onClick={this.handleSubmit}><i className="material-icons senderIcon">send</i></button> :
-                                    <div className="btnSender btnDisabled" ><i className="material-icons senderIcon">send</i></div>
-                                */}
                                 
                             </div>
 

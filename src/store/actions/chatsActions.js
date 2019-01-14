@@ -6,6 +6,7 @@ export const sendMessage = (message) => {
         author: message.author,
         link: message.link,
         responseTo: message.responseTo,
+        linkThumb: message.linkThumb,
         createdAt: new Date()
       }).then(() => {
         dispatch({ type: 'SEND_MESSAGE_SUCCESS' });

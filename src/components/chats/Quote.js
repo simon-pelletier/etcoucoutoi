@@ -7,7 +7,6 @@ class Quote extends Component {
 
         const responseMsg = this.props.msg[0]
         const responseAuthor = this.props.msg[1][0]
-        //console.log(responseAuthor)
 
         return (
             <div className="col s12 msgResponse">
@@ -19,7 +18,7 @@ class Quote extends Component {
                 <div className="responseMessage">
                     {responseMsg.message}
                     {
-                        responseMsg.link !== null ? <div className="quoteImgContainer"><img src={responseMsg.link} className="quoteImg" alt=""/></div> : null
+                        responseMsg.link !== null ? <div className="quoteImgContainer"><img src={responseMsg.linkThumb} className="quoteImg" alt=""/></div> : null
                     }
                     
                 </div>

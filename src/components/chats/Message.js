@@ -73,7 +73,7 @@ class Message extends Component {
 
                 <div className={this.props.way + ' ' + this.props.msgState + " msgBlock left col s12 m8 l6"} >
                 {
-                    conversation.link !== null ? <div className="msgLinkContainer" ><img className="msgLink" src={conversation.link} alt="" onClick={(e) => this.imgZoom(e)} /></div> : null
+                    conversation.link !== null ? <div className="msgLinkContainer" ><img className="msgLink" src={conversation.linkThumb} alt="" onClick={(e) => this.imgZoom(e)} /></div> : null
                 }
                     <div className="msgOverlay" id={conversation.id} onClick={this.props.myClick}></div>
                     <i className="material-icons msgBulle">chat_bubble</i>
@@ -84,7 +84,6 @@ class Message extends Component {
 
                     <span className="msgMessage col s12">{conversation.message}</span>
                     
-                    
                     <span className="msgAuthor">{pseudo}</span>
                     <span className="msgDate">{hour + ':' + minute}</span>
                     <div className="msgAvatarContainer" ><img className="msgAvatar" src={avatar} alt="" /></div>
@@ -94,19 +93,7 @@ class Message extends Component {
                 {isOpen && (
           <Lightbox
             mainSrc={conversation.link}
-            //nextSrc={images[(photoIndex + 1) % images.length]}
-            //prevSrc={images[(photoIndex + images.length - 1) % images.length]}
             onCloseRequest={() => this.setState({ isOpen: false })}
-            /*onMovePrevRequest={() =>
-              this.setState({
-                photoIndex: (photoIndex + images.length - 1) % images.length,
-              })
-            }*/
-            /*onMoveNextRequest={() =>
-              this.setState({
-                photoIndex: (photoIndex + 1) % images.length,
-              })
-            }*/
           />
         )}
 

@@ -1,9 +1,6 @@
-//import React from 'react'
 import React, { Component } from 'react'
 import Lightbox from 'react-image-lightbox'
 
-
-//const ImageSummary = ({msg, user}) => {
 class ImageSummary extends Component {
 
   constructor(props) {
@@ -17,7 +14,6 @@ class ImageSummary extends Component {
 
   imgZoom = (e) => {
     e.preventDefault()
-    //console.log(img)
     this.setState({ isOpen: true })
 
   }
@@ -26,19 +22,6 @@ class ImageSummary extends Component {
 
     const { /*photoIndex,*/ isOpen } = this.state;
 
-
-    //const date = user.dob.seconds * 1000
-    //console.log(user)
-        /*const dateFormat = new Intl.DateTimeFormat('fr-FR', 
-            {
-                timezone: 'UTC',
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit'
-            }
-        ).format(date)*/
-
-    //console.log(msg)
     const { msg, user } = this.props
     let userPseudo = null
     if (user){
@@ -46,8 +29,6 @@ class ImageSummary extends Component {
       userPseudo = user[0].pseudo
     }
 
-    //console.log(msg)
-    //const date = new Date(msg.createdAt.seconds*1000)
     const date = msg.createdAt.seconds * 1000
     const dateFormat = new Intl.DateTimeFormat('fr-FR', 
       {
@@ -66,21 +47,14 @@ class ImageSummary extends Component {
           <div className="card-image imgBlock">
             
             <div className="gallerieImgContainer">
-              <img className="gallerieImg" src={msg.link} alt="img" onClick={(e) => this.imgZoom(e)} />
+              <img className="gallerieImg" src={msg.linkThumb} alt="img" onClick={(e) => this.imgZoom(e)} />
             </div>
 
             <div className="titleImg">{msg.message}</div>
             <div className="card-action">{userPseudo} le {dateFormat}</div>
-            
-          
+
           </div>
         </div>
-
-        {/*
-        <div className="card-title">{user.pseudo}</div>
-        <div className="card-action">{user.email}</div>
-        <div className="card-action">{dateFormat}</div>
-        */}
 
         {isOpen && (
           <Lightbox
@@ -109,10 +83,3 @@ class ImageSummary extends Component {
   
 
 export default ImageSummary
-/*export default compose(
-    connect(mapStateToProps),
-    firestoreConnect([
-      { collection: 'mainChat', orderBy: ['createdAt', 'asc']},
-      { collection: 'users', orderBy: ['pseudo', 'desc'] }
-    ])
-)(Galleries)*/

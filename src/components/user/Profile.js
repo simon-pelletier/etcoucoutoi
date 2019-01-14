@@ -28,12 +28,9 @@ class Profile extends Component {
             image: null,
             profilIsReady: false,
             avatarScale: 1,
-            avatarPreview: null,
-            imageHash: Date.now()
+            avatarPreview: null
           }
         }
-
-        
     }
 
     state = {
@@ -45,8 +42,7 @@ class Profile extends Component {
         image: null,
         profileIsReady: false,
         avatarScale: 1,
-        avatarPreview: null,
-        imageHash: Date.now()
+        avatarPreview: null
     }
 
     setEditorRef = (editor) => this.editor = editor
@@ -54,7 +50,6 @@ class Profile extends Component {
     sendChange = (e) => {
         e.preventDefault()
         const profile = this.state
-        //const profilBase = this.props.profile;
         
         //Initialisation
         const profileBase = this.props.profile;
@@ -79,12 +74,14 @@ class Profile extends Component {
     }
 
     uploadAvatarBlob = (blob) => {
-        //blob.substring(5)
+
         console.log(blob)
-        //console.log(blob.blob)
+
         const randomName = this.guid();
 
-        const uploadTask = storage.ref(`pictures/avatars/${randomName}`).put(blob)
+        let blobFormat = blob.slice(0, blob.size, "image/jpeg")
+
+        const uploadTask = storage.ref(`pictures/avatars/${randomName}`).put(blobFormat)
             uploadTask.on('state_changed', 
             (snapshot) => {
               // progress
@@ -104,10 +101,6 @@ class Profile extends Component {
                 this.setState({
                     profileIsReady: false,
                     avatarPreview: null
-                }, () => {
-                    //console.log('update')
-                    
-                    //this.forceUpdate()
                 })
                 
               })
@@ -118,7 +111,7 @@ class Profile extends Component {
         
         if (this.editor) {
 
-            const canvasURL = this.editor.getImage().toDataURL();
+            const canvasURL = this.editor.getImageScaledToCanvas().toDataURL();
             let imageURL;
               fetch(canvasURL)
               .then(res => res.blob())
@@ -165,8 +158,6 @@ class Profile extends Component {
             (profil.avatar !== profilBase.avatar)
             ||
             (profil.avatarPreview !== null)
-            /*&&
-            (profil.avatar !== loading)*/
             ){
             this.setState({
                 profileIsReady: true
@@ -181,8 +172,6 @@ class Profile extends Component {
     getAvatar = () => {
         const profileBase = this.props.profile;
         return <img src={profileBase.avatar}  className="avatarProfile" alt="avatar manquant"/>  
-        //{${this.state.avatar}?${new Date()}}
-        //{this.state.avatar} 
     }
 
     getSender = () => {
@@ -275,35 +264,15 @@ class Profile extends Component {
         return (
             <div className="page profilPage">
 
-            
-            {/*
-                <div className="row">
-                    <div className="col s6 offset-s3">
-                        { 
-                            this.getAvatar()
-                        }
-                    </div>
-                </div>
-            */}
-
             {
-                
-                this.getImageGlobal()
-                
+                this.getImageGlobal()   
             }
-                
-
-          
-
-                
 
                 <Dropzone 
                     accept="image/jpeg, image/png"
                     onDrop={this.onDrop}
                     multiple={false}
                     >
-
-                    
 
                     {({getRootProps, getInputProps, isDragActive}) => {
                     return (
@@ -320,6 +289,7 @@ class Profile extends Component {
                         </div>
                     )
                     }}
+                    
                 </Dropzone>
 
                 <div className="row">
