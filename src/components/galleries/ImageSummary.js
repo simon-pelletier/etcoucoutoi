@@ -57,22 +57,31 @@ class ImageSummary extends Component {
         </div>
 
         {isOpen && (
-          <Lightbox
-            mainSrc={msg.link}
-            //nextSrc={images[(photoIndex + 1) % images.length]}
-            //prevSrc={images[(photoIndex + images.length - 1) % images.length]}
-            onCloseRequest={() => this.setState({ isOpen: false })}
-            /*onMovePrevRequest={() =>
-              this.setState({
-                photoIndex: (photoIndex + images.length - 1) % images.length,
-              })
-            }*/
-            /*onMoveNextRequest={() =>
-              this.setState({
-                photoIndex: (photoIndex + 1) % images.length,
-              })
-            }*/
-          />
+          <div>
+            
+            {/*<div className="messageLightBox">{msg.message}</div>*/}
+            <Lightbox
+              
+              mainSrc={msg.link}
+              //toolbarButtons={[]}
+              imageTitle={msg.message}
+              imagePadding={0}
+              //nextSrc={images[(photoIndex + 1) % images.length]}
+              //prevSrc={images[(photoIndex + images.length - 1) % images.length]}
+              onCloseRequest={() => this.setState({ isOpen: false })}
+              /*onMovePrevRequest={() =>
+                this.setState({
+                  photoIndex: (photoIndex + images.length - 1) % images.length,
+                })
+              }*/
+              /*onMoveNextRequest={() =>
+                this.setState({
+                  photoIndex: (photoIndex + 1) % images.length,
+                })
+              }*/
+            />
+          
+          </div>
         )}
     
     </div>

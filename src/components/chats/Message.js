@@ -92,6 +92,8 @@ class Message extends Component {
 
                 {isOpen && (
           <Lightbox
+            imageTitle={conversation.message}
+            imagePadding={0}
             mainSrc={conversation.link}
             onCloseRequest={() => this.setState({ isOpen: false })}
           />

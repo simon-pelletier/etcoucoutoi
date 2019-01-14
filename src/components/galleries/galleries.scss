@@ -130,3 +130,33 @@
       }
 }
 
+
+/*.ril-toolbar-right{
+  display: none!important;
+}*/
+.ril-toolbar{
+  position: fixed!important;
+  bottom: 0px!important;
+  //width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  //margin: 0 auto;
+  //text-align: center;
+}
+.ril__toolbar{
+  top: auto;
+}
+.ril-zoom-in{
+  display: none!important;
+}
+.ril-zoom-out{
+  display: none!important;
+}
+.ril-close{
+  //right: 0px!important;
+  //width: 10px!important;
+  margin-right: -25px;
+}
+.ril__toolbarItem{
+  overflow: visible;
+}
