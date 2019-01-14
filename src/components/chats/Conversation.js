@@ -3,13 +3,17 @@ import Message from './Message'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
+//import notificationSound from '../../assets/notification.mp3'
 
 class Conversation extends Component {
 
+  /*constructor(props) {
+    super(props)
+    this.notificationSound = new Audio(notificationSound);
+  }*/
+  
   getUserInfos = (author) => {
     const users = this.props.users
-
-    
     
     return users
       .filter(user => {
@@ -24,6 +28,13 @@ class Conversation extends Component {
       })
   
   }
+
+  /*componentWillReceiveProps(nextProps) {
+    //const users = nextProps.users;
+    //this.notificationSound.volume = 1;
+    //this.notificationSound.play()
+    console.log('updatePROPS')
+  }*/
 
   render(){
 

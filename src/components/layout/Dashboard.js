@@ -11,6 +11,7 @@ class Dashboard extends Component {
     render(){
         //console.log(this.props)
         const { auth, profile } = this.props;
+        //console.log(auth.lastLoginAt)
         //console.log(profile)
         if (!auth.uid) return <Redirect to='/signin' /> 
         return(
@@ -20,7 +21,7 @@ class Dashboard extends Component {
                
                 <div className="row">
                     <div className="col s12">
-                        <Chats author={profile} />
+                        <Chats author={profile} lastLogin={auth.lastLoginAt}/>
                     </div>
 
                 </div>

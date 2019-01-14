@@ -24,6 +24,7 @@ class Chats extends Component {
         this.sendSound = new Audio(sendSound);
         //this.deniedSound = new Audio(deniedSound);
         this.handleChange = this.handleChange.bind(this);
+        this.lastLogin = this.props.lastLogin
     }
 
     state={
@@ -37,6 +38,7 @@ class Chats extends Component {
 
 
     componentDidMount() {
+        //console.log(this.props.lastLogin)
         this.forceUpdateHandler()
     }
 
@@ -173,6 +175,7 @@ class Chats extends Component {
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
     }
 
+
     
 
     onDrop = (acceptedFiles, rejectedFiles) => {
@@ -205,7 +208,6 @@ class Chats extends Component {
     }
 
     render () {
-        
         const { mainChat } = this.props
         const maxMsgLength = 150
       
