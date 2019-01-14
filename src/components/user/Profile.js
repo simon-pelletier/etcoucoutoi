@@ -9,7 +9,8 @@ import 'react-datepicker/dist/react-datepicker.css'
 import { storage } from '../../config/fbConfig'
 import classNames from 'classnames'
 import Dropzone from 'react-dropzone'
-import loading from '../../assets/loading.gif'
+//import loading from '../../assets/loading.gif'
+import AvatarEditor from 'react-avatar-editor'
 
 class Profile extends Component {
 
@@ -25,9 +26,14 @@ class Profile extends Component {
             dob: profile.dob,
             email: profile.email,
             image: null,
-            profilIsReady: false
+            profilIsReady: false,
+            avatarScale: 1,
+            avatarPreview: null,
+            imageHash: Date.now()
           }
         }
+
+        
     }
 
     state = {
@@ -37,41 +43,106 @@ class Profile extends Component {
         dob: new Date(),
         email: 'loading...',
         image: null,
-        profileIsReady: false
+        profileIsReady: false,
+        avatarScale: 1,
+        avatarPreview: null,
+        imageHash: Date.now()
     }
+
+    setEditorRef = (editor) => this.editor = editor
+
+    sendChange = (e) => {
+        e.preventDefault()
+        const profile = this.state
+        //const profilBase = this.props.profile;
+        
+        //Initialisation
+        const profileBase = this.props.profile;
+        this.setState({
+            authId: profileBase.authId
+        })
+
+        if(profile.avatarPreview !== null){
+            // Avatar save part
+            this.saveAvatar()
+        } else {
+            this.props.updateProfile(this.state)
+            // Profile saved
+            this.setState({
+                profileIsReady: false
+            })
+
+        }
+
+
+        
+    }
+
+    uploadAvatarBlob = (blob) => {
+        //blob.substring(5)
+        console.log(blob)
+        //console.log(blob.blob)
+        const randomName = this.guid();
+
+        const uploadTask = storage.ref(`pictures/avatars/${randomName}`).put(blob)
+            uploadTask.on('state_changed', 
+            (snapshot) => {
+              // progress
+            }, 
+            (error) => {
+              // error
+              console.log(error);
+            }, 
+            () => {
+              //complete
+              storage.ref('pictures/avatars').child(randomName).getDownloadURL().then(url => {
+                this.setState({
+                  avatar: url,
+                  profileIsReady: true
+                })
+                this.props.updateProfile(this.state)
+                this.setState({
+                    profileIsReady: false,
+                    avatarPreview: null
+                }, () => {
+                    //console.log('update')
+                    
+                    //this.forceUpdate()
+                })
+                
+              })
+            });
+    }
+
+    saveAvatar = () => {
+        
+        if (this.editor) {
+
+            const canvasURL = this.editor.getImage().toDataURL();
+            let imageURL;
+              fetch(canvasURL)
+              .then(res => res.blob())
+              .then(blob => (this.setState({
+                avatarPreview: imageURL,
+                avatarScale: 1
+                }, this.uploadAvatarBlob(blob)))
+                  
+              )
+
+        }
+    
+      }
 
     onDrop = (acceptedFiles, rejectedFiles) => {
         const image = acceptedFiles[0]
-        const randomName = this.guid();
-        const uploadTask = storage.ref(`pictures/avatars/${randomName}`).put(image)
-
-        console.log('File size : ' + image.size)
-        console.log(image)
 
         this.setState({
-            avatar: loading,
-            profileIsReady: false
-        })
-
-        uploadTask.on('state_changed', 
-        (snapshot) => {
-          // progress
-        }, 
-        (error) => {
-          // error
-          console.log(error);
-        }, 
-        () => {
-          //complete
-          storage.ref('pictures/avatars').child(randomName).getDownloadURL().then(url => {
-            this.setState({
-              avatar: url,
-              profileIsReady: true
-            })
-          })
-        });
-
+            avatarPreview: image
+        }, () => this.validateProfil())
+        
     }
+
+    
 
     guid() {
         function s4() {
@@ -87,13 +158,15 @@ class Profile extends Component {
         const profilBase = this.props.profile;
 
         if(
-            ((profil.pseudo !== profilBase.pseudo && profil.pseudo !== '') 
+            (profil.pseudo !== profilBase.pseudo && profil.pseudo !== '') 
             || 
             (profil.dob.seconds !== profilBase.dob.seconds && profil.dob.seconds !== '')
             ||
-            (profil.avatar !== profilBase.avatar))
-            &&
-            (profil.avatar !== loading)
+            (profil.avatar !== profilBase.avatar)
+            ||
+            (profil.avatarPreview !== null)
+            /*&&
+            (profil.avatar !== loading)*/
             ){
             this.setState({
                 profileIsReady: true
@@ -106,7 +179,10 @@ class Profile extends Component {
     }
 
     getAvatar = () => {
-        return <img src={this.state.avatar} className="avatarProfile" alt="avatar manquant"/>   
+        const profileBase = this.props.profile;
+        return <img src={profileBase.avatar}  className="avatarProfile" alt="avatar manquant"/>  
+        //{${this.state.avatar}?${new Date()}}
+        //{this.state.avatar} 
     }
 
     getSender = () => {
@@ -121,6 +197,10 @@ class Profile extends Component {
         if (e.target.files && e.target.id === 'image'){
             this.setState({
               image: e.target.files[0]
+            })
+        } else if(e.target.id === 'avatarScale'){
+            this.setState({
+                avatarScale: Number(e.target.value)
             })
         } else {
             this.setState({
@@ -140,18 +220,7 @@ class Profile extends Component {
         }, () => { this.validateProfil() })
     }
 
-    sendChange = (e) => {
-        const profile = this.props.profile;
-        e.preventDefault()
-        this.setState({
-            authId: profile.authId
-        })
-        this.props.updateProfile(this.state);
-        this.setState({
-            profileIsReady: false
-        })
-
-    }
+    
 
     componentWillReceiveProps(nextProps) {
         const profile = nextProps.profile;
@@ -164,6 +233,38 @@ class Profile extends Component {
         })
       }
 
+    getPreview = () => {
+        if (this.state.avatarPreview !== null){
+            return this.state.avatarPreview
+        } else {
+            return this.state.avatar
+        }
+    }
+
+    getImageGlobal(){
+        if (this.state.avatarPreview !== null){
+            return (
+                <div>
+                    <AvatarEditor
+                        ref={this.setEditorRef}
+                        image={this.getPreview()}
+                        width={150}
+                        height={150}
+                        scale={this.state.avatarScale}
+                    />
+                    <p className="range-field row">
+                        <input className="" type="range" id="avatarScale" min="1" max="5" value={this.state.avatarScale} onChange={this.handleChange} />
+                    </p>
+                </div>
+                
+            )
+        } else {
+            return (
+                this.getAvatar()
+            )
+        }
+    }
+
     render () {
 
         const { auth } = this.props
@@ -173,7 +274,9 @@ class Profile extends Component {
 
         return (
             <div className="page profilPage">
+
             
+            {/*
                 <div className="row">
                     <div className="col s6 offset-s3">
                         { 
@@ -181,11 +284,27 @@ class Profile extends Component {
                         }
                     </div>
                 </div>
+            */}
+
+            {
+                
+                this.getImageGlobal()
+                
+            }
+                
+
+          
+
+                
 
                 <Dropzone 
                     accept="image/jpeg, image/png"
                     onDrop={this.onDrop}
+                    multiple={false}
                     >
+
+                    
+
                     {({getRootProps, getInputProps, isDragActive}) => {
                     return (
                         <div
