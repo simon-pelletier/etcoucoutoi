@@ -36,6 +36,7 @@ class Galleries extends Component {
             .map(msg => {
                 this.images.push(msg.link)
                 this.messages.push(msg.message)
+                return null
             })
         }
         //this.forceUpdateHandler()
@@ -59,6 +60,7 @@ class Galleries extends Component {
             .map(msg => {
                 this.images.push(msg.link)
                 this.messages.push(msg.message)
+                return null
             })
         }
         //console.log(this.images)
@@ -90,7 +92,7 @@ class Galleries extends Component {
             isOpen: true,
             photoIndex: index
         })
-        console.log(this.images)
+        //console.log(this.images)
       }
     
 
