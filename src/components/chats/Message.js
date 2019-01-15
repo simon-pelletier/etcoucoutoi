@@ -1,29 +1,29 @@
 import React, { Component } from 'react'
 import './chats.scss'
 import Quote from './Quote'
-import Lightbox from 'react-image-lightbox'
+//import Lightbox from 'react-image-lightbox'
 
 
 class Message extends Component {
 
-    constructor(props) {
+    /*constructor(props) {
         super(props);
      
         this.state = {
           //photoIndex: 0,
           isOpen: false,
         };
-      }
+      }*/
 
-      imgZoom = (e) => {
+      /*imgZoom = (e) => {
         e.preventDefault()
         //console.log(e)
         this.setState({ isOpen: true })
     
       }
-
+*/
     render(){
-        const { /*photoIndex,*/ isOpen } = this.state
+        //const { /*photoIndex,*/ isOpen } = this.state
 
         const conversation = this.props.conversation
         const responseMsgTest = this.props.responseTo
@@ -73,7 +73,7 @@ class Message extends Component {
 
                 <div className={this.props.way + ' ' + this.props.msgState + " msgBlock left col s12 m8 l6"} >
                 {
-                    conversation.link !== null ? <div className="msgLinkContainer" ><img className="msgLink" src={conversation.linkThumb} alt="" onClick={(e) => this.imgZoom(e)} /></div> : null
+                    conversation.link !== null ? <div className="msgLinkContainer" ><img className="msgLink" src={conversation.linkThumb} alt="" onClick={this.props.onClick} /*onClick={(e) => this.imgZoom(e)}*/ /></div> : null
                 }
                     <div className="msgOverlay" id={conversation.id} onClick={this.props.myClick}></div>
                     <i className="material-icons msgBulle">chat_bubble</i>
@@ -90,14 +90,14 @@ class Message extends Component {
 
                 </div>
 
-                {isOpen && (
-          <Lightbox
-            imageTitle={conversation.message}
-            imagePadding={0}
-            mainSrc={conversation.link}
-            onCloseRequest={() => this.setState({ isOpen: false })}
-          />
-        )}
+                {/*isOpen && (
+                <Lightbox
+                    imageTitle={conversation.message}
+                    imagePadding={0}
+                    mainSrc={conversation.link}
+                    onCloseRequest={() => this.setState({ isOpen: false })}
+                />
+                )*/}
 
             </div>
            

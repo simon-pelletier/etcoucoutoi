@@ -18,6 +18,7 @@ import notificationSound from '../../assets/notification.mp3'
 
 import AvatarEditor from 'react-avatar-editor'
 
+
 class Chats extends Component {
 
     constructor(props) {
@@ -30,13 +31,17 @@ class Chats extends Component {
             msgIsReady: false,
             linkThumb: null,
             linkPreview: null,
-            file: null
+            file: null,
+            /*photoIndex: 0,
+            isOpen: false*/
         }
         
         this.notificationSound = new Audio(notificationSound);
         this.sendSound = new Audio(sendSound);
         this.handleChange = this.handleChange.bind(this);
         this.lastLogin = this.props.lastLogin
+
+        
 
     }
 
@@ -48,7 +53,9 @@ class Chats extends Component {
         msgIsReady: false,
         linkThumb: null,
         linkPreview: null,
-        file: null
+        file: null,
+        /*photoIndex: 0,
+        isOpen: false*/
     }
 
     setEditorRef = (editor) => this.editor = editor
@@ -198,9 +205,48 @@ class Chats extends Component {
 
     }
 
-    componentDidMount() {
+    /*componentDidMount() {
+        const { mainChat } = this.props
+        if (mainChat){
+            mainChat && mainChat
+            .filter(msg => { 
+                return msg.link !== null
+            })
+            .map(msg => {
+                this.images.push(msg.link)
+                this.messages.push(msg.message)
+                return null
+            })
+        }
         this.forceUpdateHandler()
+        
     }
+    componentWillReceiveProps = () => {
+        //console.log(this.props.mainChat)
+        const { mainChat } = this.props
+        if (mainChat){
+            mainChat && mainChat
+            .filter(msg => { 
+                return msg.link !== null
+            })
+            .map(msg => {
+                this.images.push(msg.link)
+                this.messages.push(msg.message)
+                return null
+            })
+        }
+        console.log(this.images)
+        //console.log(this.images)
+    }*/
+
+    /*imgZoom = (e, index) => {
+        e.preventDefault()
+        this.setState({ 
+            isOpen: true,
+            photoIndex: index
+        })
+        //console.log(this.images)
+      }*/
 
     forceUpdateHandler(){
         console.log('🔺 WARNING : Force Update 🔺')
@@ -313,6 +359,8 @@ class Chats extends Component {
     render () {
         const { mainChat } = this.props
         const maxMsgLength = 150
+
+        //const { photoIndex, isOpen } = this.state;
       
         return (
 
@@ -378,7 +426,7 @@ class Chats extends Component {
                     </form>
 
                 </div>
-
+                
             </div>
 
         )

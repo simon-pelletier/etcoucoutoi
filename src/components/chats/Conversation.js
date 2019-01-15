@@ -4,13 +4,28 @@ import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 //import notificationSound from '../../assets/notification.mp3'
+import Lightbox from 'react-image-lightbox'
 
 class Conversation extends Component {
 
-  /*constructor(props) {
+  constructor(props) {
     super(props)
-    this.notificationSound = new Audio(notificationSound);
-  }*/
+    
+    //this.notificationSound = new Audio(notificationSound);
+    this.state={
+      photoIndex: 0,
+      isOpen: false
+    }
+
+    this.images = []
+    this.messages = []
+
+  }
+
+  state={
+    photoIndex: 0,
+    isOpen: false
+  }
   
   getUserInfos = (author) => {
     const users = this.props.users
@@ -36,6 +51,59 @@ class Conversation extends Component {
     console.log('updatePROPS')
   }*/
 
+  /*componentDidMount() {
+    const { mainChat } = this.props
+    if (mainChat){
+        mainChat && mainChat
+        .filter(msg => { 
+            return msg.link !== null
+        })
+        .map(msg => {
+            this.images.push(msg.link)
+            this.messages.push(msg.message)
+            return null
+        })
+    }
+    //this.forceUpdateHandler()
+    console.log(this.images)
+  }*/
+
+  /*forceUpdateHandler(){
+    console.log('🔺 WARNING : Force Update 🔺')
+    this.forceUpdate()
+    console.log(this.images)
+  }*/
+
+  /*componentWillReceiveProps = () => {
+      //console.log(this.props.mainChat)
+      const { mainChat } = this.props
+      if (mainChat){
+          mainChat && mainChat
+          .filter(msg => { 
+              return msg.link !== null
+          })
+          .map(msg => {
+              this.images.push(msg.link)
+              this.messages.push(msg.message)
+              return null
+          })
+      }
+      console.log(this.images)
+      //console.log(this.images)
+      console.log(this.props)
+  }*/
+
+  imgZoom = (e, index) => {
+    e.preventDefault()
+    //console.log('CLIC')
+    this.setState({ 
+        isOpen: true,
+        photoIndex: index
+    })
+    //console.log(this.state.photoIndex)
+    //console.log(this.images)
+  }
+
   render(){
 
     let wayClass = 'msgOthers'
@@ -47,14 +115,22 @@ class Conversation extends Component {
 
     const chat = this.props.chat
     const myClick = this.props.myClick
+
+    const { photoIndex, isOpen } = this.state;
     //const msgState = this.props.msgState
 
+    let indexMsgLink = -1
+
+    this.images = []
+    this.messages = []
+
     return (
-      
+      <div>
       <div className="row">
 
         { chat && chat
         .map(chat => {
+          
 
           const currentAuthor = chat.author
 
@@ -86,6 +162,17 @@ class Conversation extends Component {
 
           const auth = this.props.auth.uid
 
+          if(chat.link !== null){
+            this.images.push(chat.link)
+            this.messages.push(chat.message)
+            //console.log(this.images)
+
+            indexMsgLink++
+            //console.log(indexMsgLink)
+          }
+          const index = indexMsgLink
+          
+
           if (auth === currentAuthor){
             wayClass = 'msgUser'
           } else {
@@ -105,7 +192,7 @@ class Conversation extends Component {
             .filter(response => {
               return responseToId === response.id
             })
-            .map(response => {
+            .map((response) => {
               //let responseTab = [response.id, response.message, this.getUserInfos(response.author)]
               //console.log(response)
               let responseWithUser = [ response, this.getUserInfos(response.author) ]
@@ -118,12 +205,40 @@ class Conversation extends Component {
           // Conversation rendu
           return (
             
-            <Message conversation={chat} key={chat.id} way={wayClass} responseTo={responseTo} msgState={msgState} userInfos={this.getUserInfos(currentAuthor)} date={dateElt} myClick={myClick} />
+            <Message conversation={chat} key={chat.id} way={wayClass} responseTo={responseTo} msgState={msgState} userInfos={this.getUserInfos(currentAuthor)} date={dateElt} myClick={myClick} onClick={(e) => this.imgZoom(e, index)}/>
           )
 
         })}
 
       </div>
+      {isOpen && (
+        <div>
+            
+            {/*<div className="messageLightBox">{msg.message}</div>*/}
+            <Lightbox
+            
+            mainSrc={this.images[photoIndex]}
+            //toolbarButtons={[]}
+            imageTitle={this.messages[photoIndex]}
+            imagePadding={0}
+            nextSrc={this.images[(photoIndex + 1) % this.images.length]}
+            prevSrc={this.images[(photoIndex + this.images.length - 1) % this.images.length]}
+            onCloseRequest={() => this.setState({ isOpen: false })}
+            onMovePrevRequest={() =>
+                this.setState({
+                photoIndex: (photoIndex + this.images.length - 1) % this.images.length,
+                })
+            }
+            onMoveNextRequest={() =>
+                this.setState({
+                photoIndex: (photoIndex + 1) % this.images.length,
+                })
+            }
+            />
+        
+        </div>
+        )}
+        </div>
       
     )
   }
