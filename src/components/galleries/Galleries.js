@@ -43,7 +43,7 @@ class Galleries extends Component {
         }
 
         //this.forceUpdateHandler()
-        console.log(this.images)
+        //console.log(this.images)
     }
 
     forceUpdateHandler(){
@@ -69,7 +69,7 @@ class Galleries extends Component {
                 return null
             })
         }
-        console.log(this.images)
+        //console.log(this.images)
         //console.log(this.images)
     }
  
