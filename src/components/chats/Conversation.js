@@ -220,3 +220,4 @@ export default compose(
     { collection: 'users', orderBy: ['pseudo'] }
   ])
 )(Conversation)
+

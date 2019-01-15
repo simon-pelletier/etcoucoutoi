@@ -375,3 +375,25 @@
       }
   }
 
+.loading{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    padding: 0px;
+    margin: 0px;
+    width: 100vw;
+    height: 100vh;
+    
+    display: block;
+    z-index: 50;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: $white;
+}
+.loadingGif{
+    margin: 0 auto;
+    width: 200px;
+    //max-height: 200px;
+    //background-color: red;
+    margin-top: 50vh; /* poussé de la moitié de hauteur de viewport */
+  transform: translateY(-50%);
+}

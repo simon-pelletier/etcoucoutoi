@@ -34,13 +34,16 @@ class Chats extends Component {
             msgIsReady: false,
             linkThumb: null,
             linkPreview: null,
-            file: null
+            file: null,
+            loading: false
         }
         
         this.notificationSound = new Audio(notificationSound);
         this.sendSound = new Audio(sendSound);
         this.handleChange = this.handleChange.bind(this);
         this.lastLogin = this.props.lastLogin
+
+        this.loadingGif = loading;
 
         
 
@@ -54,7 +57,8 @@ class Chats extends Component {
         msgIsReady: false,
         linkThumb: null,
         linkPreview: null,
-        file: null
+        file: null,
+        loading: false
     }
 
     setEditorRef = (editor) => this.editor = editor
@@ -63,6 +67,9 @@ class Chats extends Component {
         e.preventDefault()
         if(this.state.linkPreview !== null && (this.state.message !== '' && this.state.message.length <= 150)){
             this.saveLink()
+            this.setState({
+                loading: true
+            })
 
         } else {
             if(this.state.message !== '' && this.state.message.length <= 150){
@@ -97,29 +104,6 @@ class Chats extends Component {
         }
     }
 
-    uploadLink = (randomName) => {
-        const uploadTask = storage.ref(`pictures/originals/${randomName}`).put(this.state.file)
-
-        uploadTask.on('state_changed', 
-            (snapshot) => {
-              // progress
-            }, 
-            (error) => {
-              // error
-              console.log(error);
-            }, 
-            () => {
-              //complete
-              storage.ref('pictures/originals').child(randomName).getDownloadURL().then(url => {
-
-                this.setState({
-                    link: url
-                }, () => { this.submitAfterLinkIdLoaded()})
-                
-              })
-            });
-    }
-
     submitAfterLinkIdLoaded = () => {
         this.sendSound.volume = 0.3;
         this.sendSound.play()
@@ -130,7 +114,8 @@ class Chats extends Component {
             link: null,
             linkThumb: null,
             linkPreview: null,
-            file: null
+            file: null,
+            loading: false
         }, () => { 
             this.validateMessage() 
             this.forceUpdateHandler()
@@ -161,6 +146,29 @@ class Chats extends Component {
                   linkThumb: url
                   //msgIsReady: true
                 }, () => { this.uploadLink(randomName)})
+                
+              })
+            });
+    }
+
+    uploadLink = (randomName) => {
+        const uploadTask = storage.ref(`pictures/originals/${randomName}`).put(this.state.file)
+
+        uploadTask.on('state_changed', 
+            (snapshot) => {
+              // progress
+            }, 
+            (error) => {
+              // error
+              console.log(error);
+            }, 
+            () => {
+              //complete
+              storage.ref('pictures/originals').child(randomName).getDownloadURL().then(url => {
+
+                this.setState({
+                    link: url
+                }, () => { this.submitAfterLinkIdLoaded()})
                 
               })
             });
@@ -246,15 +254,6 @@ class Chats extends Component {
         }
     }
 
-    
-
-    /*scrollToBottom() {
-        const scrollHeight = this.messageList.scrollHeight
-        const height = this.messageList.clientHeight
-        const maxScrollTop = scrollHeight - height
-        this.messageList.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0
-    }*/
-
     onClick = (e) => {
         e.preventDefault()
         
@@ -267,7 +266,6 @@ class Chats extends Component {
                 responseTo: e.target.id
             })
         }
-
     }
 
     cancelResponse = (e) => {
@@ -299,41 +297,23 @@ class Chats extends Component {
         console.log('➰ NOTE : Component Will Receive Props ➰')
         this.scrollToLastItem()
     }
-
-    /*componentWillMount(){
-        this.scrollToLastItem()
-    }*/
-    
       
     componentDidUpdate() {
-        //console.log('➰ NOTE : Component Did Update ➰')
-        //scrollToComponent(this._end);
         this.scrollToLastItem()
-        //console.log('Scroll to component')
-        //this.scrollToBottom();
-        //this.audio.play()
     }
     
     scrollToLastItem(event) {
         const endNode = ReactDOM.findDOMNode(this)
-        //console.log(endNode)
         let child = null
         if(endNode instanceof HTMLElement){
             child = endNode.querySelector('#_end');
         }
-        
-        //console.log(child)
-        /*if (endNode instanceof HTMLElement) {
-            
-        }*/
         if (child instanceof HTMLElement){
             window.scrollTo(0, child.offsetTop)
             console.log('SCROLL')
         } else {
             console.log('pas SCROLL')
         }
-        
-        
       }
 
     guid() {
@@ -352,6 +332,14 @@ class Chats extends Component {
         return (
 
             <div className="chatPage row" >
+
+            {
+                this.state.loading === true ?
+                <div className="loading">
+                    <img className="loadingGif" src={this.loadingGif} alt="LOADING"/>
+                </div>
+                : null
+            }
 
                 <div className=" conversation col s12" /*ref={(div) => {this.messageList = div;}} */>
                     <Conversation chat={mainChat} myClick={this.onClick} msgState={this.state.responseTo} />
