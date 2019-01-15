@@ -6,6 +6,19 @@ import Quote from './Quote'
 
 class Message extends Component {
 
+    /*getItemForScroll(){
+        if(this.props.lastItem){
+            return (
+                <div className={end + ' col s12'} ref={(div) => { this._end = div; }} ></div>
+            )
+        } else {
+            return(
+                <div className=' col s12' ></div>
+            )
+        }    
+    }*/
+
+
     render(){
 
         const conversation = this.props.conversation
@@ -45,9 +58,19 @@ class Message extends Component {
             minute = '0' + minute
         }
 
+        
+        let refItem = 'msg'
+        if(this.props.lastItem){
+            refItem = '_end'
+            console.log('scroll config')
+        }
+
+        
+
         return (
-            <div className="col s12">
-                
+            
+            <div className='col s12' id={refItem}>
+       
                 { 
                     dateElt !== null ? 
                     <div className="row"><div className="msgDateInfo col s4 m3 l2 left">{day + ' ' + monthsTab[month - 1]}</div></div>

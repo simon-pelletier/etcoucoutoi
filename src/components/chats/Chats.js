@@ -18,6 +18,9 @@ import notificationSound from '../../assets/notification.mp3'
 
 import AvatarEditor from 'react-avatar-editor'
 
+import ReactDOM from 'react-dom';
+//import scrollToComponent from 'react-scroll-to-component'
+
 
 class Chats extends Component {
 
@@ -292,13 +295,46 @@ class Chats extends Component {
         })
     }
 
+    componentWillReceiveProps(nextProps){
+        console.log('➰ NOTE : Component Will Receive Props ➰')
+        this.scrollToLastItem()
+    }
+
+    /*componentWillMount(){
+        this.scrollToLastItem()
+    }*/
     
       
     componentDidUpdate() {
-        console.log('➰ NOTE : Component Did Update ➰')
+        //console.log('➰ NOTE : Component Did Update ➰')
+        //scrollToComponent(this._end);
+        this.scrollToLastItem()
+        //console.log('Scroll to component')
         //this.scrollToBottom();
         //this.audio.play()
     }
+    
+    scrollToLastItem(event) {
+        const endNode = ReactDOM.findDOMNode(this)
+        //console.log(endNode)
+        let child = null
+        if(endNode instanceof HTMLElement){
+            child = endNode.querySelector('#_end');
+        }
+        
+        //console.log(child)
+        /*if (endNode instanceof HTMLElement) {
+            
+        }*/
+        if (child instanceof HTMLElement){
+            window.scrollTo(0, child.offsetTop)
+            console.log('SCROLL')
+        } else {
+            console.log('pas SCROLL')
+        }
+        
+        
+      }
 
     guid() {
         function s4() {
@@ -312,7 +348,7 @@ class Chats extends Component {
     render () {
         const { mainChat } = this.props
         const maxMsgLength = 150
-      
+        
         return (
 
             <div className="chatPage row" >

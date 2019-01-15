@@ -70,6 +70,15 @@ class Conversation extends Component {
 
     let indexMsgLink = -1
 
+    let lastItemIndex = 0
+    if (chat){
+      lastItemIndex = chat.length -1
+      //console.log(lastItemIndex)
+    }
+    //console.log(chat)
+    //const lastItemIndex = 2
+    
+
     this.images = []
     this.messages = []
 
@@ -78,7 +87,7 @@ class Conversation extends Component {
       <div className="row">
 
         { chat && chat
-        .map(chat => {
+        .map((chat, indexItem) => {
           
 
           const currentAuthor = chat.author
@@ -152,9 +161,13 @@ class Conversation extends Component {
           }
           //console.log(responseTo)
           // Conversation rendu
+          let lastItem = false
+          if (lastItemIndex === indexItem){
+            //console.log('lastItem')
+            lastItem = true
+          }
           return (
-            
-            <Message conversation={chat} key={chat.id} way={wayClass} responseTo={responseTo} msgState={msgState} userInfos={this.getUserInfos(currentAuthor)} date={dateElt} myClick={myClick} onClick={(e) => this.imgZoom(e, index)}/>
+            <Message conversation={chat} key={chat.id} way={wayClass} lastItem={lastItem} responseTo={responseTo} msgState={msgState} userInfos={this.getUserInfos(currentAuthor)} date={dateElt} myClick={myClick} onClick={(e) => this.imgZoom(e, index)}/>
           )
 
         })}
