@@ -44,55 +44,6 @@ class Conversation extends Component {
   
   }
 
-  /*componentWillReceiveProps(nextProps) {
-    //const users = nextProps.users;
-    //this.notificationSound.volume = 1;
-    //this.notificationSound.play()
-    console.log('updatePROPS')
-  }*/
-
-  /*componentDidMount() {
-    const { mainChat } = this.props
-    if (mainChat){
-        mainChat && mainChat
-        .filter(msg => { 
-            return msg.link !== null
-        })
-        .map(msg => {
-            this.images.push(msg.link)
-            this.messages.push(msg.message)
-            return null
-        })
-    }
-    //this.forceUpdateHandler()
-    console.log(this.images)
-  }*/
-
-  /*forceUpdateHandler(){
-    console.log('🔺 WARNING : Force Update 🔺')
-    this.forceUpdate()
-    console.log(this.images)
-  }*/
-
-  /*componentWillReceiveProps = () => {
-      //console.log(this.props.mainChat)
-      const { mainChat } = this.props
-      if (mainChat){
-          mainChat && mainChat
-          .filter(msg => { 
-              return msg.link !== null
-          })
-          .map(msg => {
-              this.images.push(msg.link)
-              this.messages.push(msg.message)
-              return null
-          })
-      }
-      console.log(this.images)
-      //console.log(this.images)
-      console.log(this.props)
-  }*/
-
   imgZoom = (e, index) => {
     e.preventDefault()
     //console.log('CLIC')
@@ -100,8 +51,7 @@ class Conversation extends Component {
         isOpen: true,
         photoIndex: index
     })
-    //console.log(this.state.photoIndex)
-    //console.log(this.images)
+
   }
 
   render(){
@@ -117,7 +67,6 @@ class Conversation extends Component {
     const myClick = this.props.myClick
 
     const { photoIndex, isOpen } = this.state;
-    //const msgState = this.props.msgState
 
     let indexMsgLink = -1
 

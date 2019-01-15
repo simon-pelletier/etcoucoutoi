@@ -31,9 +31,7 @@ class Chats extends Component {
             msgIsReady: false,
             linkThumb: null,
             linkPreview: null,
-            file: null,
-            /*photoIndex: 0,
-            isOpen: false*/
+            file: null
         }
         
         this.notificationSound = new Audio(notificationSound);
@@ -53,9 +51,7 @@ class Chats extends Component {
         msgIsReady: false,
         linkThumb: null,
         linkPreview: null,
-        file: null,
-        /*photoIndex: 0,
-        isOpen: false*/
+        file: null
     }
 
     setEditorRef = (editor) => this.editor = editor
@@ -205,49 +201,6 @@ class Chats extends Component {
 
     }
 
-    /*componentDidMount() {
-        const { mainChat } = this.props
-        if (mainChat){
-            mainChat && mainChat
-            .filter(msg => { 
-                return msg.link !== null
-            })
-            .map(msg => {
-                this.images.push(msg.link)
-                this.messages.push(msg.message)
-                return null
-            })
-        }
-        this.forceUpdateHandler()
-        
-    }
-    componentWillReceiveProps = () => {
-        //console.log(this.props.mainChat)
-        const { mainChat } = this.props
-        if (mainChat){
-            mainChat && mainChat
-            .filter(msg => { 
-                return msg.link !== null
-            })
-            .map(msg => {
-                this.images.push(msg.link)
-                this.messages.push(msg.message)
-                return null
-            })
-        }
-        console.log(this.images)
-        //console.log(this.images)
-    }*/
-
-    /*imgZoom = (e, index) => {
-        e.preventDefault()
-        this.setState({ 
-            isOpen: true,
-            photoIndex: index
-        })
-        //console.log(this.images)
-      }*/
-
     forceUpdateHandler(){
         console.log('🔺 WARNING : Force Update 🔺')
         this.forceUpdate()
@@ -292,12 +245,12 @@ class Chats extends Component {
 
     
 
-    scrollToBottom() {
+    /*scrollToBottom() {
         const scrollHeight = this.messageList.scrollHeight
         const height = this.messageList.clientHeight
         const maxScrollTop = scrollHeight - height
         this.messageList.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0
-    }
+    }*/
 
     onClick = (e) => {
         e.preventDefault()
@@ -343,7 +296,7 @@ class Chats extends Component {
       
     componentDidUpdate() {
         console.log('➰ NOTE : Component Did Update ➰')
-        this.scrollToBottom();
+        //this.scrollToBottom();
         //this.audio.play()
     }
 
@@ -359,14 +312,12 @@ class Chats extends Component {
     render () {
         const { mainChat } = this.props
         const maxMsgLength = 150
-
-        //const { photoIndex, isOpen } = this.state;
       
         return (
 
             <div className="chatPage row" >
 
-                <div className=" conversation col s12" ref={(div) => {this.messageList = div;}} >
+                <div className=" conversation col s12" /*ref={(div) => {this.messageList = div;}} */>
                     <Conversation chat={mainChat} myClick={this.onClick} msgState={this.state.responseTo} />
                 </div>
 
@@ -404,7 +355,7 @@ class Chats extends Component {
                                         
                                         >
                                         <input {...getInputProps()} />
-                                        { //accept="image/*"
+                                        {
                                             isDragActive ?
                                             <i className="material-icons senderIcon">photo</i> :
                                             <i className="material-icons senderIcon">photo</i>

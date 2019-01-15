@@ -6,24 +6,7 @@ import Quote from './Quote'
 
 class Message extends Component {
 
-    /*constructor(props) {
-        super(props);
-     
-        this.state = {
-          //photoIndex: 0,
-          isOpen: false,
-        };
-      }*/
-
-      /*imgZoom = (e) => {
-        e.preventDefault()
-        //console.log(e)
-        this.setState({ isOpen: true })
-    
-      }
-*/
     render(){
-        //const { /*photoIndex,*/ isOpen } = this.state
 
         const conversation = this.props.conversation
         const responseMsgTest = this.props.responseTo
@@ -89,15 +72,6 @@ class Message extends Component {
                     <div className="msgAvatarContainer" ><img className="msgAvatar" src={avatar} alt="" /></div>
 
                 </div>
-
-                {/*isOpen && (
-                <Lightbox
-                    imageTitle={conversation.message}
-                    imagePadding={0}
-                    mainSrc={conversation.link}
-                    onCloseRequest={() => this.setState({ isOpen: false })}
-                />
-                )*/}
 
             </div>
            
