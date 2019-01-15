@@ -174,7 +174,6 @@ const mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps),
     firestoreConnect([
-      { collection: 'mainChat', orderBy: ['createdAt', 'asc']},
       { collection: 'users', orderBy: ['pseudo', 'desc'] }
     ])
 )(Galleries)
