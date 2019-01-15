@@ -15,8 +15,8 @@ class Quote extends Component {
                 <i className="material-icons replyIcon">reply</i> {responseAuthor.pseudo}
                 </div>
 
-                <div className="responseMessage">
-                    {responseMsg.message}
+                <div className="responseMessageContainer">
+                    <div className="responseMessage">{responseMsg.message}</div>
                     {
                         responseMsg.link !== null ? <div className="quoteImgContainer"><img src={responseMsg.linkThumb} className="quoteImg" alt=""/></div> : null
                     }

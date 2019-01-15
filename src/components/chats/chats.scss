@@ -123,7 +123,7 @@
       -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.30);
       -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.30);
       box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.30);
-      
+      height: 80px;
   }
 
   .responseAuthor{
@@ -133,11 +133,42 @@
     font-style: italic;
   }
 
-  .responseMessage{
-    font-style: italic;
-    padding-bottom: 5px;
-    text-align: left;
-    word-wrap: break-word;
+  .responseMessageContainer{
+    width: 100%;
+    .responseMessage{
+        font-style: italic;
+        padding-bottom: 5px;
+        text-align: left;
+        //word-wrap: break-word;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        padding-right: 60px;
+    }
+    .quoteImgContainer{
+        position: relative;
+        display: block;
+        width: 50px;
+        height: 50px;
+        //right: 0px;
+        float: right;
+        top: -50px;
+        overflow: hidden;
+        -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+        box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+        background-color: $light;
+        border-radius: $mainBorder;
+
+        margin: 0px;
+    
+        .quoteImg{
+            margin: 0 auto;
+            max-width: 50px;
+            max-height: 50px;
+        }
+    }
+    
   }
 
   .msgLinkContainer{
@@ -184,19 +215,24 @@
     overflow-y: hidden!important;
     margin: 0px;
     .conversation{
-        height: 100vh;
+        height: 100%;
         width: 100%;
         overflow-x: hidden;
         margin-top: 15px;
         //margin-bottom: 35px;
-        padding-bottom: 10px;
+        padding-bottom: 0px;
+        margin-bottom: -20px;
       }
       .sender{
+          
         position: fixed;
         bottom: 0px;
         left: 0px;
         z-index: 12!important;
         .senderBlock{
+                    -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+                    -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+                    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
             width: 100vw;
             background-color: $light!important;
             z-index: 12!important;
@@ -204,7 +240,7 @@
             position: absolute;
             display: block;
             left: 0px;
-            height: 65px;
+            height: 60px;
             margin-left: 0px;
             .cancelLink{
                 position: absolute;
@@ -212,7 +248,7 @@
                 //height: 50px;
 
                 z-index: 20;
-                bottom: 250px;
+                bottom: 210px;
                 left: 145px;
                 background-color: $light;
                 padding: 2px;
@@ -223,7 +259,7 @@
                 width: 150px;
                 height: 150px;
                 position: absolute;
-                bottom: 115px;
+                bottom: 75px;
                 left: 12px;
                 overflow: hidden;
                 -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75)!important;
@@ -266,7 +302,7 @@
                 .counterMsg{
                     position: absolute;
                     left: 20px;
-                    top: 46px;
+                    top: 40px;
                     font-size: 0.8em;
                 }
                 .inputContactChat {
@@ -306,16 +342,29 @@
         .witnessResponse{
             position: absolute;
             z-index: 25;
+            //height: 37px;
             width: 93vw;
             bottom: 75px;
             text-align: left;
-            word-wrap: break-word;
-            background-color: $selectionColor;
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
+            //word-wrap: break-word;
+            background-color: $replyColor;
+            //padding-right: 150px!important;
+            //overflow: hidden;
+            //display: -webkit-box;
+            //-webkit-line-clamp: 2!important;
+            //-webkit-box-orient: vertical;
             border-radius: $mainBorder;
+            padding-left: 5px;
+            -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+            -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+            box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+            //padding-bottom: 5px;
+
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            padding-right: 40px!important;
+
             .cancelResponse{
                 position: absolute;
                 right: 3px;
@@ -326,22 +375,3 @@
       }
   }
 
-.quoteImgContainer{
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    right: 20px;
-    top: 38px;
-    overflow: hidden;
-    -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-    background-color: $light;
-    border-radius: $mainBorder;
-
-    .quoteImg{
-        margin: 0 auto;
-        max-width: 100px;
-        max-height: 100px;
-    }
-}
