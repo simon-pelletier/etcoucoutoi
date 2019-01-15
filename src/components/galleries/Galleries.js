@@ -29,6 +29,8 @@ class Galleries extends Component {
     componentDidMount() {
         const { mainChat } = this.props
         if (mainChat){
+            this.images = []
+            this.messages = []
             mainChat && mainChat
             .filter(msg => { 
                 return msg.link !== null
@@ -39,8 +41,9 @@ class Galleries extends Component {
                 return null
             })
         }
+
         //this.forceUpdateHandler()
-        //console.log(this.images)
+        console.log(this.images)
     }
 
     forceUpdateHandler(){
@@ -52,7 +55,10 @@ class Galleries extends Component {
     componentWillReceiveProps = () => {
         //console.log(this.props.mainChat)
         const { mainChat } = this.props
+        
         if (mainChat){
+            this.images = []
+            this.messages = []
             mainChat && mainChat
             .filter(msg => { 
                 return msg.link !== null
