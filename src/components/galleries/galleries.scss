@@ -23,9 +23,12 @@
   }
 
   .titleImg{
-    overflow: hidden;
+    //overflow: hidden;
     width: 100px;
     height: 25px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
     //word-wrap: break-word!important;
 
     margin: 0 auto;
@@ -34,17 +37,29 @@
     margin-bottom: 0px;
     margin-top: 0px;
     border-radius: $mainBorder;
-    padding-top: 15px;
+    //padding-top: 15px;
+    
+    padding-right: 0px;
+    margin-right: 0px;
+    margin: 0 auto;
+    width: 120px;
+    margin-bottom: 10px;
+  }
+  .card-action{
+    color: $grey;
+    font-size: 8pt;
+    padding: 3px;
+    
   }
 
   
   .gallerieImgContainer{
     overflow: hidden;
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     margin: 0 auto;
     //border: 1px solid #000;
-    border-radius: $mainBorder;
+    //border-radius: $mainBorder;
     -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.30);
     -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.30);
     box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.30);
@@ -53,10 +68,10 @@
 
     .gallerieImg{
       cursor: pointer;
-      max-width: 200px;
+      width: 120px!important;
       display: block;
       //max-width: 100px;
-      min-width: 200px;
+      min-width: 100px;
       //min-height: 150px;
       //max-height: 100px;
       //overflow: hidden;
@@ -154,9 +169,15 @@
 }
 .ril-close{
   //right: 0px!important;
-  //width: 10px!important;
+  width: 40px!important;
+  height: 40px!important;
   margin-right: -25px;
+  border-radius: 50px;
 }
+
 .ril__toolbarItem{
   overflow: visible;
+}
+.ril__navButtons{
+  display: none!important;
 }

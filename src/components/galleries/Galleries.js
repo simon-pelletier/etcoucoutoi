@@ -5,12 +5,66 @@ import { compose } from 'redux'
 import ImageSummary from './ImageSummary'
 import { Redirect } from 'react-router-dom'
 import './galleries.scss'
+import Lightbox from 'react-image-lightbox'
 
 class Galleries extends Component {
 
-    state = {
-        gallerie: ''
+    constructor(props) {
+        super(props);
+        this.state = {
+          photoIndex: 0,
+          isOpen: false
+        };
+        //console.log(props)
+        this.images = []
+        this.messages = []
       }
+
+    state = {
+        gallerie: '',
+        photoIndex: 0,
+        isOpen: false
+      }
+
+    componentDidMount() {
+        const { mainChat } = this.props
+        if (mainChat){
+            mainChat && mainChat
+            .filter(msg => { 
+                return msg.link !== null
+            })
+            .map(msg => {
+                this.images.push(msg.link)
+                this.messages.push(msg.message)
+            })
+        }
+        //this.forceUpdateHandler()
+        //console.log(this.images)
+    }
+
+    forceUpdateHandler(){
+        console.log('🔺 WARNING : Force Update 🔺')
+        this.forceUpdate()
+        
+    }
+
+    componentWillReceiveProps = () => {
+        //console.log(this.props.mainChat)
+        const { mainChat } = this.props
+        if (mainChat){
+            mainChat && mainChat
+            .filter(msg => { 
+                return msg.link !== null
+            })
+            .map(msg => {
+                this.images.push(msg.link)
+                this.messages.push(msg.message)
+            })
+        }
+        //console.log(this.images)
+    }
+ 
+      
 
     getUserInfos = (author) => {
 
@@ -28,9 +82,16 @@ class Galleries extends Component {
             )
           })
         }
-
       }
 
+      imgZoom = (e, index) => {
+        e.preventDefault()
+        this.setState({ 
+            isOpen: true,
+            photoIndex: index
+        })
+        console.log(this.images)
+      }
     
 
     render () {
@@ -38,6 +99,7 @@ class Galleries extends Component {
         const { auth } = this.props;
         if (!auth.uid) return <Redirect to='/signin' />
 
+        const { photoIndex, isOpen } = this.state;
         const { mainChat } = this.props
 
         return (
@@ -49,15 +111,43 @@ class Galleries extends Component {
                     .filter(msg => { 
                         return msg.link !== null
                     })
-                    .map(msg => {
+                    .map((msg, index) => {
                         return(
-                            <ImageSummary msg={msg} key={msg.id} user={this.getUserInfos(msg.author)} className="gridItem" />
-                        )
+                            <ImageSummary msg={msg} key={msg.id} user={this.getUserInfos(msg.author)} className="gridItem" onClick={(e) => this.imgZoom(e, index)}/>
+                        ) 
                     })
                 
                 }
 
                 </div>
+
+                {isOpen && (
+          <div>
+            
+            {/*<div className="messageLightBox">{msg.message}</div>*/}
+            <Lightbox
+              
+              mainSrc={this.images[photoIndex]}
+              //toolbarButtons={[]}
+              imageTitle={this.messages[photoIndex]}
+              imagePadding={0}
+              nextSrc={this.images[(photoIndex + 1) % this.images.length]}
+              prevSrc={this.images[(photoIndex + this.images.length - 1) % this.images.length]}
+              onCloseRequest={() => this.setState({ isOpen: false })}
+              onMovePrevRequest={() =>
+                this.setState({
+                  photoIndex: (photoIndex + this.images.length - 1) % this.images.length,
+                })
+              }
+              onMoveNextRequest={() =>
+                this.setState({
+                  photoIndex: (photoIndex + 1) % this.images.length,
+                })
+              }
+            />
+          
+          </div>
+        )}
 
             </div>
         )

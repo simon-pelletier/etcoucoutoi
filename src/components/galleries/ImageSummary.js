@@ -1,26 +1,25 @@
 import React, { Component } from 'react'
-import Lightbox from 'react-image-lightbox'
+//import Lightbox from 'react-image-lightbox'
 
 class ImageSummary extends Component {
 
-  constructor(props) {
+  /*constructor(props) {
     super(props);
- 
     this.state = {
       //photoIndex: 0,
       isOpen: false,
     };
-  }
+  }*/
 
-  imgZoom = (e) => {
+  /*imgZoom = (e) => {
     e.preventDefault()
     this.setState({ isOpen: true })
 
-  }
+  }*/
 
   render (){
 
-    const { /*photoIndex,*/ isOpen } = this.state;
+    //const { /*photoIndex,*/ isOpen } = this.state;
 
     const { msg, user } = this.props
     let userPseudo = null
@@ -47,7 +46,7 @@ class ImageSummary extends Component {
           <div className="card-image imgBlock">
             
             <div className="gallerieImgContainer">
-              <img className="gallerieImg" src={msg.linkThumb} alt="img" onClick={(e) => this.imgZoom(e)} />
+              <img className="gallerieImg" src={msg.linkThumb} alt="img" onClick={this.props.onClick}/>
             </div>
 
             <div className="titleImg">{msg.message}</div>
@@ -56,33 +55,7 @@ class ImageSummary extends Component {
           </div>
         </div>
 
-        {isOpen && (
-          <div>
-            
-            {/*<div className="messageLightBox">{msg.message}</div>*/}
-            <Lightbox
-              
-              mainSrc={msg.link}
-              //toolbarButtons={[]}
-              imageTitle={msg.message}
-              imagePadding={0}
-              //nextSrc={images[(photoIndex + 1) % images.length]}
-              //prevSrc={images[(photoIndex + images.length - 1) % images.length]}
-              onCloseRequest={() => this.setState({ isOpen: false })}
-              /*onMovePrevRequest={() =>
-                this.setState({
-                  photoIndex: (photoIndex + images.length - 1) % images.length,
-                })
-              }*/
-              /*onMoveNextRequest={() =>
-                this.setState({
-                  photoIndex: (photoIndex + 1) % images.length,
-                })
-              }*/
-            />
-          
-          </div>
-        )}
+        
     
     </div>
 
