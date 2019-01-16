@@ -18,6 +18,12 @@ class Message extends Component {
         }    
     }*/
 
+    constructor(props){
+        super(props)
+
+        this.lastItem = this.props.lastItem
+    }
+
 
     render(){
 
@@ -59,17 +65,17 @@ class Message extends Component {
         }
 
         
-        let refItem = 'msg'
-        if(this.props.lastItem){
+        /*let refItem = 'msg'
+        if(this.lastItem){
             refItem = '_end'
             console.log('scroll config')
-        }
+        }*/
 
         
 
         return (
             
-            <div className='col s12' id={refItem}>
+            <div className='col s12'>
        
                 { 
                     dateElt !== null ? 
@@ -95,6 +101,10 @@ class Message extends Component {
                     <div className="msgAvatarContainer" ><img className="msgAvatar" src={avatar} alt="" /></div>
 
                 </div>
+
+                {
+                    this.lastItem ? <div id='_end'></div> : null
+                }
 
             </div>
            
