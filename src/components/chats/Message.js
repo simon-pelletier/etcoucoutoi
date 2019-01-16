@@ -75,23 +75,26 @@ class Message extends Component {
 
         return (
             
-            <div className='col s12'>
+            <div className='col s12' id={ date } >
        
                 { 
                     dateElt !== null ? 
-                    <div className="row"><div className="msgDateInfo col s4 m3 l2 left">{day + ' ' + monthsTab[month - 1]}</div></div>
+                    <div className="row" id={ conversation.createdAt.seconds } ><div className="msgDateInfo col s4 m3 l2 left">{day + ' ' + monthsTab[month - 1]}</div></div>
                     : null 
                 }
 
                 <div className={this.props.way + ' ' + this.props.msgState + " msgBlock left col s12 m8 l6"} >
-                {
-                    conversation.link !== null ? <div className="msgLinkContainer" ><img className="msgLink" src={conversation.linkThumb} alt="" onClick={this.props.onClick} /*onClick={(e) => this.imgZoom(e)}*/ /></div> : null
-                }
+
+                
                     <div className="msgOverlay" id={conversation.id} onClick={this.props.myClick}></div>
                     <i className="material-icons msgBulle">chat_bubble</i>
                    
                     {
                         conversation.responseTo !== null ? <div className="">{<Quote msg={responseMsg}/>}</div> : null
+                    }
+
+                    {
+                        conversation.link !== null ? <div className="msgLinkContainer" ><img className="msgLink" src={conversation.linkThumb} alt="" onClick={this.props.onClick} /*onClick={(e) => this.imgZoom(e)}*/ /></div> : null
                     }
 
                     <span className="msgMessage col s12">{conversation.message}</span>
