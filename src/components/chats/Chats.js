@@ -45,6 +45,8 @@ class Chats extends Component {
 
         this.loadingGif = loading;
 
+        this.scrollToLastItem = this.scrollToLastItem.bind(this)
+
         
 
     }
@@ -301,6 +303,23 @@ class Chats extends Component {
     componentDidUpdate() {
         this.scrollToLastItem()
     }
+    componentWillMount() {
+        console.log('Component WILL MOUNT!')
+     }
+     componentDidMount() {
+        console.log('Component DID MOUNT!')
+     }
+
+     shouldComponentUpdate(newProps, newState) {
+        return true;
+     }
+     componentWillUpdate(nextProps, nextState) {
+        console.log('Component WILL UPDATE!');
+     }
+
+     componentWillUnmount() {
+        console.log('Component WILL UNMOUNT!')
+     }
     
     scrollToLastItem(event) {
         const endNode = ReactDOM.findDOMNode(this)
@@ -310,9 +329,9 @@ class Chats extends Component {
         }
         if (child instanceof HTMLElement){
             window.scrollTo(0, child.offsetTop)
-            console.log('SCROLL')
+            console.log('SCROLL BOTTOM')
         } else {
-            console.log('pas SCROLL')
+            console.log('pas SCROLL BOTTOM')
         }
       }
 
@@ -343,6 +362,7 @@ class Chats extends Component {
 
                 <div className=" conversation col s12" /*ref={(div) => {this.messageList = div;}} */>
                     <Conversation chat={mainChat} myClick={this.onClick} msgState={this.state.responseTo} />
+                    <div id='_end'></div>
                 </div>
 
                 <div className="sender col s12" >

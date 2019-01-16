@@ -6,6 +6,7 @@ import ImageSummary from './ImageSummary'
 import { Redirect } from 'react-router-dom'
 import './galleries.scss'
 import Lightbox from 'react-image-lightbox'
+import ReactDOM from 'react-dom';
 
 class Galleries extends Component {
 
@@ -18,7 +19,12 @@ class Galleries extends Component {
         //console.log(props)
         this.images = []
         this.messages = []
+
+        
+
       }
+
+    
 
     state = {
         gallerie: '',
@@ -101,6 +107,35 @@ class Galleries extends Component {
         })
         //console.log(this.images)
       }
+
+    componentWillReceiveProps(nextProps){
+        console.log('➰ NOTE : Component Will Receive Props ➰')
+        this.scrollToTop()
+    }
+      
+    componentDidUpdate() {
+        this.scrollToTop()
+    }
+
+    componentWillMount() {
+        console.log('Component WILL MOUNT!')
+        this.scrollToTop()
+     }
+    
+
+    scrollToTop(event) {
+        const startNode = ReactDOM.findDOMNode(this)
+        let child = null
+        if(startNode instanceof HTMLElement){
+            child = startNode.querySelector('#_top');
+        }
+        if (child instanceof HTMLElement){
+            window.scrollTo(0, child.offsetTop)
+            console.log('SCROLL TOP')
+        } else {
+            console.log('pas SCROLL TOP')
+        }
+      }
     
 
     render () {
@@ -112,11 +147,14 @@ class Galleries extends Component {
         const { mainChat } = this.props
 
         return (
-            <div className="container galleriePage">
+            <div className="container galleriePage" >
+                
+                <div className="gallerieDivTop" id='_top'></div>
 
-                <div className="gallerie-list" id="grid">
+                <div className="gallerie-list" id="grid" >
 
                 { mainChat && mainChat
+                    .reverse()
                     .filter(msg => { 
                         return msg.link !== null
                     })

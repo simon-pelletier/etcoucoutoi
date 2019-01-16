@@ -18,11 +18,11 @@ class Message extends Component {
         }    
     }*/
 
-    constructor(props){
+    /*constructor(props){
         super(props)
 
         this.lastItem = this.props.lastItem
-    }
+    }*/
 
 
     render(){
@@ -102,9 +102,9 @@ class Message extends Component {
 
                 </div>
 
-                {
+                {/*
                     this.lastItem ? <div id='_end'></div> : null
-                }
+                */}
 
             </div>
            
