@@ -119,7 +119,7 @@ class Galleries extends Component {
     }
       
     componentDidUpdate() {
-   
+        window.scrollTo(0, window.innerHeight)
     }
 
     componentWillMount() {
@@ -128,6 +128,7 @@ class Galleries extends Component {
         //this.forceUpdateHandler()
         //this.scrollToTop()
         this.scrollToTop()
+        window.scrollTo(0, window.innerHeight)
      }
 
      componentWillUpdate(nextProps, nextState) {
@@ -155,6 +156,8 @@ class Galleries extends Component {
         const { photoIndex, isOpen } = this.state;
         const { mainChat } = this.props
 
+       // const { gallerie } = this.props
+
         this.images = []
         this.messages = []
 
@@ -164,6 +167,7 @@ class Galleries extends Component {
                 <div className="gallerieDivTop" id='_top'></div>
 
                 <div className="gallerie-list" id="grid" >
+
                 
                 { mainChat && mainChat
                     //.reverse()
