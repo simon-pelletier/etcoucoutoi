@@ -321,6 +321,30 @@ class Chats extends Component {
         console.log('Component WILL UNMOUNT!')
      }
     
+     clickToBottom = () => {
+        this.scrollToLastItem()
+     }
+
+    scrollBy(distance, duration) {
+
+        let initialY  = window.pageYOffset || document.documentElement.scrollTop
+        //let initialY = document.body.scrollTop;
+        let y = initialY + distance;
+        let baseY = (initialY + y) * 0.5;
+        let difference = initialY - baseY;
+        let startTime = performance.now();
+    
+        function step() {
+            let normalizedTime = (performance.now() - startTime) / duration;
+            if (normalizedTime > 1) normalizedTime = 1;
+    
+            window.scrollTo(0, baseY + difference * Math.cos(normalizedTime * Math.PI));
+            if (normalizedTime < 1) window.requestAnimationFrame(step);
+        }
+        window.requestAnimationFrame(step);
+
+    }
+
     scrollToLastItem(event) {
         const endNode = ReactDOM.findDOMNode(this)
         let child = null
@@ -328,7 +352,8 @@ class Chats extends Component {
             child = endNode.querySelector('#_end');
         }
         if (child instanceof HTMLElement){
-            window.scrollTo(0, child.offsetTop)
+            //window.scrollTo(0, child.offsetTop)
+            this.scrollBy(child.offsetTop, 500)
             console.log('SCROLL BOTTOM')
         } else {
             console.log('pas SCROLL BOTTOM')
@@ -359,6 +384,10 @@ class Chats extends Component {
                 </div>
                 : null
             }
+
+            <button type="submit" className="btnToBottom" onClick={this.clickToBottom}><i className="material-icons btnToBottomIcon">arrow_downward</i></button>
+                
+            
 
                 <div className=" conversation col s12" /*ref={(div) => {this.messageList = div;}} */>
                     <Conversation chat={mainChat} myClick={this.onClick} msgState={this.state.responseTo} />

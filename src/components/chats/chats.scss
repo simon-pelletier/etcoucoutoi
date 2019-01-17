@@ -409,3 +409,33 @@
     margin-top: 50vh; /* poussé de la moitié de hauteur de viewport */
   transform: translateY(-50%);
 }
+
+
+.btnToBottom{
+    position: fixed;
+    z-index: 15;
+    border-radius: 25px;
+    background-color: $lightPlus!important;
+    width: 30px;
+    height: 30px;
+    border: none;
+    top: 70px;
+    right: 10px;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+            -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+            box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+
+    .btnToBottomIcon{
+        font-size: 14pt;
+        padding-top: 2px;
+    }
+}
+.btnToBottom:hover{
+    background-color: $lightPlus!important;
+}
+.btnToBottom:link{
+    background-color: $lightPlus!important;
+}
+.btnToBottom:active{
+    background-color: $lightPlus!important;
+}

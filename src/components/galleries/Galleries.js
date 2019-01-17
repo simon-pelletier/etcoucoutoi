@@ -22,6 +22,7 @@ class Galleries extends Component {
 
         
         this.scrollToTop = this.scrollToTop.bind(this)
+        this.forceUpdateHandler = this.forceUpdateHandler.bind(this)
       }
 
     
@@ -123,6 +124,7 @@ class Galleries extends Component {
 
     componentWillMount() {
         console.log('Component WILL MOUNT!')
+        this.forceUpdateHandler()
         this.scrollToTop()
      }
 
