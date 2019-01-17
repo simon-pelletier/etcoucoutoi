@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { firestoreConnect } from 'react-redux-firebase'
-import { compose } from 'redux'
+//import { connect } from 'react-redux'
+//import { firestoreConnect } from 'react-redux-firebase'
+//import { compose } from 'redux'
 import ImageSummary from './ImageSummary'
 import { Redirect } from 'react-router-dom'
 import './galleries.scss'
 import Lightbox from 'react-image-lightbox'
-import ReactDOM from 'react-dom';
+//import ReactDOM from 'react-dom';
 
 class Galleries extends Component {
 
@@ -16,24 +16,22 @@ class Galleries extends Component {
           photoIndex: 0,
           isOpen: false
         };
-        //console.log(props)
+
         this.images = []
         this.messages = []
 
-        
-        this.scrollToTop = this.scrollToTop.bind(this)
-        this.forceUpdateHandler = this.forceUpdateHandler.bind(this)
+        //this.scrollToTop = this.scrollToTop.bind(this)
+        //this.forceUpdateHandler = this.forceUpdateHandler.bind(this)
       }
 
     
 
     state = {
-        gallerie: '',
         photoIndex: 0,
         isOpen: false
       }
 
-    componentDidMount() {
+    /*componentDidMount() {
         const { mainChat } = this.props
         if (mainChat){
             this.images = []
@@ -51,17 +49,18 @@ class Galleries extends Component {
 
         //this.forceUpdateHandler()
         //console.log(this.images)
-    }
+    }*/
 
     forceUpdateHandler(){
         console.log('🔺 WARNING : Force Update 🔺')
         this.forceUpdate()
-        
+
     }
 
-    componentWillReceiveProps = () => {
-        //console.log(this.props.mainChat)
+    /*componentWillReceiveProps = () => {
+        
         const { mainChat } = this.props
+        console.log(mainChat)
         
         if (mainChat){
             this.images = []
@@ -78,7 +77,7 @@ class Galleries extends Component {
         }
         //console.log(this.images)
         //console.log(this.images)
-    }
+    }*/
 
 
 
@@ -114,30 +113,30 @@ class Galleries extends Component {
       }
 
     componentWillReceiveProps(nextProps){
-        console.log('➰ NOTE : Component Will Receive Props ➰')
-        this.scrollToTop()
+        //console.log('➰ NOTE : Component Will Receive Props ➰')
+        //this.scrollToTop()
     }
       
     componentDidUpdate() {
-        this.scrollToTop()
+        //this.scrollToTop()
     }
 
     componentWillMount() {
-        console.log('Component WILL MOUNT!')
-        this.forceUpdateHandler()
-        this.scrollToTop()
+        //console.log('Component WILL MOUNT!')
+        //this.forceUpdateHandler()
+        //this.scrollToTop()
      }
 
      componentWillUpdate(nextProps, nextState) {
-        console.log('Component WILL UPDATE!');
+        //console.log('Component WILL UPDATE!');
      }
  
      componentWillUnmount() {
-        console.log('Component WILL UNMOUNT!')
+        //console.log('Component WILL UNMOUNT!')
      }
     
 
-    scrollToTop(event) {
+    /*scrollToTop(event) {
         const startNode = ReactDOM.findDOMNode(this)
         let child = null
         if(startNode instanceof HTMLElement){
@@ -151,7 +150,7 @@ class Galleries extends Component {
             console.log('pas SCROLL TOP')
         }
       }
-    
+    */
 
     render () {
 
@@ -160,7 +159,9 @@ class Galleries extends Component {
 
         const { photoIndex, isOpen } = this.state;
         const { mainChat } = this.props
-        
+
+        this.images = []
+        this.messages = []
 
         return (
             <div className="container galleriePage" >
@@ -168,13 +169,15 @@ class Galleries extends Component {
                 <div className="gallerieDivTop" id='_top'></div>
 
                 <div className="gallerie-list" id="grid" >
-
+                
                 { mainChat && mainChat
                     //.reverse()
                     .filter(msg => { 
                         return msg.link !== null
                     })
                     .map((msg, index) => {
+                        this.images.push(msg.link)
+                        this.messages.push(msg.message)
                         return(
                             <ImageSummary msg={msg} key={msg.id} user={this.getUserInfos(msg.author)} className="gridItem" onClick={(e) => this.imgZoom(e, index)}/>
                         ) 
@@ -217,17 +220,20 @@ class Galleries extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
+/*const mapStateToProps = (state) => {
     return {
       auth: state.firebase.auth,
       users: state.firestore.ordered.users,
       mainChat: state.firestore.ordered.mainChat
     }
-}
+}*/
 
-export default compose(
+/*export default compose(
     connect(mapStateToProps),
     firestoreConnect([
-      { collection: 'users', orderBy: ['pseudo', 'desc'] }
+      { collection: 'users', orderBy: ['pseudo', 'desc'] },
+      { collection: 'mainChat', orderBy: ['createdAt', 'asc']}
     ])
-)(Galleries)
+)(Galleries)*/
+
+export default Galleries

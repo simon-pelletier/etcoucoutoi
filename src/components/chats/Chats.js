@@ -84,7 +84,7 @@ class Chats extends Component {
                     link: null
                 }, () => { 
                     this.validateMessage() 
-                    this.forceUpdateHandler()
+                    //this.forceUpdateHandler()
                 })
                 
             } 
@@ -120,7 +120,7 @@ class Chats extends Component {
             loading: false
         }, () => { 
             this.validateMessage() 
-            this.forceUpdateHandler()
+            //this.forceUpdateHandler()
         })
     }
 
@@ -214,11 +214,11 @@ class Chats extends Component {
 
     }
 
-    forceUpdateHandler(){
-        console.log('🔺 WARNING : Force Update 🔺')
-        this.forceUpdate()
+    /*forceUpdateHandler(){
+        //console.log('🔺 WARNING : Force Update 🔺')
+        //this.forceUpdate()
         
-    }
+    }*/
     
     messageSender = () => {
         
@@ -296,34 +296,37 @@ class Chats extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        console.log('➰ NOTE : Component Will Receive Props ➰')
-        this.scrollToLastItem()
+        //console.log('➰ NOTE : Component Will Receive Props ➰')
+        this.scrollToLastItemNoAnim()
     }
       
     componentDidUpdate() {
-        this.scrollToLastItem()
+        this.scrollToLastItemNoAnim()
     }
     componentWillMount() {
-        console.log('Component WILL MOUNT!')
+        //console.log('Component WILL MOUNT!')
      }
      componentDidMount() {
-        console.log('Component DID MOUNT!')
+        this.scrollToLastItemNoAnim()
+        //console.log('Component DID MOUNT!')
      }
 
-     shouldComponentUpdate(newProps, newState) {
+     /*shouldComponentUpdate(newProps, newState) {
         return true;
-     }
+     }*/
      componentWillUpdate(nextProps, nextState) {
-        console.log('Component WILL UPDATE!');
+        //console.log('Component WILL UPDATE!');
      }
 
      componentWillUnmount() {
-        console.log('Component WILL UNMOUNT!')
+        //console.log('Component WILL UNMOUNT!')
      }
     
      clickToBottom = () => {
         this.scrollToLastItem()
      }
+
+ 
 
     scrollFromToIn(from, destination, duration) {
 
@@ -353,9 +356,25 @@ class Chats extends Component {
             //window.scrollTo(0, child.offsetTop)
             let initialY  = window.pageYOffset || document.documentElement.scrollTop
             this.scrollFromToIn(initialY, child.offsetTop, 500)
-            console.log('SCROLL BOTTOM')
+            //console.log('SCROLL BOTTOM')
         } else {
-            console.log('pas SCROLL BOTTOM')
+            //console.log('pas SCROLL BOTTOM')
+        }
+      }
+
+      scrollToLastItemNoAnim(event) {
+        const endNode = ReactDOM.findDOMNode(this)
+        let child = null
+        if(endNode instanceof HTMLElement){
+            child = endNode.querySelector('#_end');
+        }
+        if (child instanceof HTMLElement){
+            window.scrollTo(0, child.offsetTop)
+            //let initialY  = window.pageYOffset || document.documentElement.scrollTop
+            //this.scrollFromToIn(initialY, child.offsetTop, 500)
+            //console.log('SCROLL BOTTOM')
+        } else {
+            //console.log('pas SCROLL BOTTOM')
         }
       }
 
