@@ -113,44 +113,39 @@ class Galleries extends Component {
       }
 
     componentWillReceiveProps(nextProps){
+     
         //console.log('➰ NOTE : Component Will Receive Props ➰')
         //this.scrollToTop()
     }
       
     componentDidUpdate() {
-        //this.scrollToTop()
+   
     }
 
     componentWillMount() {
+        //console.log('haha')
         //console.log('Component WILL MOUNT!')
         //this.forceUpdateHandler()
         //this.scrollToTop()
+        this.scrollToTop()
      }
 
      componentWillUpdate(nextProps, nextState) {
+   
         //console.log('Component WILL UPDATE!');
+        //this.scrollToTop()
      }
  
      componentWillUnmount() {
+     
         //console.log('Component WILL UNMOUNT!')
      }
     
 
-    /*scrollToTop(event) {
-        const startNode = ReactDOM.findDOMNode(this)
-        let child = null
-        if(startNode instanceof HTMLElement){
-            child = startNode.querySelector('#_top');
-        }
-        
-        if (child){
-            window.scrollTo(0, child.offsetTop - 200)
-            console.log('SCROLL TOP')
-        } else {
-            console.log('pas SCROLL TOP')
-        }
+    scrollToTop(event) {
+        window.scrollTo(0, 0)
       }
-    */
+    
 
     render () {
 
