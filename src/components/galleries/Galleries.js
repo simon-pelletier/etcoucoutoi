@@ -21,7 +21,7 @@ class Galleries extends Component {
         this.messages = []
 
         
-
+        this.scrollToTop = this.scrollToTop.bind(this)
       }
 
     
@@ -78,6 +78,10 @@ class Galleries extends Component {
         //console.log(this.images)
         //console.log(this.images)
     }
+
+
+
+     
  
       
 
@@ -121,6 +125,14 @@ class Galleries extends Component {
         console.log('Component WILL MOUNT!')
         this.scrollToTop()
      }
+
+     componentWillUpdate(nextProps, nextState) {
+        console.log('Component WILL UPDATE!');
+     }
+ 
+     componentWillUnmount() {
+        console.log('Component WILL UNMOUNT!')
+     }
     
 
     scrollToTop(event) {
@@ -129,8 +141,9 @@ class Galleries extends Component {
         if(startNode instanceof HTMLElement){
             child = startNode.querySelector('#_top');
         }
-        if (child instanceof HTMLElement){
-            window.scrollTo(0, child.offsetTop)
+        
+        if (child){
+            window.scrollTo(0, child.offsetTop - 200)
             console.log('SCROLL TOP')
         } else {
             console.log('pas SCROLL TOP')
@@ -145,6 +158,7 @@ class Galleries extends Component {
 
         const { photoIndex, isOpen } = this.state;
         const { mainChat } = this.props
+        
 
         return (
             <div className="container galleriePage" >
@@ -154,7 +168,7 @@ class Galleries extends Component {
                 <div className="gallerie-list" id="grid" >
 
                 { mainChat && mainChat
-                    .reverse()
+                    //.reverse()
                     .filter(msg => { 
                         return msg.link !== null
                     })
