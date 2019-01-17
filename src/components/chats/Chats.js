@@ -325,13 +325,11 @@ class Chats extends Component {
         this.scrollToLastItem()
      }
 
-    scrollBy(distance, duration) {
+    scrollFromToIn(from, destination, duration) {
 
-        let initialY  = window.pageYOffset || document.documentElement.scrollTop
-        //let initialY = document.body.scrollTop;
-        let y = initialY + distance;
-        let baseY = (initialY + y) * 0.5;
-        let difference = initialY - baseY;
+        let y = from + destination;
+        let baseY = (from + y) * 0.5;
+        let difference = from - baseY;
         let startTime = performance.now();
     
         function step() {
@@ -353,7 +351,8 @@ class Chats extends Component {
         }
         if (child instanceof HTMLElement){
             //window.scrollTo(0, child.offsetTop)
-            this.scrollBy(child.offsetTop, 500)
+            let initialY  = window.pageYOffset || document.documentElement.scrollTop
+            this.scrollFromToIn(initialY, child.offsetTop, 500)
             console.log('SCROLL BOTTOM')
         } else {
             console.log('pas SCROLL BOTTOM')
