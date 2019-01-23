@@ -34,8 +34,14 @@ class Message extends Component {
             responseMsg = responseMsgTest[0]
         }
         
-        const pseudo = this.props.userInfos[0].pseudo
-        const avatar = this.props.userInfos[0].avatar
+        let pseudo = 'loading'
+        let avatar = 'loading'
+        if (this.props.userInfos[0]){
+            pseudo = this.props.userInfos[0].pseudo
+            avatar = this.props.userInfos[0].avatar
+        }
+        //const pseudo = this.props.userInfos[0].pseudo
+        //const avatar = this.props.userInfos[0].avatar
 
         const dateElt = this.props.date
         const date = conversation.createdAt.seconds * 1000
