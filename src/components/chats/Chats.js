@@ -3,24 +3,15 @@ import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { sendMessage } from '../../store/actions/chatsActions'
-import Conversation from './Conversation'
-
 import { storage } from '../../config/fbConfig'
-
 import classNames from 'classnames'
 import Dropzone from 'react-dropzone'
-
 import loading from '../../assets/loading.gif'
-
 import sendSound from '../../assets/send.wav'
-//import deniedSound from '../../assets/denied.mp3'
 import notificationSound from '../../assets/notification.mp3'
-
 import AvatarEditor from 'react-avatar-editor'
-
 import ReactDOM from 'react-dom';
-//import scrollToComponent from 'react-scroll-to-component'
-
+import Conversation from './Conversation'
 
 class Chats extends Component {
 
@@ -42,13 +33,8 @@ class Chats extends Component {
         this.sendSound = new Audio(sendSound);
         this.handleChange = this.handleChange.bind(this);
         this.lastLogin = this.props.lastLogin
-
         this.loadingGif = loading;
-
         this.scrollToLastItem = this.scrollToLastItem.bind(this)
-
-        
-
     }
 
     state={
@@ -84,7 +70,6 @@ class Chats extends Component {
                     link: null
                 }, () => { 
                     this.validateMessage() 
-                    //this.forceUpdateHandler()
                 })
                 
             } 
@@ -120,7 +105,6 @@ class Chats extends Component {
             loading: false
         }, () => { 
             this.validateMessage() 
-            //this.forceUpdateHandler()
         })
     }
 
@@ -143,10 +127,8 @@ class Chats extends Component {
             () => {
               //complete
               storage.ref('pictures/thumbs').child(randomName).getDownloadURL().then(url => {
-                //console.log(url)
                 this.setState({
                   linkThumb: url
-                  //msgIsReady: true
                 }, () => { this.uploadLink(randomName)})
                 
               })
@@ -192,7 +174,7 @@ class Chats extends Component {
                         border={0}
                         scale={1.5}
                     />
- 
+
                 </div>
                 </div>
             )
@@ -201,7 +183,6 @@ class Chats extends Component {
             return null
         }
     }
-
 
     onDrop = (acceptedFiles, rejectedFiles) => {
 
@@ -213,12 +194,6 @@ class Chats extends Component {
         })
 
     }
-
-    /*forceUpdateHandler(){
-        //console.log('🔺 WARNING : Force Update 🔺')
-        //this.forceUpdate()
-        
-    }*/
     
     messageSender = () => {
         
@@ -246,7 +221,6 @@ class Chats extends Component {
         }
     }
 
-
     handleChange = (e) => {
         if(e.target.value.length <= 150 && e.target.id !== 'link'){
             this.setState({
@@ -258,7 +232,6 @@ class Chats extends Component {
 
     onClick = (e) => {
         e.preventDefault()
-        
         if (this.state.responseTo === e.target.id){
             this.setState({
                 responseTo: null
@@ -296,37 +269,20 @@ class Chats extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        //console.log('➰ NOTE : Component Will Receive Props ➰')
         this.scrollToLastItemNoAnim()
     }
       
     componentDidUpdate() {
         this.scrollToLastItemNoAnim()
     }
-    componentWillMount() {
-        //console.log('Component WILL MOUNT!')
-     }
+
      componentDidMount() {
         this.scrollToLastItemNoAnim()
-        //console.log('Component DID MOUNT!')
      }
 
-     /*shouldComponentUpdate(newProps, newState) {
-        return true;
-     }*/
-     componentWillUpdate(nextProps, nextState) {
-        //console.log('Component WILL UPDATE!');
-     }
-
-     componentWillUnmount() {
-        //console.log('Component WILL UNMOUNT!')
-     }
-    
      clickToBottom = () => {
         this.scrollToLastItem()
      }
-
- 
 
     scrollFromToIn(from, destination, duration) {
 
@@ -353,12 +309,8 @@ class Chats extends Component {
             child = endNode.querySelector('#_end');
         }
         if (child instanceof HTMLElement){
-            //window.scrollTo(0, child.offsetTop)
             let initialY  = window.pageYOffset || document.documentElement.scrollTop
             this.scrollFromToIn(initialY, child.offsetTop, 500)
-            //console.log('SCROLL BOTTOM')
-        } else {
-            //console.log('pas SCROLL BOTTOM')
         }
       }
 
@@ -370,11 +322,6 @@ class Chats extends Component {
         }
         if (child instanceof HTMLElement){
             window.scrollTo(0, child.offsetTop)
-            //let initialY  = window.pageYOffset || document.documentElement.scrollTop
-            //this.scrollFromToIn(initialY, child.offsetTop, 500)
-            //console.log('SCROLL BOTTOM')
-        } else {
-            //console.log('pas SCROLL BOTTOM')
         }
       }
 
@@ -413,7 +360,7 @@ class Chats extends Component {
                 
             
 
-                <div className=" conversation col s12 m10" /*ref={(div) => {this.messageList = div;}} */>
+                <div className=" conversation col s12 m10">
                     <Conversation chat={mainChat} myClick={this.onClick} msgState={this.state.responseTo} />
                     <div id='_end'></div>
                 </div>

@@ -23,9 +23,6 @@ class Quote extends Component {
             message = responseMsg.message
         }
 
-        //const responseMsg = this.props.msg[0]
-        //const responseAuthor = this.props.msg[1][0]
-
         return (
             <div className="col s12 msgResponse">
 
@@ -42,8 +39,7 @@ class Quote extends Component {
                 </div>
 
             </div>
-           
-    
+
         )
     }
 }

@@ -3,23 +3,18 @@ import Message from './Message'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
-//import notificationSound from '../../assets/notification.mp3'
 import Lightbox from 'react-image-lightbox'
 
 class Conversation extends Component {
 
   constructor(props) {
     super(props)
-    
-    //this.notificationSound = new Audio(notificationSound);
     this.state={
       photoIndex: 0,
       isOpen: false
     }
-
     this.images = []
     this.messages = []
-
   }
 
   state={
@@ -46,7 +41,6 @@ class Conversation extends Component {
 
   imgZoom = (e, index) => {
     e.preventDefault()
-    //console.log('CLIC')
     this.setState({ 
         isOpen: true,
         photoIndex: index
@@ -69,15 +63,6 @@ class Conversation extends Component {
     const { photoIndex, isOpen } = this.state;
 
     let indexMsgLink = -1
-
-    /*let lastItemIndex = 0*/
-    /*if (chat){
-      lastItemIndex = chat.length -1
-      //console.log(lastItemIndex)
-    }*/
-    //console.log(chat)
-    //const lastItemIndex = 2
-    
 
     this.images = []
     this.messages = []
@@ -123,10 +108,7 @@ class Conversation extends Component {
           if(chat.link !== null){
             this.images.push(chat.link)
             this.messages.push(chat.message)
-            //console.log(this.images)
-
             indexMsgLink++
-            //console.log(indexMsgLink)
           }
           const index = indexMsgLink
           
@@ -144,30 +126,21 @@ class Conversation extends Component {
           }
 
           if (responseToId !== null){
-            //console.log(this.props.chat)
+            
             const chatResponse = this.props.chat
             responseTo = chatResponse && chatResponse
             .filter(response => {
               return responseToId === response.id
             })
             .map((response) => {
-              //let responseTab = [response.id, response.message, this.getUserInfos(response.author)]
-              //console.log(response)
+
               let responseWithUser = [ response, this.getUserInfos(response.author) ]
               return responseWithUser
             })
           } else {
             responseTo = null
           }
-          //console.log(responseTo)
-          // Conversation rendu
-          /*let lastItem = false
-          
-          if (lastItemIndex === indexItem){
-            //console.log('lastItem')
-            lastItem = true
-          }*/
-          //console.log(lastItem)
+
           return (
             <Message conversation={chat} key={chat.id} way={wayClass} responseTo={responseTo} msgState={msgState} userInfos={this.getUserInfos(currentAuthor)} date={dateElt} myClick={myClick} onClick={(e) => this.imgZoom(e, index)}/>
           )
@@ -177,12 +150,10 @@ class Conversation extends Component {
       </div>
       {isOpen && (
         <div>
-            
-            {/*<div className="messageLightBox">{msg.message}</div>*/}
+
             <Lightbox
             
             mainSrc={this.images[photoIndex]}
-            //toolbarButtons={[]}
             imageTitle={this.messages[photoIndex]}
             imagePadding={0}
             nextSrc={this.images[(photoIndex + 1) % this.images.length]}

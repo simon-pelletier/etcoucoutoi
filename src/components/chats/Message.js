@@ -1,29 +1,8 @@
 import React, { Component } from 'react'
 import './chats.scss'
 import Quote from './Quote'
-//import Lightbox from 'react-image-lightbox'
-
 
 class Message extends Component {
-
-    /*getItemForScroll(){
-        if(this.props.lastItem){
-            return (
-                <div className={end + ' col s12'} ref={(div) => { this._end = div; }} ></div>
-            )
-        } else {
-            return(
-                <div className=' col s12' ></div>
-            )
-        }    
-    }*/
-
-    /*constructor(props){
-        super(props)
-
-        this.lastItem = this.props.lastItem
-    }*/
-
 
     render(){
 
@@ -40,8 +19,6 @@ class Message extends Component {
             pseudo = this.props.userInfos[0].pseudo
             avatar = this.props.userInfos[0].avatar
         }
-        //const pseudo = this.props.userInfos[0].pseudo
-        //const avatar = this.props.userInfos[0].avatar
 
         const dateElt = this.props.date
         const date = conversation.createdAt.seconds * 1000
@@ -69,15 +46,6 @@ class Message extends Component {
         if(minute < 10){
             minute = '0' + minute
         }
-
-        
-        /*let refItem = 'msg'
-        if(this.lastItem){
-            refItem = '_end'
-            console.log('scroll config')
-        }*/
-
-        
 
         return (
             
@@ -111,13 +79,8 @@ class Message extends Component {
 
                 </div>
 
-                {/*
-                    this.lastItem ? <div id='_end'></div> : null
-                */}
-
             </div>
-           
-    
+
         )
     }
 }
