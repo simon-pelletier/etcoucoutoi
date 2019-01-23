@@ -1,6 +1,6 @@
 @import "../../variables";
 ::-webkit-scrollbar { 
-  display: none!important; 
+  display: none!important;
 }
 .galleriePage{
   .gridItem{
@@ -8,37 +8,20 @@
     width: 100%!important;
     height: 100%!important;
   }
-  //margin-top: -200px;
-  //margin-top: -150px;
   padding-bottom: 20px;
 
-  //height: 100vh;
-  //overflow-y: scroll!important;
-  
-
-  .gallerie-list{
-    //overflow-y: scroll!important;
-    
-    //overflow-y: visible;
-  }
-
   .titleImg{
-    //overflow: hidden;
     width: 100px;
     height: 25px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    //word-wrap: break-word!important;
-
     margin: 0 auto;
   }
   .card{
     margin-bottom: 0px;
     margin-top: 0px;
     border-radius: $mainBorder;
-    //padding-top: 15px;
-    
     padding-right: 0px;
     margin-right: 0px;
     margin: 0 auto;
@@ -49,36 +32,24 @@
     color: $grey;
     font-size: 8pt;
     padding: 3px;
-    
   }
 
-  
   .gallerieImgContainer{
     overflow: hidden;
     width: 120px;
     height: 120px;
     margin: 0 auto;
-    //border: 1px solid #000;
-    //border-radius: $mainBorder;
     -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.30);
     -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.30);
     box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.30);
     margin-bottom: 5px;
-    //padding-top: 50px!important;
 
     .gallerieImg{
       cursor: pointer;
       width: 120px!important;
       display: block;
-      //max-width: 100px;
       min-width: 100px;
-      //min-height: 150px;
-      //max-height: 100px;
-      //overflow: hidden;
       margin: 0 auto;
-      //background-color: $lightPlus;
-      //padding: 5px;
-      //padding-bottom: 30px;
     }
   }
 
@@ -143,14 +114,4 @@
           grid-template-columns: repeat(9, 1fr);
         }
       }
-}
-
-
-
-.gallerieDivTop{
-  /*background-color: black;
-  height: 20px;
-  width: 100px;*/
-  //margin-top: 100px;
-  //margin-bottom: 10px;
 }
