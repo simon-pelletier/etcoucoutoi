@@ -393,7 +393,7 @@ class Chats extends Component {
         
         return (
 
-            <div className="chatPage row" >
+            <div className="chatPage" >
 
             {
                 this.state.loading === true ?
@@ -403,21 +403,25 @@ class Chats extends Component {
                 : null
             }
 
+            <div className="witnessResponse row">
+                {
+                    this.state.responseTo ? <span><i className="material-icons replyIcon">reply</i> {this.getMessage(this.state.responseTo)}<i className="material-icons cancelResponse" onClick={this.cancelResponse}>cancel</i> </span> : null
+                }
+            </div>
+
             <button type="submit" className="btnToBottom" onClick={this.clickToBottom}><i className="material-icons btnToBottomIcon">arrow_downward</i></button>
                 
             
 
-                <div className=" conversation col s12" /*ref={(div) => {this.messageList = div;}} */>
+                <div className=" conversation col s12 m10" /*ref={(div) => {this.messageList = div;}} */>
                     <Conversation chat={mainChat} myClick={this.onClick} msgState={this.state.responseTo} />
                     <div id='_end'></div>
                 </div>
 
-                <div className="sender col s12" >
-                    <div className="witnessResponse">
-                        {
-                            this.state.responseTo ? <span><i className="material-icons replyIcon">reply</i> {this.getMessage(this.state.responseTo)}<i className="material-icons cancelResponse" onClick={this.cancelResponse}>cancel</i> </span> : null
-                        }
-                    </div>
+                
+
+                <div className="sender" >
+                    
 
                     <form>
                         <div className="senderBlock">
