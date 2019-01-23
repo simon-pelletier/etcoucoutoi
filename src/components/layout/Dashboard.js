@@ -10,10 +10,7 @@ import Galleries from '../galleries/Galleries'
 class Dashboard extends Component {
     
     render(){
-        //console.log(this.props)
         const { auth, profile, mainChat, users } = this.props;
-        //console.log(auth.lastLoginAt)
-        //console.log(profile)
         if (!auth.uid) return <Redirect to='/signin' /> 
 
         
@@ -40,7 +37,6 @@ class Dashboard extends Component {
             );
         }
 
-        
     }
 }
 

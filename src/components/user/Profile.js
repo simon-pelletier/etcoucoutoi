@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { firestoreConnect } from 'react-redux-firebase'
@@ -9,7 +9,6 @@ import 'react-datepicker/dist/react-datepicker.css'
 import { storage } from '../../config/fbConfig'
 import classNames from 'classnames'
 import Dropzone from 'react-dropzone'
-//import loading from '../../assets/loading.gif'
 import AvatarEditor from 'react-avatar-editor'
 
 class Profile extends Component {
@@ -58,19 +57,13 @@ class Profile extends Component {
         })
 
         if(profile.avatarPreview !== null){
-            // Avatar save part
             this.saveAvatar()
         } else {
             this.props.updateProfile(this.state)
-            // Profile saved
             this.setState({
                 profileIsReady: false
             })
-
-        }
-
-
-        
+        }  
     }
 
     uploadAvatarBlob = (blob) => {
@@ -119,23 +112,16 @@ class Profile extends Component {
                 avatarPreview: imageURL,
                 avatarScale: 1
                 }, this.uploadAvatarBlob(blob)))
-                  
               )
-
         }
-    
       }
 
     onDrop = (acceptedFiles, rejectedFiles) => {
         const image = acceptedFiles[0]
-
         this.setState({
             avatarPreview: image
         }, () => this.validateProfil())
-        
     }
-
-    
 
     guid() {
         function s4() {
@@ -208,8 +194,6 @@ class Profile extends Component {
             dob: dateFormat
         }, () => { this.validateProfil() })
     }
-
-    
 
     componentWillReceiveProps(nextProps) {
         const profile = nextProps.profile;

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { firestoreConnect } from 'react-redux-firebase'
@@ -10,7 +10,7 @@ import loading from '../../assets/loading.gif'
 import sendSound from '../../assets/send.wav'
 import notificationSound from '../../assets/notification.mp3'
 import AvatarEditor from 'react-avatar-editor'
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom'
 import Conversation from './Conversation'
 
 class Chats extends Component {

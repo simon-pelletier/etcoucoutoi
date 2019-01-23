@@ -2,7 +2,6 @@ import React from 'react'
 
 const UserSummary = ({user}) => {
   const date = user.dob.seconds * 1000
-  //console.log(user)
         const dateFormat = new Intl.DateTimeFormat('fr-FR', 
             {
                 timezone: 'UTC',
@@ -24,7 +23,6 @@ const UserSummary = ({user}) => {
         <div className="card-action">{dateFormat}</div>
     
     </div>
-
   )
 }
 

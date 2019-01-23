@@ -6,8 +6,6 @@ import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 import './groups.scss'
 
-
-
 class Groups extends Component {
   state = {
     entry: ''
@@ -44,8 +42,6 @@ class Groups extends Component {
     )
   }
 }
-
-
 
 const mapStateToProps = (state) => {
   return {

@@ -1,6 +1,5 @@
 import React from 'react'
 import UserSummary from './UserSummary'
-//import { Link } from 'react-router-dom'
 
 const UserList = ({users, entry}) => {
 

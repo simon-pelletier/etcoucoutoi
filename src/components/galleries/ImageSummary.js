@@ -1,30 +1,12 @@
 import React, { Component } from 'react'
-//import Lightbox from 'react-image-lightbox'
 
 class ImageSummary extends Component {
 
-  /*constructor(props) {
-    super(props);
-    this.state = {
-      //photoIndex: 0,
-      isOpen: false,
-    };
-  }*/
-
-  /*imgZoom = (e) => {
-    e.preventDefault()
-    this.setState({ isOpen: true })
-
-  }*/
-
   render (){
-
-    //const { /*photoIndex,*/ isOpen } = this.state;
 
     const { msg, user } = this.props
     let userPseudo = null
     if (user){
-      //console.log(user[0])
       userPseudo = user[0].pseudo
     }
 
@@ -37,8 +19,6 @@ class ImageSummary extends Component {
         day: '2-digit'
       }
     ).format(date)
-
-  
 
   return (
     <div className="imageItem">
@@ -54,14 +34,9 @@ class ImageSummary extends Component {
 
           </div>
         </div>
-
-        
-    
     </div>
-
   )
 }
   }
   
-
 export default ImageSummary
