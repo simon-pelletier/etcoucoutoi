@@ -3,7 +3,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 "Et Coucou Toi !" is a private social network Web and Smartphone.
 This progressive web app uses Firebase and Firestore cloud.
 
-### 'npm i'
+### `npm i`
 
 Important : Fill the .env file with Firebase IDs.
 
