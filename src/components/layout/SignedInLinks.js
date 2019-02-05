@@ -11,7 +11,7 @@ const SignedInLinks = (props) => {
         <li><NavLink to='/groups'><i className="material-icons menuIcon">group</i></NavLink></li>
         <li><NavLink to='/profile'><i className="material-icons menuIcon">settings</i></NavLink></li>
         <li><div href="" onClick={props.signOut}><i className="material-icons menuIcon logOutBtn">cancel</i></div></li>
-      </ul> 
+      </ul>
     </div>
   )
 }

@@ -3,7 +3,11 @@ import 'firebase/firestore'
 import 'firebase/auth'
 import 'firebase/storage'
 
-// Initialize Firebase
+/**
+|--------------------------------------------------
+| Initialisation de Firebase - cf .env.local .env.production ou .env
+|--------------------------------------------------
+*/
 var config = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,

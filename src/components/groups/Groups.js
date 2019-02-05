@@ -19,10 +19,10 @@ class Groups extends Component {
 
   render() {
     const { auth, users } = this.props;
-    if (!auth.uid) return <Redirect to='/signin' /> 
+    if (!auth.uid) return <Redirect to='/signin' />
 
     return (
-      
+
       <div className="user-list page groupPage">
 
         <div className="row">

@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 
 class Quote extends Component {
 
-    render(){
+    render() {
 
         let responseMsg = ''
         let responseAuthor = ''
@@ -12,10 +12,10 @@ class Quote extends Component {
         let link = ''
         let message = ''
 
-        if (this.props.msg[0]){
+        if (this.props.msg[0]) {
             responseMsg = this.props.msg[0]
             responseAuthor = this.props.msg[1][0]
-            if (this.props.msg[1][0]){
+            if (this.props.msg[1][0]) {
                 author = responseAuthor.pseudo
             }
             linkThumb = responseMsg.linkThumb
@@ -27,19 +27,17 @@ class Quote extends Component {
             <div className="col s12 msgResponse">
 
                 <div className="responseAuthor">
-                <i className="material-icons replyIcon">reply</i> {author}
+                    <i className="material-icons replyIcon">reply</i> {author}
                 </div>
 
                 <div className="responseMessageContainer">
                     <div className="responseMessage">{message}</div>
                     {
-                        link !== null ? <div className="quoteImgContainer"><img src={linkThumb} className="quoteImg" alt=""/></div> : null
+                        link !== null ? <div className="quoteImgContainer"><img src={linkThumb} className="quoteImg" alt="" /></div> : null
                     }
-                    
                 </div>
 
             </div>
-
         )
     }
 }

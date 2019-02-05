@@ -1,5 +1,11 @@
+/*
+Importation des variables globales
+*/
 @import "variables";
 
+/*
+ScrollBar Personnalisée
+*/
 ::-webkit-scrollbar-button {
   display: none;
   height: 13px;
@@ -37,8 +43,14 @@
   /* Gecko Browsers */
 }
 
+/*
+Importation de la typo Source Sans
+*/
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
+/*
+GENERAL
+*/
 body {
   font-family: 'Source Sans Pro', sans-serif;
   background-color: $light;
@@ -52,11 +64,22 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-a{
+a {
   color: $mainColor;
 }
 
-.App{
+.btn {
+  background-color: $dark;
+  color: $light;
+  border-radius: $mainBorder;
+}
+
+.btn:hover {
+  background-color: $mainColor;
+  color: $dark;
+}
+
+.App {
   text-align: center;
   width: 100%;
 }
@@ -65,17 +88,10 @@ a{
   color: $mainColor;
 }
 
-.logo{
-  max-width: 60px;
-}
-
-@media (max-width: 600px) {
-  .logo{
-    max-width: 50px;
-  }
-}
-
-.nav-wrapper{
+/*
+NAVBAR
+*/
+.nav-wrapper {
   overflow: hidden;
   color: $light;
   background-color: $dark;
@@ -83,91 +99,99 @@ a{
   z-index: 10;
 }
 
-.page{
-  padding-top: 40px;
-  padding-bottom: 50px;
+.logo {
+  max-width: 60px;
 }
 
-.profilPage{
-  padding-top: 80px;
-  height: 100vh;
-  overflow-y: scroll!important;
+@media (max-width: 600px) {
+  .logo {
+    max-width: 50px;
+  }
 }
 
-.groupPage{
-  padding-top: 60px;
-}
-
-.galleriePage{
-  padding-top: 100px;
-}
-
-.logPage{
-  padding-top: 80px;
-  padding-bottom: 50px;
-}
-
-.groups-dashboard{
- max-height: 70vh;
- overflow-x: hidden;
- overflow-y: scroll;
-}
-
-.welcomeMsg{
+.welcomeMsg {
   font-size: 1.3em;
   font-weight: 500;
   padding-left: 15px;
 }
 
 @media (max-width: 600px) {
-  .welcomeMsg{
+  .welcomeMsg {
     display: none;
   }
 }
 
-.welcomeMsgInfo{
+.welcomeMsgInfo {
   font-size: 1em;
   font-weight: 500;
 }
 
-.mlText{
-  text-align: justify;
-}
-
-.textTitle{
+.textTitle {
   font-weight: 600;
   font-size: 1.5em;
 }
 
-.menuIcon{
+.menuIcon {
   color: $light;
   padding-top: 5px;
 }
 
 @media (max-width: 600px) {
-  .menuIcon{
+  .menuIcon {
     padding-top: 0px;
   }
 }
 
-.logOutBtn{
+.logOutBtn {
   cursor: pointer;
   padding-left: 15px;
   color: $bad;
 }
 
-.btn{
-  background-color: $dark;
-  color: $light;
-  border-radius: $mainBorder;
+/*
+AFFICHAGE DES PAGES
+*/
+.page {
+  padding-top: 40px;
+  padding-bottom: 50px;
 }
 
-.btn:hover{
-  background-color: $mainColor;
-  color: $dark;
+.profilPage {
+  padding-top: 80px;
+  height: 100vh;
+  overflow-y: scroll !important;
 }
 
-.dropzoneProfile{
+.groupPage {
+  padding-top: 60px;
+}
+
+.galleriePage {
+  padding-top: 100px;
+}
+
+.logPage {
+  padding-top: 80px;
+  padding-bottom: 50px;
+}
+
+.groups-dashboard {
+  max-height: 70vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+/*
+MENTIONS LEGALES
+*/
+.mlText {
+  text-align: justify;
+}
+
+/*
+PROFIL
+*/
+.dropzoneProfile {
   height: 100px;
   border-style: dashed;
   border-radius: $mainBorder;
@@ -179,50 +203,58 @@ a{
   margin-bottom: 15px;
 }
 
-.profilBtn{
+.profilBtn {
   margin-top: 10px;
   border-radius: $mainBorder;
 }
 
-.profileDatePicker{
-  margin-top: -20px!important;
+.profileDatePicker {
+  margin-top: -20px !important;
 }
 
-.profilePseudoInput{
+.profilePseudoInput {
   margin-top: -5px;
 }
 
-#avatarScale{
-  outline: none!important;
-  border: none!important;
+#avatarScale {
+  outline: none !important;
+  border: none !important;
   width: 200px;
 }
 
-.ril-toolbar{
-  position: fixed!important;
-  bottom: 0px!important;
+/*
+MODAL GALERIE D'IMAGES
+*/
+.ril-toolbar {
+  position: fixed !important;
+  bottom: 0px !important;
   padding-left: 10px;
   padding-right: 10px;
 }
-.ril__toolbar{
+
+.ril__toolbar {
   top: auto;
 }
-.ril-zoom-in{
-  display: none!important;
+
+.ril-zoom-in {
+  display: none !important;
 }
-.ril-zoom-out{
-  display: none!important;
+
+.ril-zoom-out {
+  display: none !important;
 }
-.ril-close{
-  width: 40px!important;
-  height: 40px!important;
+
+.ril-close {
+  width: 40px !important;
+  height: 40px !important;
   margin-right: -25px;
   border-radius: 50px;
 }
 
-.ril__toolbarItem{
+.ril__toolbarItem {
   overflow: visible;
 }
-.ril__navButtons{
-  display: none!important;
+
+.ril__navButtons {
+  display: none !important;
 }

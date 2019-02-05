@@ -1,6 +1,12 @@
+/*
+Importation des variables globales
+*/
 @import "../../variables";
 
-.msgMessage{
+/*
+Affichage des messages - auteurs, dates, avatars
+*/
+.msgMessage {
     text-align: left;
     font-size: 1.1em;
     padding-right: 20px;
@@ -10,7 +16,7 @@
     margin-bottom: 10px;
 }
 
-.msgAuthor{
+.msgAuthor {
     position: absolute;
     font-size: 0.9em;
     display: inline;
@@ -20,7 +26,7 @@
     left: -10px;
 }
 
-.msgDate{
+.msgDate {
     position: absolute;
     font-size: 0.8em;
     display: inline;
@@ -30,51 +36,53 @@
     color: $grey;
 }
 
-.msgAvatarContainer{
+.msgAvatarContainer {
     width: 25px;
     height: 25px;
     overflow: hidden;
     position: absolute;
     right: -5px;
     top: -5px;
-    -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
     background-color: $light;
     border-radius: $mainBorder;
-    .msgAvatar{
+
+    .msgAvatar {
         max-width: 25px;
         max-height: 25px;
     }
 }
 
-
-.msgBlock{
+.msgBlock {
     position: relative;
     border-radius: $mainBorder;
     margin-top: 10px;
     margin-bottom: 5px;
-    padding-top: 5px!important;
-    padding-bottom: 5px!important;
-    min-height: 50px!important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    min-height: 50px !important;
     cursor: pointer;
 }
 
-.msgOthers{
+.msgOthers {
     background-color: $lightPlus;
-    .msgBulle{
+
+    .msgBulle {
         color: $lightPlus;
     }
 }
 
-.msgUser{
+.msgUser {
     background-color: $msgColor;
-    .msgBulle{
+
+    .msgBulle {
         color: $msgColor;
     }
 }
 
-.msgBulle{
+.msgBulle {
     position: absolute;
     left: -10px;
     top: -3px;
@@ -83,55 +91,58 @@
     z-index: -1;
 }
 
-.msgDateInfo{
+.msgDateInfo {
     display: block;
     background-color: $lightPlus;
     border-radius: $mainBorder;
     padding-left: 10px;
     padding-right: 10px;
     margin-top: 20px;
-    margin-left: 10px!important;
-   
-  }
+    margin-left: 10px !important;
 
-  .msgOverlay{
-      background-color: transparent;
-      width: 100%;
-      height: 100%;
-      top: 0px;
-      left: 0px;
-      display: block;
-      z-index: 0!important;
-      position: absolute;
-  }
+}
 
-  .msgSelected{
-    background-color: $selectionColor!important;
-  }
+/*
+Reponses et citations
+*/
+.msgOverlay {
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    display: block;
+    z-index: 0 !important;
+    position: absolute;
+}
 
-  .msgResponse{
-      background-color: $msgResponse;
-      margin-top: 25px;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      border-radius: $mainBorder;
-      -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.30);
-      -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.30);
-      box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.30);
-      height: 80px;
-  }
+.msgSelected {
+    background-color: $selectionColor !important;
+}
 
-  .responseAuthor{
+.msgResponse {
+    background-color: $msgResponse;
+    margin-top: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: $mainBorder;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.30);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.30);
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.30);
+    height: 80px;
+}
+
+.responseAuthor {
     padding-top: 5px;
     padding-bottom: 5px;
     text-align: left;
     font-style: italic;
-  }
+}
 
-  .responseMessageContainer{
+.responseMessageContainer {
     width: 100%;
-    
-    .responseMessage{
+
+    .responseMessage {
         font-style: italic;
         padding-bottom: 5px;
         text-align: left;
@@ -140,7 +151,8 @@
         white-space: nowrap;
         padding-right: 60px;
     }
-    .quoteImgContainer{
+
+    .quoteImgContainer {
         position: relative;
         display: block;
         width: 50px;
@@ -148,24 +160,33 @@
         float: right;
         top: -50px;
         overflow: hidden;
-        -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-        -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-        box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+        -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
+        box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
         background-color: $light;
         border-radius: $mainBorder;
         margin: 0px;
-        .quoteImg{
+
+        .quoteImg {
             margin: 0 auto;
             max-width: 50px;
             max-height: 50px;
         }
     }
-  }
+}
 
-  .msgLinkContainer{
+.replyIcon {
+    transform: rotate(0.50turn);
+    padding-bottom: 7px;
+}
+
+/*
+Image Preview pour l'envoi
+*/
+.msgLinkContainer {
     overflow: hidden;
     position: relative;
-    z-index: 2!important;
+    z-index: 2 !important;
     height: 150px;
     width: 150px;
     top: 10px;
@@ -173,27 +194,28 @@
     margin-top: 25px;
     margin-bottom: -10px;
     padding-bottom: -10px;
-    -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
     border-radius: $mainBorder;
-    .msgLink{
+
+    .msgLink {
         width: 150px;
         height: 150px;
         display: block;
-      }
-  }
-
-.replyIcon{
-    transform: rotate(0.50turn);
-    padding-bottom: 7px;
+    }
 }
 
-  .chatPage{
-    overflow-y: hidden!important;
+
+
+/*
+Page Chat en arbre
+*/
+.chatPage {
+    overflow-y: hidden !important;
     margin: 0px;
-    
-    .witnessResponse{
+
+    .witnessResponse {
         z-index: 25;
         position: fixed;
         right: 0px;
@@ -202,53 +224,57 @@
         bottom: 55px;
         margin-left: 23px;
         margin-right: 60px;
-        -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-        -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-        box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+        -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
+        box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
         text-align: left;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
         background-color: $replyColor;
         border-radius: $mainBorder;
-        .cancelResponse{
+
+        .cancelResponse {
             position: absolute;
             right: 3px;
             top: 3px;
             cursor: pointer;
         }
     }
-    .conversation{
+
+    .conversation {
         height: 100%;
         width: 100%;
         overflow-x: hidden;
         margin-top: 15px;
         padding-bottom: 50px;
         margin-bottom: -20px;
-      }
-      
-      .sender{
-          
+    }
+
+    .sender {
+
         position: fixed;
         bottom: 0px;
         left: 0px;
-        z-index: 12!important;
+        z-index: 12 !important;
         width: 100%;
         height: 60px;
-        .senderBlock{
-            -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-            -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-            box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+
+        .senderBlock {
+            -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
+            box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
             width: 100%;
-            background-color: $light!important;
-            z-index: 12!important;
+            background-color: $light !important;
+            z-index: 12 !important;
             bottom: 0px;
             position: absolute;
             display: block;
             left: 0px;
             height: 60px;
             margin-left: 0px;
-            .cancelLink{
+
+            .cancelLink {
                 position: absolute;
                 z-index: 20;
                 bottom: 210px;
@@ -258,91 +284,100 @@
                 border-radius: 25px;
                 cursor: pointer;
             }
-            .chatLinkContainer{
+
+            .chatLinkContainer {
                 width: 150px;
                 height: 150px;
                 position: absolute;
                 bottom: 75px;
                 left: 12px;
                 overflow: hidden;
-                -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75)!important;
-                -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75)!important;
-                box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75)!important;
-                border-radius: $mainBorder!important;
-                
-                
-                .chatLinkPreview{
+                -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75) !important;
+                -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75) !important;
+                box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75) !important;
+                border-radius: $mainBorder !important;
+
+
+                .chatLinkPreview {
                     width: 100px;
 
                     background-color: $light;
-                    
+
                     height: 100px;
                     overflow: hidden;
                     border-radius: $mainBorder;
-                    -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-                    -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-                    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-                    
-                    .chatLinkPreviewImg{
+                    -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
+                    -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
+                    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
+
+                    .chatLinkPreviewImg {
                         min-width: 100px;
                         max-width: 100px;
                         padding: 5px;
-                        
+
                     }
                 }
             }
-            
-            
-            .inputChat{
+
+
+            .inputChat {
                 height: 100%;
                 width: 100%;
                 max-width: 100%;
-                padding-right: 130px!important;
+                padding-right: 130px !important;
 
-                .counterMsg{
+                .counterMsg {
                     position: absolute;
                     left: 20px;
                     top: 40px;
                     font-size: 0.8em;
                 }
+
                 .inputContactChat {
                     border-bottom: 1px solid $dark !important;
                     position: relative;
                     left: 15px;
                     bottom: 5px;
-                  }
+                }
             }
 
-            .senderBlockButtons{
+            .senderBlockButtons {
                 position: fixed;
                 bottom: 5px;
                 right: 10px;
-                .btnChatImg{
+
+                .btnChatImg {
                     position: absolute;
                     margin-top: 2px;
                     right: 50px;
                 }
-                .btnSender{
-                    background-color: transparent!important;
-                    color: $dark!important;
+
+                .btnSender {
+                    background-color: transparent !important;
+                    color: $dark !important;
                     border: none;
                 }
-                .btnSenderDisabled{
-                    background-color: transparent!important;
-                    color: $grey!important;
+
+                .btnSenderDisabled {
+                    background-color: transparent !important;
+                    color: $grey !important;
                     border: none;
                 }
-                .senderIcon{
-                    font-size: 25pt!important;
+
+                .senderIcon {
+                    font-size: 25pt !important;
                     cursor: pointer;
                 }
             }
         }
-          
-      }
-  }
 
-.loading{
+    }
+}
+
+/*
+Chargement d'images
+*/
+.loading {
     position: fixed;
     top: 0px;
     left: 0px;
@@ -350,46 +385,52 @@
     margin: 0px;
     width: 100vw;
     height: 100vh;
-    
+
     display: block;
     z-index: 50;
     background-color: rgba(0, 0, 0, 0.9);
     color: $white;
 }
-.loadingGif{
+
+.loadingGif {
     margin: 0 auto;
     width: 200px;
     margin-top: 50vh;
-  transform: translateY(-50%);
+    transform: translateY(-50%);
 }
 
-
-.btnToBottom{
+/*
+Boutons
+*/
+.btnToBottom {
     cursor: pointer;
     position: fixed;
     z-index: 15;
     border-radius: 25px;
-    background-color: $lightPlus!important;
+    background-color: $lightPlus !important;
     width: 30px;
     height: 30px;
     border: none;
     bottom: 77px;
     right: 15px;
-    -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
 
-    .btnToBottomIcon{
+    .btnToBottomIcon {
         font-size: 14pt;
         padding-top: 2px;
     }
 }
-.btnToBottom:hover{
-    background-color: $lightPlus!important;
+
+.btnToBottom:hover {
+    background-color: $lightPlus !important;
 }
-.btnToBottom:link{
-    background-color: $lightPlus!important;
+
+.btnToBottom:link {
+    background-color: $lightPlus !important;
 }
-.btnToBottom:active{
-    background-color: $lightPlus!important;
+
+.btnToBottom:active {
+    background-color: $lightPlus !important;
 }

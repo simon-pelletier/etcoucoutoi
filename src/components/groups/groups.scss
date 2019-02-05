@@ -1,27 +1,28 @@
+/*
+Importation des variables globales
+*/
 @import "../../variables";
 
-.userItem:hover {
-
-}
-
-.avatarUserListContainer{
+/*
+Liste des utilisateurs
+*/
+.avatarUserListContainer {
   border-radius: $mainBorder;
-  -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-  box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
   width: 100px;
   height: 100px;
   overflow: hidden;
   margin: 0 auto;
 
-  .avatarUserList{
+  .avatarUserList {
     min-width: 100px;
-    max-width: 100px;   
+    max-width: 100px;
   }
 }
 
-
-.avatarProfile{
+.avatarProfile {
   border-radius: $mainBorder;
   width: 120px;
   margin-bottom: 15px;
@@ -34,73 +35,76 @@
   background-color: $white;
   border-radius: $mainBorder;
   margin: 5px;
-  -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.30);
-  -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.30);
-  box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.30);
+  -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.30);
+  -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.30);
+  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.30);
 }
 
-.groupPage{
+/*
+GRILLE d'affichage des utilisateurs
+*/
+.groupPage {
   height: 100vh;
-  overflow-y: scroll!important;
-  
+  overflow-y: scroll !important;
+
   #grid {
     display: grid;
     grid-template-columns: 1fr;
   }
-  
+
   @media (min-width: 400px) {
     #grid {
       grid-template-columns: repeat(1, 1fr);
       grid-gap: 5px
     }
   }
-  
+
   @media (min-width: 480px) {
     #grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
-  
+
   @media (min-width: 645px) {
     #grid {
       grid-template-columns: repeat(3, 1fr);
     }
   }
-  
+
   @media (min-width: 900px) {
     #grid {
       grid-template-columns: repeat(4, 1fr);
     }
   }
-  
+
   @media (min-width: 1350px) {
     #grid {
       grid-template-columns: repeat(5, 1fr);
     }
-  
+
     #filterFolio {
       width: calc(100% - 300px);
     }
   }
-  
+
   @media (min-width: 1800px) {
     #grid {
       grid-template-columns: repeat(6, 1fr);
     }
   }
-  
+
   @media (min-width: 3000px) {
     #grid {
       grid-template-columns: repeat(7, 1fr);
     }
   }
-  
+
   @media (min-width: 3500px) {
     #grid {
       grid-template-columns: repeat(8, 1fr);
     }
   }
-  
+
   @media (min-width: 4000px) {
     #grid {
       grid-template-columns: repeat(9, 1fr);

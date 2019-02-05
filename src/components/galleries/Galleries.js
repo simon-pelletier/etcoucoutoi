@@ -6,111 +6,111 @@ import Lightbox from 'react-image-lightbox'
 
 class Galleries extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-          photoIndex: 0,
-          isOpen: false
-        };
+  constructor(props) {
+    super(props);
+    this.state = {
+      photoIndex: 0,
+      isOpen: false
+    };
+    this.images = []
+    this.messages = []
+  }
 
-        this.images = []
-        this.messages = []
+  state = {
+    photoIndex: 0,
+    isOpen: false
+  }
 
-      }
+  forceUpdateHandler() {
+    this.forceUpdate()
+  }
 
-    state = {
-        photoIndex: 0,
-        isOpen: false
-      }
-
-    forceUpdateHandler(){
-        console.log('🔺 WARNING : Force Update 🔺')
-        this.forceUpdate()
-
-    }
-
-    getUserInfos = (author) => {
-
-        const users = this.props.users
-        
-        if (users){
-            return users
-          .filter(user => {
-            return user.authId === author
-          }).map(user => {
-            return (
-              {
-                pseudo: user.pseudo
-              }
-            )
-          })
-        }
-      }
-
-      imgZoom = (e, index) => {
-        e.preventDefault()
-        this.setState({ 
-            isOpen: true,
-            photoIndex: index
+  /**
+  |--------------------------------------------------
+  | Récupère les informations de l'auteur d'un post image
+  |--------------------------------------------------
+  */
+  getUserInfos = (author) => {
+    const users = this.props.users
+    if (users) {
+      return users
+        .filter(user => {
+          return user.authId === author
+        }).map(user => {
+          return (
+            {
+              pseudo: user.pseudo
+            }
+          )
         })
-      }
-
-    componentDidUpdate() {
-        window.scrollTo(0, window.innerHeight)
     }
+  }
 
-    componentWillMount() {
-        this.scrollToTop()
-        window.scrollTo(0, window.innerHeight)
-     }
+  /**
+  |--------------------------------------------------
+  | Lancement du modal pour l'affichage des images via l'index
+  |--------------------------------------------------
+  */
+  imgZoom = (e, index) => {
+    e.preventDefault()
+    this.setState({
+      isOpen: true,
+      photoIndex: index
+    })
+  }
 
-    scrollToTop(event) {
-        window.scrollTo(0, 0)
-    }
-    
-    render () {
+  /**
+  |--------------------------------------------------
+  | Scroll to Top quand le composant se lance
+  |--------------------------------------------------
+  */
+  componentWillMount() {
+    this.scrollToTop()
+  }
 
-        const { auth } = this.props;
-        if (!auth.uid) return <Redirect to='/signin' />
+  /**
+  |--------------------------------------------------
+  | Scroll To Top
+  |--------------------------------------------------
+  */
+  scrollToTop(event) {
+    window.scrollTo(0, 0)
+  }
 
-        const { photoIndex, isOpen } = this.state;
-        const { mainChat } = this.props
+  render() {
+    const { auth } = this.props;
+    if (!auth.uid) return <Redirect to='/signin' />
+    const { photoIndex, isOpen } = this.state;
+    const { mainChat } = this.props
 
-        this.images = []
-        this.messages = []
+    this.images = []
+    this.messages = []
 
-        return (
-            <div className="container galleriePage" >
-                
-                <div className="gallerieDivTop" id='_top'></div>
+    return (
+      <div className="container galleriePage" >
 
-                <div className="gallerie-list" id="grid" >
+        <div className="gallerieDivTop" id='_top'></div>
 
-                
-                { mainChat && mainChat
-                    //.reverse()
-                    .filter(msg => { 
-                        return msg.link !== null
-                    })
-                    .map((msg, index) => {
-                        this.images.push(msg.link)
-                        this.messages.push(msg.message)
-                        return(
-                            <ImageSummary msg={msg} key={msg.id} user={this.getUserInfos(msg.author)} className="gridItem" onClick={(e) => this.imgZoom(e, index)}/>
-                        ) 
-                    })
-                
-                }
+        <div className="gallerie-list" id="grid" >
+          {mainChat && mainChat
+            //.reverse()
+            .filter(msg => {
+              return msg.link !== null
+            })
+            .map((msg, index) => {
+              this.images.push(msg.link)
+              this.messages.push(msg.message)
+              return (
+                <ImageSummary msg={msg} key={msg.id} user={this.getUserInfos(msg.author)} className="gridItem" onClick={(e) => this.imgZoom(e, index)} />
+              )
+            })
+          }
+        </div>
 
-                </div>
-
-                {isOpen && (
+        {isOpen && (
           <div>
-
             <Lightbox
-              
               mainSrc={this.images[photoIndex]}
-
               imageTitle={this.messages[photoIndex]}
               imagePadding={0}
               nextSrc={this.images[(photoIndex + 1) % this.images.length]}
@@ -127,13 +127,11 @@ class Galleries extends Component {
                 })
               }
             />
-          
           </div>
         )}
-
-            </div>
-        )
-    }
+      </div>
+    )
+  }
 }
 
 export default Galleries

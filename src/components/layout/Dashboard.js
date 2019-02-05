@@ -8,58 +8,56 @@ import Chats from '../chats/Chats'
 import Galleries from '../galleries/Galleries'
 
 class Dashboard extends Component {
-    
-    render(){
-        const { auth, profile, mainChat, users } = this.props;
-        if (!auth.uid) return <Redirect to='/signin' /> 
 
-        
-        if(window.location.href.includes('galleries')){
-            return(
-                
-                    <div className="row">
-                        <div className="col s12">
-                            <Galleries auth={auth} users={users} mainChat={mainChat} />
-                            
-                        </div>
+    render() {
+        const { auth, profile, mainChat, users } = this.props;
+        if (!auth.uid) return <Redirect to='/signin' />
+
+        if (window.location.href.includes('galleries')) {
+            return (
+
+                <div className="row">
+                    <div className="col s12">
+                        <Galleries auth={auth} users={users} mainChat={mainChat} />
+
                     </div>
-               
+                </div>
+
             );
         } else {
-            return(
+            return (
                 <div className="home page">
                     <div className="row">
                         <div className="col s12">
-                            <Chats author={profile} lastLogin={auth.lastLoginAt}/>
+                            <Chats author={profile} lastLogin={auth.lastLoginAt} />
                         </div>
                     </div>
                 </div>
             );
         }
-
     }
 }
 
 const mapStateToProps = (state) => {
-    return{
-      authError: state.auth.authError,
-      auth: state.firebase.auth,
-      profile: state.firebase.profile,
-      users: state.firestore.ordered.users,
-      mainChat: state.firestore.ordered.mainChat
-    }
-  }
-  
-  const mapDispatchToProps = (dispatch) => {
     return {
-      signIn: (creds) => dispatch(signIn(creds))
+        authError: state.auth.authError,
+        auth: state.firebase.auth,
+        profile: state.firebase.profile,
+        users: state.firestore.ordered.users,
+        mainChat: state.firestore.ordered.mainChat
     }
-  }
+}
 
-  export default compose(
+const mapDispatchToProps = (dispatch) => {
+    return {
+        signIn: (creds) => dispatch(signIn(creds))
+    }
+}
+
+export default compose(
     connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect([
-      { collection: 'users', orderBy: ['pseudo', 'desc']},
-      { collection: 'mainChat', orderBy: ['createdAt', 'asc']}
+        { collection: 'users', orderBy: ['pseudo', 'desc'] },
+        { collection: 'mainChat', orderBy: ['createdAt', 'asc'] }
     ])
-  )(Dashboard)
+)(Dashboard)

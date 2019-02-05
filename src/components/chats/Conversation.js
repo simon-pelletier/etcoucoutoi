@@ -9,7 +9,7 @@ class Conversation extends Component {
 
   constructor(props) {
     super(props)
-    this.state={
+    this.state = {
       photoIndex: 0,
       isOpen: false
     }
@@ -17,14 +17,18 @@ class Conversation extends Component {
     this.messages = []
   }
 
-  state={
+  state = {
     photoIndex: 0,
     isOpen: false
   }
-  
+
+  /**
+  |--------------------------------------------------
+  | Récupère les informations de l'auteur d'un post image
+  |--------------------------------------------------
+  */
   getUserInfos = (author) => {
     const users = this.props.users
-    
     return users
       .filter(user => {
         return user.authId === author
@@ -36,32 +40,29 @@ class Conversation extends Component {
           }
         )
       })
-  
   }
 
+  /**
+  |--------------------------------------------------
+  | Lancement du modal pour l'affichage des images via l'index
+  |--------------------------------------------------
+  */
   imgZoom = (e, index) => {
     e.preventDefault()
-    this.setState({ 
-        isOpen: true,
-        photoIndex: index
+    this.setState({
+      isOpen: true,
+      photoIndex: index
     })
-
   }
 
-  render(){
-
+  render() {
     let wayClass = 'msgOthers'
-
     const msgStateId = this.props.msgState
     let msgState = 'msg'
-
     let lastDay = 0
-
     const chat = this.props.chat
     const myClick = this.props.myClick
-
     const { photoIndex, isOpen } = this.state;
-
     let indexMsgLink = -1
 
     this.images = []
@@ -69,121 +70,112 @@ class Conversation extends Component {
 
     return (
       <div>
-      <div className="row">
+        <div className="row">
 
-        { chat && chat
-        .map((chat, indexItem) => {
-          
-
-          const currentAuthor = chat.author
-
-          const responseToId = chat.responseTo
-          
-          let responseTo = null
-
-          const date = chat.createdAt.seconds * 1000
-          const dateFormat = new Intl.DateTimeFormat('fr-FR', 
-              {
+          {chat && chat
+            .map((chat, indexItem) => {
+              const currentAuthor = chat.author
+              const responseToId = chat.responseTo
+              let responseTo = null
+              const date = chat.createdAt.seconds * 1000
+              const dateFormat = new Intl.DateTimeFormat('fr-FR',
+                {
                   timezone: 'UTC',
                   year: 'numeric',
                   month: '2-digit',
                   day: '2-digit'
+                }
+              ).format(date)
+
+              let dateSplited = dateFormat.split('/')
+              let day = dateSplited[0]
+
+              let dateElt = ''
+
+              if (lastDay !== day) {
+                dateElt = dateFormat
+              } else {
+                dateElt = null
               }
-          ).format(date)
+              lastDay = day
 
-          let dateSplited = dateFormat.split('/')
-          let day = dateSplited[0]
+              const auth = this.props.auth.uid
 
-          let dateElt = ''
+              if (chat.link !== null) {
+                this.images.push(chat.link)
+                this.messages.push(chat.message)
+                indexMsgLink++
+              }
 
-          if(lastDay !== day){
-            dateElt = dateFormat
-          } else {
-            dateElt = null
-          }
-          lastDay = day
+              const index = indexMsgLink
 
-          const auth = this.props.auth.uid
+              if (auth === currentAuthor) {
+                wayClass = 'msgUser'
+              } else {
+                wayClass = 'msgOthers'
+              }
 
-          if(chat.link !== null){
-            this.images.push(chat.link)
-            this.messages.push(chat.message)
-            indexMsgLink++
-          }
-          const index = indexMsgLink
-          
+              if (msgStateId === chat.id) {
+                msgState = 'msgSelected'
+              } else {
+                msgState = 'msg'
+              }
 
-          if (auth === currentAuthor){
-            wayClass = 'msgUser'
-          } else {
-            wayClass = 'msgOthers'
-          }
+              if (responseToId !== null) {
 
-          if (msgStateId === chat.id){
-            msgState = 'msgSelected'
-          } else {
-            msgState = 'msg'
-          }
+                const chatResponse = this.props.chat
+                responseTo = chatResponse && chatResponse
+                  .filter(response => {
+                    return responseToId === response.id
+                  })
+                  .map((response) => {
 
-          if (responseToId !== null){
-            
-            const chatResponse = this.props.chat
-            responseTo = chatResponse && chatResponse
-            .filter(response => {
-              return responseToId === response.id
-            })
-            .map((response) => {
+                    let responseWithUser = [response, this.getUserInfos(response.author)]
+                    return responseWithUser
+                  })
+              } else {
+                responseTo = null
+              }
 
-              let responseWithUser = [ response, this.getUserInfos(response.author) ]
-              return responseWithUser
-            })
-          } else {
-            responseTo = null
-          }
+              return (
+                <Message conversation={chat} key={chat.id} way={wayClass} responseTo={responseTo} msgState={msgState} userInfos={this.getUserInfos(currentAuthor)} date={dateElt} myClick={myClick} onClick={(e) => this.imgZoom(e, index)} />
+              )
 
-          return (
-            <Message conversation={chat} key={chat.id} way={wayClass} responseTo={responseTo} msgState={msgState} userInfos={this.getUserInfos(currentAuthor)} date={dateElt} myClick={myClick} onClick={(e) => this.imgZoom(e, index)}/>
-          )
+            })}
 
-        })}
-
-      </div>
-      {isOpen && (
-        <div>
-
+        </div>
+        {isOpen && (
+          <div>
             <Lightbox
-            
-            mainSrc={this.images[photoIndex]}
-            imageTitle={this.messages[photoIndex]}
-            imagePadding={0}
-            nextSrc={this.images[(photoIndex + 1) % this.images.length]}
-            prevSrc={this.images[(photoIndex + this.images.length - 1) % this.images.length]}
-            onCloseRequest={() => this.setState({ isOpen: false })}
-            onMovePrevRequest={() =>
+              mainSrc={this.images[photoIndex]}
+              imageTitle={this.messages[photoIndex]}
+              imagePadding={0}
+              nextSrc={this.images[(photoIndex + 1) % this.images.length]}
+              prevSrc={this.images[(photoIndex + this.images.length - 1) % this.images.length]}
+              onCloseRequest={() => this.setState({ isOpen: false })}
+              onMovePrevRequest={() =>
                 this.setState({
-                photoIndex: (photoIndex + this.images.length - 1) % this.images.length,
+                  photoIndex: (photoIndex + this.images.length - 1) % this.images.length,
                 })
-            }
-            onMoveNextRequest={() =>
+              }
+              onMoveNextRequest={() =>
                 this.setState({
-                photoIndex: (photoIndex + 1) % this.images.length,
+                  photoIndex: (photoIndex + 1) % this.images.length,
                 })
-            }
+              }
             />
-        
-        </div>
+
+          </div>
         )}
-        </div>
-      
+      </div>
     )
   }
-  
 }
 
 const mapStateToProps = (state) => {
-  return{
-      auth: state.firebase.auth,
-      users: state.firestore.ordered.users
+  return {
+    auth: state.firebase.auth,
+    users: state.firestore.ordered.users
   }
 }
 
